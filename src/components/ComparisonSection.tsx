@@ -1,8 +1,15 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Check, X } from 'lucide-react';
+import LeadCaptureModal from './LeadCaptureModal';
 
 const ComparisonSection = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleFreeClick = () => {
+    setShowModal(true);
+  };
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -10,7 +17,7 @@ const ComparisonSection = () => {
         
         <div className="overflow-x-auto">
           <table className="w-full min-w-[800px] border-collapse text-center">
-            <thead className="bg-crypto-blue text-white">
+            <thead className="bg-crypto-lightPurple text-white">
               <tr>
                 <th className="p-4 text-left">Курс</th>
                 <th className="p-4">Уровень</th>
@@ -29,7 +36,9 @@ const ComparisonSection = () => {
                 <td className="p-4 text-center">
                   <X size={18} className="inline-block text-red-500" />
                 </td>
-                <td className="p-4 font-bold text-green-600">Бесплатно</td>
+                <td className="p-4 font-bold text-green-600 cursor-pointer hover:underline" onClick={handleFreeClick}>
+                  Бесплатно
+                </td>
               </tr>
               <tr className="bg-gray-50 border-b">
                 <td className="p-4 font-medium text-left">Блокчейн технологии</td>
@@ -74,19 +83,20 @@ const ComparisonSection = () => {
             </li>
             <li className="flex items-center space-x-3">
               <Check size={20} className="text-green-500 flex-shrink-0" />
-              <span><em>Инвесторы</em>: Научитесь анализировать рынок и управлять портфелем.</span>
+              <span><strong>Инвесторы</strong>: Научитесь анализировать рынок и управлять портфелем.</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check size={20} className="text-green-500 flex-shrink-0" />
-              <span>Трейдеры: Освойте стратегии торговли биткоином и альткоинами.</span>
+              <span><strong>Трейдеры</strong>: Освойте стратегии торговли биткоином и альткоинами.</span>
             </li>
             <li className="flex items-center space-x-3">
               <Check size={20} className="text-green-500 flex-shrink-0" />
-              <span>Технари: Погрузитесь в технологию блокчейна и смарт-контракты.</span>
+              <span><strong>Технари</strong>: Погрузитесь в технологию блокчейна и смарт-контракты.</span>
             </li>
           </ul>
         </div>
       </div>
+      <LeadCaptureModal open={showModal} onOpenChange={setShowModal} />
     </section>
   );
 };

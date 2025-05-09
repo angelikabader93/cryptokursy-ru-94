@@ -1,6 +1,7 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import LeadCaptureModal from './LeadCaptureModal';
 
 const courses = [
   {
@@ -38,6 +39,16 @@ const courses = [
 ];
 
 const CoursesSection = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCourseClick = (price: string) => {
+    if (price === "Бесплатно") {
+      setShowModal(true);
+    } else {
+      document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="py-16" id="courses">
       <div className="container mx-auto px-4">
@@ -91,7 +102,7 @@ const CoursesSection = () => {
                       'bg-crypto-orange hover:bg-orange-600' : 
                       'bg-crypto-purple hover:bg-crypto-lightPurple'
                     } text-white`}
-                    onClick={() => document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => handleCourseClick(course.price)}
                   >
                     Подробнее
                   </Button>
@@ -110,6 +121,7 @@ const CoursesSection = () => {
           </Button>
         </div>
       </div>
+      <LeadCaptureModal open={showModal} onOpenChange={setShowModal} />
     </section>
   );
 };

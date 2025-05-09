@@ -11,7 +11,6 @@ interface SignupFormProps {
 
 const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess }) => {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,7 +28,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess }) =>
       
       // Reset form
       setName('');
-      setEmail('');
       setPhone('');
       
       if (onSubmitSuccess) {
@@ -83,21 +81,11 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess }) =>
         
         <div>
           <Input
-            type="email"
-            placeholder="Ваш email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full p-3 bg-gray-50"
-          />
-        </div>
-        
-        <div>
-          <Input
             type="tel"
             placeholder="Номер телефона"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
+            required
             className="w-full p-3 bg-gray-50"
           />
         </div>

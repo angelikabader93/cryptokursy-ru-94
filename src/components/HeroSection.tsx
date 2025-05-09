@@ -1,9 +1,16 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import SignupForm from './SignupForm';
+import LeadCaptureModal from './LeadCaptureModal';
 
 const HeroSection = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const scrollToCourses = () => {
+    document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="relative bg-gradient-to-r from-crypto-purple/90 to-crypto-lightPurple text-white py-16 md:py-24">
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1639322537231-2f206e06af84?q=80&w=2032')] bg-cover bg-center mix-blend-overlay opacity-20"></div>
@@ -19,13 +26,14 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 className="bg-crypto-orange hover:bg-orange-600 text-white font-bold text-lg py-6 px-8"
-                onClick={() => document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => setShowModal(true)}
               >
                 Начать бесплатно
               </Button>
               <Button 
                 variant="outline" 
                 className="bg-white hover:bg-gray-100 text-crypto-blue font-bold text-lg py-6 px-8"
+                onClick={scrollToCourses}
               >
                 Узнать больше
               </Button>
@@ -39,6 +47,8 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+      
+      <LeadCaptureModal open={showModal} onOpenChange={setShowModal} />
     </section>
   );
 };
