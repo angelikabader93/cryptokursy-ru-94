@@ -13,7 +13,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative bg-gradient-to-r from-crypto-purple/90 to-crypto-lightPurple text-white py-16 md:py-24">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1639322537231-2f206e06af84?q=80&w=2032')] bg-cover bg-center mix-blend-overlay opacity-20"></div>
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1887')] bg-cover bg-center mix-blend-overlay opacity-20"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
