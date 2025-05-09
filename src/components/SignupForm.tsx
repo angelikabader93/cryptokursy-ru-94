@@ -5,11 +5,12 @@ import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
 
 interface SignupFormProps {
-  formType: 'hero' | 'popup' | 'footer';
+  formType: 'hero' | 'popup' | 'footer' | 'course';
   onSubmitSuccess?: () => void;
+  courseTitle?: string;
 }
 
-const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess }) => {
+const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, courseTitle }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +24,9 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess }) =>
       setIsLoading(false);
       toast({
         title: "Успешно!",
-        description: "Мы отправили вам доступ к бесплатному курсу",
+        description: courseTitle 
+          ? `Мы отправили вам доступ к курсу "${courseTitle}"`
+          : "Мы отправили вам доступ к бесплатному курсу",
       });
       
       // Reset form
@@ -44,6 +47,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess }) =>
         return 'Не упустите возможность!';
       case 'footer':
         return 'Присоединяйтесь к нам';
+      case 'course':
+        return courseTitle ? `Запись на курс "${courseTitle}"` : 'Запись на курс';
       default:
         return 'Зарегистрируйтесь сейчас';
     }
@@ -57,6 +62,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess }) =>
         return 'Начать обучение';
       case 'footer':
         return 'Присоединиться';
+      case 'course':
+        return 'Записаться на курс';
       default:
         return 'Отправить';
     }
@@ -93,7 +100,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess }) =>
         <Button 
           type="submit" 
           className={`w-full py-6 font-bold ${
-            formType === 'popup' 
+            formType === 'popup' || formType === 'course' 
               ? 'bg-crypto-orange hover:bg-orange-600 text-white' 
               : 'bg-crypto-lightPurple hover:bg-crypto-purple text-white'
           }`}
