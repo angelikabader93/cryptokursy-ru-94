@@ -16,7 +16,7 @@ const courses = [
     title: "Блокчейн и криптовалюты",
     level: "Средний",
     description: "Глубокое погружение в технологии блокчейн и их применение. Вы узнаете о разных типах криптовалют, принципах работы смарт-контрактов и основах DeFi.",
-    image: "https://images.unsplash.com/photo-1639322537174-8c5393eaf48f?q=80&w=2032",
+    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2032",
     price: "Платно",
     popular: false
   },
@@ -71,6 +71,10 @@ const CoursesSection = () => {
                   src={course.image} 
                   alt={course.title} 
                   className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "https://images.unsplash.com/photo-1639322537231-2f206e06af84?q=80&w=2032";
+                  }}
                 />
               </div>
               
