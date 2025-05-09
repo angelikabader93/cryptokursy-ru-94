@@ -26,13 +26,13 @@ const ComparisonSection = () => {
         <div className="overflow-x-auto">
           <Table className="w-full min-w-[800px] border-collapse text-center">
             <TableHeader>
-              <TableRow className="bg-crypto-purple text-white">
-                <TableHead className="p-4 text-left text-white">Курс</TableHead>
-                <TableHead className="p-4 text-white">Уровень</TableHead>
-                <TableHead className="p-4 text-white">Формат</TableHead>
-                <TableHead className="p-4 text-white">Доступ</TableHead>
-                <TableHead className="p-4 text-white">Наставник</TableHead>
-                <TableHead className="p-4 text-white">Цена</TableHead>
+              <TableRow className="bg-[#7E69AB] text-white">
+                <TableHead className="p-4 text-center text-white">Курс</TableHead>
+                <TableHead className="p-4 text-center text-white">Уровень</TableHead>
+                <TableHead className="p-4 text-center text-white">Формат</TableHead>
+                <TableHead className="p-4 text-center text-white">Доступ</TableHead>
+                <TableHead className="p-4 text-center text-white">Наставник</TableHead>
+                <TableHead className="p-4 text-center text-white">Цена</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
