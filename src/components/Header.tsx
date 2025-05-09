@@ -1,0 +1,102 @@
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <header className="bg-white shadow-md sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="flex items-center">
+          <Link to="/" className="flex items-center">
+            <span className="text-crypto-blue font-heading font-extrabold text-2xl">КРИПТО</span>
+            <span className="text-crypto-orange font-heading font-bold text-2xl">СТАРТ</span>
+          </Link>
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-6">
+          <Link to="/" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Главная</Link>
+          <Link to="/courses" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Курсы</Link>
+          <Link to="/about" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">О нас</Link>
+          <Link to="/blog" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Блог</Link>
+          <Link to="/contact" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Контакты</Link>
+        </nav>
+
+        <div className="hidden md:block">
+          <Button 
+            className="bg-crypto-orange text-white font-bold hover:bg-orange-600"
+            onClick={() => document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Начать бесплатно
+          </Button>
+        </div>
+
+        {/* Mobile Navigation Toggle */}
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)} 
+          className="md:hidden text-gray-700"
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white w-full py-4 px-4 shadow-lg">
+          <nav className="flex flex-col space-y-4">
+            <Link 
+              to="/" 
+              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Главная
+            </Link>
+            <Link 
+              to="/courses" 
+              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Курсы
+            </Link>
+            <Link 
+              to="/about" 
+              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              О нас
+            </Link>
+            <Link 
+              to="/blog" 
+              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Блог
+            </Link>
+            <Link 
+              to="/contact" 
+              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Контакты
+            </Link>
+            <Button 
+              className="bg-crypto-orange text-white font-bold hover:bg-orange-600 w-full"
+              onClick={() => {
+                document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' });
+                setIsMenuOpen(false);
+              }}
+            >
+              Начать бесплатно
+            </Button>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;
