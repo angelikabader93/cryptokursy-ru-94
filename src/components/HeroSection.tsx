@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import SignupForm from './SignupForm';
 import LeadCaptureModal from './LeadCaptureModal';
 
@@ -41,9 +42,11 @@ const HeroSection = () => {
           </div>
           
           <div className="w-full md:w-1/2" id="hero-signup-form">
-            <div className="bg-white text-gray-800 rounded-lg shadow-xl p-6 md:p-8">
-              <SignupForm formType="hero" />
-            </div>
+            <Card className="shadow-xl">
+              <CardContent className="p-6 md:p-8">
+                <SignupForm formType="hero" />
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

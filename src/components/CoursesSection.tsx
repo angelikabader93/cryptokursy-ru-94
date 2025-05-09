@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import LeadCaptureModal from './LeadCaptureModal';
 
 const courses = [
@@ -10,7 +11,8 @@ const courses = [
     description: "Базовый курс для тех, кто только начинает свой путь в мире криптовалют. Изучите основы блокчейна, как работают криптокошельки, и научитесь безопасно хранить криптовалюту.",
     image: "https://images.unsplash.com/photo-1516245834210-c4c142787335?q=80&w=2069",
     price: "Бесплатно",
-    popular: true
+    popular: true,
+    url: "/courses/crypto-for-beginners"
   },
   {
     title: "Блокчейн и криптовалюты",
@@ -18,7 +20,8 @@ const courses = [
     description: "Глубокое погружение в технологии блокчейн и их применение. Вы узнаете о разных типах криптовалют, принципах работы смарт-контрактов и основах DeFi.",
     image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2032",
     price: "Платно",
-    popular: false
+    popular: false,
+    url: "/courses/blockchain-and-crypto"
   },
   {
     title: "Биткоин и альткоины",
@@ -26,7 +29,8 @@ const courses = [
     description: "Курс для тех, кто хочет научиться инвестировать в криптовалюты. Вы изучите основы анализа рынка, стратегии инвестирования и управление портфелем.",
     image: "https://images.unsplash.com/photo-1605792657660-596af9009e82?q=80&w=2002",
     price: "Платно",
-    popular: false
+    popular: false,
+    url: "/courses/bitcoin-and-altcoins"
   },
   {
     title: "Премиальная криптошкола",
@@ -34,7 +38,8 @@ const courses = [
     description: "Индивидуальное обучение с экспертами. Персональный наставник поможет вам освоить продвинутые стратегии трейдинга, анализ графиков и управление рисками.",
     image: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=2070",
     price: "Премиум",
-    popular: false
+    popular: false,
+    url: "/courses/premium-crypto-school"
   }
 ];
 
@@ -106,9 +111,9 @@ const CoursesSection = () => {
                       'bg-crypto-orange hover:bg-orange-600' : 
                       'bg-crypto-purple hover:bg-crypto-lightPurple'
                     } text-white`}
-                    onClick={() => handleCourseClick(course.price)}
+                    asChild
                   >
-                    Подробнее
+                    <Link to={course.url}>Подробнее</Link>
                   </Button>
                 </div>
               </div>
