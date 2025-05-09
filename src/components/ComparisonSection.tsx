@@ -2,6 +2,14 @@
 import React, { useState } from 'react';
 import { Check, X } from 'lucide-react';
 import LeadCaptureModal from './LeadCaptureModal';
+import { 
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell
+} from '@/components/ui/table';
 
 const ComparisonSection = () => {
   const [showModal, setShowModal] = useState(false);
@@ -11,67 +19,67 @@ const ComparisonSection = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50" id="courses">
       <div className="container mx-auto px-4">
         <h3 className="section-title">Сравнение курсов по криптовалюте</h3>
         
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[800px] border-collapse text-center">
-            <thead className="bg-crypto-lightPurple text-white">
-              <tr>
-                <th className="p-4 text-left">Курс</th>
-                <th className="p-4">Уровень</th>
-                <th className="p-4">Формат</th>
-                <th className="p-4">Доступ</th>
-                <th className="p-4">Наставник</th>
-                <th className="p-4">Цена</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="bg-white border-b">
-                <td className="p-4 font-medium text-left">Крипта для начинающих</td>
-                <td className="p-4">Новичок</td>
-                <td className="p-4">Онлайн</td>
-                <td className="p-4">30 дней</td>
-                <td className="p-4 text-center">
+          <Table className="w-full min-w-[800px] border-collapse text-center">
+            <TableHeader>
+              <TableRow className="bg-crypto-purple text-white">
+                <TableHead className="p-4 text-left text-white">Курс</TableHead>
+                <TableHead className="p-4 text-white">Уровень</TableHead>
+                <TableHead className="p-4 text-white">Формат</TableHead>
+                <TableHead className="p-4 text-white">Доступ</TableHead>
+                <TableHead className="p-4 text-white">Наставник</TableHead>
+                <TableHead className="p-4 text-white">Цена</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow className="bg-white border-b">
+                <TableCell className="p-4 font-medium text-left">Крипта для начинающих</TableCell>
+                <TableCell className="p-4">Новичок</TableCell>
+                <TableCell className="p-4">Онлайн</TableCell>
+                <TableCell className="p-4">30 дней</TableCell>
+                <TableCell className="p-4 text-center">
                   <X size={18} className="inline-block text-red-500" />
-                </td>
-                <td className="p-4 font-bold text-green-600 cursor-pointer hover:underline" onClick={handleFreeClick}>
+                </TableCell>
+                <TableCell className="p-4 font-bold text-green-600 cursor-pointer hover:underline" onClick={handleFreeClick}>
                   Бесплатно
-                </td>
-              </tr>
-              <tr className="bg-gray-50 border-b">
-                <td className="p-4 font-medium text-left">Блокчейн технологии</td>
-                <td className="p-4">Средний</td>
-                <td className="p-4">Онлайн + практика</td>
-                <td className="p-4">90 дней</td>
-                <td className="p-4 text-center">
+                </TableCell>
+              </TableRow>
+              <TableRow className="bg-gray-50 border-b">
+                <TableCell className="p-4 font-medium text-left">Блокчейн технологии</TableCell>
+                <TableCell className="p-4">Средний</TableCell>
+                <TableCell className="p-4">Онлайн + практика</TableCell>
+                <TableCell className="p-4">90 дней</TableCell>
+                <TableCell className="p-4 text-center">
                   <X size={18} className="inline-block text-red-500" />
-                </td>
-                <td className="p-4 font-bold">15 000 ₽</td>
-              </tr>
-              <tr className="bg-white border-b">
-                <td className="p-4 font-medium text-left">Трейдинг криптовалютами</td>
-                <td className="p-4">Средний</td>
-                <td className="p-4">Онлайн + практика</td>
-                <td className="p-4">Пожизненный</td>
-                <td className="p-4 text-center">
+                </TableCell>
+                <TableCell className="p-4 font-bold">15 000 ₽</TableCell>
+              </TableRow>
+              <TableRow className="bg-white border-b">
+                <TableCell className="p-4 font-medium text-left">Трейдинг криптовалютами</TableCell>
+                <TableCell className="p-4">Средний</TableCell>
+                <TableCell className="p-4">Онлайн + практика</TableCell>
+                <TableCell className="p-4">Пожизненный</TableCell>
+                <TableCell className="p-4 text-center">
                   <Check size={18} className="inline-block text-green-500" />
-                </td>
-                <td className="p-4 font-bold">29 000 ₽</td>
-              </tr>
-              <tr className="bg-gray-50 border-b">
-                <td className="p-4 font-medium text-left">Премиальная криптошкола</td>
-                <td className="p-4">Продвинутый</td>
-                <td className="p-4">Индивидуально</td>
-                <td className="p-4">Пожизненный</td>
-                <td className="p-4 text-center">
+                </TableCell>
+                <TableCell className="p-4 font-bold">29 000 ₽</TableCell>
+              </TableRow>
+              <TableRow className="bg-gray-50 border-b">
+                <TableCell className="p-4 font-medium text-left">Премиальная криптошкола</TableCell>
+                <TableCell className="p-4">Продвинутый</TableCell>
+                <TableCell className="p-4">Индивидуально</TableCell>
+                <TableCell className="p-4">Пожизненный</TableCell>
+                <TableCell className="p-4 text-center">
                   <Check size={18} className="inline-block text-green-500" />
-                </td>
-                <td className="p-4 font-bold text-crypto-purple">Премиум</td>
-              </tr>
-            </tbody>
-          </table>
+                </TableCell>
+                <TableCell className="p-4 font-bold text-crypto-purple">Премиум</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
 
         <div className="mt-10 max-w-3xl mx-auto">
