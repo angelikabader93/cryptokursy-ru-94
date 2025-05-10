@@ -31,7 +31,7 @@ const instructors: Instructor[] = [
       "Участник международных конференций",
       "Консультант по инвестициям в криптовалюты"
     ],
-    avatar: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?q=80&w=1780",
+    avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=1780",
     courses: [
       {
         id: "beginners",
@@ -56,7 +56,7 @@ const instructors: Instructor[] = [
       "Технический аналитик",
       "Ведущий вебинаров по трейдингу"
     ],
-    avatar: "https://images.unsplash.com/photo-1501286353178-1ec881214838?q=80&w=1780",
+    avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?q=80&w=1780",
     courses: [
       {
         id: "bitcoin",
@@ -76,7 +76,7 @@ const instructors: Instructor[] = [
       "Аудит безопасности блокчейн-проектов",
       "Преподаватель криптоэкономики"
     ],
-    avatar: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1780",
+    avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1780",
     courses: [
       {
         id: "premium",
@@ -95,7 +95,7 @@ const InstructorsSection: React.FC = () => {
           <Users className="text-crypto-purple mr-2" />
           <span className="text-crypto-purple font-medium">Наша команда</span>
         </div>
-        <h2 className="section-title mb-12">Наши преподаватели</h2>
+        <h2 className="section-title mb-12 text-center text-3xl font-bold text-crypto-blue">Наши преподаватели</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {instructors.map((instructor) => (
