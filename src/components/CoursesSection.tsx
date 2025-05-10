@@ -120,15 +120,6 @@ const CoursesSection = () => {
             </div>
           ))}
         </div>
-
-        <div className="mt-12 text-center">
-          <Button 
-            className="bg-crypto-lightPurple hover:bg-crypto-purple text-white font-bold py-6 px-12 text-lg"
-            onClick={() => document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Просмотреть все курсы
-          </Button>
-        </div>
       </div>
       <LeadCaptureModal open={showModal} onOpenChange={setShowModal} />
     </section>
