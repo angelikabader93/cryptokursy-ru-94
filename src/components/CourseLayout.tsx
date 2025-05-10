@@ -1,5 +1,5 @@
 
-import React, { ReactNode, useState, useEffect } from 'react';
+import React, { ReactNode, useState, useEffect, useRef } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
@@ -8,6 +8,7 @@ import SignupForm from './SignupForm';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
 import { CalendarCheck, GraduationCap, BookOpen, Users, Clock, Shield, Medal, Star, Check, Info } from 'lucide-react';
+import FloatingCoursePriceBar from './FloatingCoursePriceBar';
 
 interface CourseLayoutProps {
   courseTitle: string;
@@ -30,6 +31,9 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
 }) => {
   const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 23, minutes: 59, seconds: 59 });
   const [isSticky, setIsSticky] = useState(false);
+  const [showFloatingBar, setShowFloatingBar] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const mainContentRef = useRef<HTMLDivElement>(null);
 
   // Timer countdown effect
   useEffect(() => {
@@ -58,6 +62,16 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsSticky(scrollPosition > 300);
+      
+      // Проверка для отображения плавающего сайдбара
+      if (sidebarRef.current && mainContentRef.current) {
+        const sidebarBottom = sidebarRef.current.getBoundingClientRect().bottom;
+        const mainContentBottom = mainContentRef.current.getBoundingClientRect().bottom;
+        
+        // Показываем плавающий сайдбар, когда нижняя часть основного сайдбара выходит за пределы экрана
+        // и пока не достигнут конец основного контента (чтобы не перекрывать форму регистрации)
+        setShowFloatingBar(sidebarBottom < 0 && mainContentBottom > window.innerHeight);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -172,7 +186,7 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
               {/* Course Preview Section */}
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 {/* Course Content Area */}
-                <div className="w-full md:w-2/3">
+                <div className="w-full md:w-2/3" ref={mainContentRef}>
                   <div className="bg-white rounded-xl overflow-hidden shadow-xl transform transition-transform hover:-translate-y-1 duration-300">
                     <div className="relative">
                       {popular && (
@@ -224,7 +238,7 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
                 </div>
                 
                 {/* Course Info Sidebar with Enhanced Sticky Behavior */}
-                <div className="w-full md:w-1/3">
+                <div className="w-full md:w-1/3" ref={sidebarRef}>
                   <div 
                     className={`transition-all duration-300 ${
                       isSticky ? 'sticky top-4' : ''
@@ -314,11 +328,8 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
                       
                       {/* Enhanced Call-To-Action Button */}
                       <Button 
-                        className={`${
-                          price === "Бесплатно" 
-                            ? "bg-gradient-to-r from-crypto-orange to-amber-500 hover:from-amber-500 hover:to-crypto-orange" 
-                            : "bg-gradient-to-r from-crypto-purple to-crypto-lightPurple hover:from-crypto-lightPurple hover:to-crypto-purple"
-                        } text-white w-full text-lg py-7 rounded-lg shadow-lg hover:shadow-xl transition-all font-bold`}
+                        variant={price === "Бесплатно" ? "cryptoOrange" : "crypto"}
+                        className="w-full text-lg py-7 rounded-lg shadow-lg hover:shadow-xl transition-all font-bold"
                         onClick={() => document.getElementById('signup-form-course')?.scrollIntoView({ behavior: 'smooth' })}
                       >
                         {price === "Бесплатно" ? "Начать бесплатно" : "Записаться на курс"}
@@ -445,6 +456,13 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
           </div>
         </div>
       </main>
+      
+      {/* Плавающий сайдбар с ценой и кнопкой оплаты */}
+      <FloatingCoursePriceBar 
+        courseTitle={courseTitle}
+        price={price}
+        isVisible={showFloatingBar}
+      />
       
       <Footer />
     </div>
