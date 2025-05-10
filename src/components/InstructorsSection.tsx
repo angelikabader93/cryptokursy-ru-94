@@ -31,7 +31,7 @@ const instructors: Instructor[] = [
       "Участник международных конференций",
       "Консультант по инвестициям в криптовалюты"
     ],
-    avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=1780",
+    avatar: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=1887",
     courses: [
       {
         id: "beginners",
@@ -56,7 +56,7 @@ const instructors: Instructor[] = [
       "Технический аналитик",
       "Ведущий вебинаров по трейдингу"
     ],
-    avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?q=80&w=1780",
+    avatar: "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?q=80&w=1935",
     courses: [
       {
         id: "bitcoin",
@@ -76,7 +76,7 @@ const instructors: Instructor[] = [
       "Аудит безопасности блокчейн-проектов",
       "Преподаватель криптоэкономики"
     ],
-    avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1780",
+    avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071",
     courses: [
       {
         id: "premium",
