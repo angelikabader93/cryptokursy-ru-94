@@ -179,37 +179,37 @@ const BlockchainCoursePage = () => {
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Детальное понимание архитектуры и принципов работы блокчейна</span>
+                <span className="text-gray-700">Детальное понимание архитектуры и принципов работы блокчейна</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Различия между типами блокчейнов: публичные, частные, консорциумные</span>
+                <span className="text-gray-700">Различия между типами блокчейнов: публичные, частные, консорциумные</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Технологию и применение смарт-контрактов в различных сферах</span>
+                <span className="text-gray-700">Технологию и применение смарт-контрактов в различных сферах</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Особенности различных криптовалютных платформ и их технические отличия</span>
+                <span className="text-gray-700">Особенности различных криптовалютных платформ и их технические отличия</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Основы децентрализованных финансов (DeFi) и их возможности</span>
+                <span className="text-gray-700">Основы децентрализованных финансов (DeFi) и их возможности</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Практическое взаимодействие с блокчейн-протоколами и платформами</span>
+                <span className="text-gray-700">Практическое взаимодействие с блокчейн-протоколами и платформами</span>
               </div>
             </div>
           </div>
@@ -226,28 +226,28 @@ const BlockchainCoursePage = () => {
               <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
                 <Code className="text-blue-600" size={28} />
               </div>
-              <div className="font-medium text-lg mb-1">Solidity</div>
+              <div className="font-medium text-lg mb-1 text-gray-800">Solidity</div>
               <div className="text-gray-500 text-sm">Язык смарт-контрактов</div>
             </div>
             <div className="bg-white p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 duration-300">
               <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
                 <FileCode className="text-blue-600" size={28} />
               </div>
-              <div className="font-medium text-lg mb-1">Web3.js</div>
+              <div className="font-medium text-lg mb-1 text-gray-800">Web3.js</div>
               <div className="text-gray-500 text-sm">Библиотека для взаимодействия</div>
             </div>
             <div className="bg-white p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 duration-300">
               <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
                 <Shield className="text-blue-600" size={28} />
               </div>
-              <div className="font-medium text-lg mb-1">MetaMask</div>
+              <div className="font-medium text-lg mb-1 text-gray-800">MetaMask</div>
               <div className="text-gray-500 text-sm">Криптокошелек</div>
             </div>
             <div className="bg-white p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 duration-300">
               <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
                 <Code className="text-blue-600" size={28} />
               </div>
-              <div className="font-medium text-lg mb-1">Truffle</div>
+              <div className="font-medium text-lg mb-1 text-gray-800">Truffle</div>
               <div className="text-gray-500 text-sm">Фреймворк для разработки</div>
             </div>
           </div>

@@ -106,7 +106,7 @@ const BeginnerCoursePage = () => {
       price="Бесплатно"
       popular={true}
     >
-      <div className="space-y-12 bg-white p-6 rounded-lg">
+      <div className="space-y-12 bg-white p-6 rounded-lg shadow-md">
         {/* Introduction Section with Better Typography */}
         <div>
           <h2 className="text-2xl font-bold mb-4 text-crypto-blue flex items-center gap-2">
@@ -274,7 +274,7 @@ const BeginnerCoursePage = () => {
         />
         
         {/* Course Advantages Section */}
-        <div>
+        <div className="bg-white p-6 rounded-xl shadow-md">
           <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
             <Zap className="inline-block text-crypto-purple" size={24} />
             Преимущества нашего курса:
