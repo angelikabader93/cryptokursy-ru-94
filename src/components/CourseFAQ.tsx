@@ -19,6 +19,23 @@ interface CourseFAQProps {
   showLink?: boolean;
 }
 
+// Function to format the answer text with proper HTML formatting
+const formatAnswer = (text: string) => {
+  // Replace numbered lists (e.g., "1) Item" or "1. Item")
+  let formattedText = text.replace(/(\d+[\)\.])\s+([^\n]+)(?:\n|$)/g, '<div class="mb-1"><span class="font-medium">$1</span> $2</div>');
+  
+  // Replace bullet points (e.g., "- Item" or "• Item")
+  formattedText = formattedText.replace(/[•\-]\s+([^\n]+)(?:\n|$)/g, '<div class="flex mb-1"><span class="mr-2">•</span><span>$1</span></div>');
+  
+  // Emphasis for important terms
+  formattedText = formattedText.replace(/«([^»]+)»/g, '<em class="text-crypto-purple">$1</em>');
+  
+  // Add line breaks for paragraphs
+  formattedText = formattedText.replace(/\n\n/g, '</p><p class="mb-2">');
+  
+  return <div dangerouslySetInnerHTML={{ __html: `<p class="mb-2">${formattedText}</p>` }} />;
+};
+
 const CourseFAQ: React.FC<CourseFAQProps> = ({ 
   faqItems,
   theme = 'light',
@@ -35,7 +52,7 @@ const CourseFAQ: React.FC<CourseFAQProps> = ({
               {item.question}
             </AccordionTrigger>
             <AccordionContent className="text-gray-700 bg-gray-50 rounded-md p-4 my-1">
-              {item.answer}
+              {formatAnswer(item.answer)}
             </AccordionContent>
           </AccordionItem>
         ))}
