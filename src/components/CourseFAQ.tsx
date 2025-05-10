@@ -28,10 +28,10 @@ const CourseFAQ: React.FC<CourseFAQProps> = ({
       <Accordion type="single" collapsible className="w-full">
         {faqItems.map((item, index) => (
           <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-100">
-            <AccordionTrigger className="text-left font-medium text-gray-800 hover:text-crypto-purple">
+            <AccordionTrigger className="text-left font-medium text-gray-800 hover:text-crypto-purple py-4">
               {item.question}
             </AccordionTrigger>
-            <AccordionContent className="text-gray-700">
+            <AccordionContent className="text-gray-700 bg-gray-50 rounded-md p-4 my-1">
               {item.answer}
             </AccordionContent>
           </AccordionItem>

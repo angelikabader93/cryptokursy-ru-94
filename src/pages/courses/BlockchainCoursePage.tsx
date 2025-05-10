@@ -116,13 +116,15 @@ const BlockchainCoursePage = () => {
     >
       <div className="space-y-12">
         {/* Introduction Section */}
-        <div>
+        <div className="bg-white p-6 rounded-xl shadow-md">
           <h2 className="text-2xl font-bold mb-4 text-crypto-blue flex items-center gap-2">
             <BookOpen className="inline-block text-crypto-purple" size={24} /> 
             О чем этот курс?
           </h2>
           <p className="text-gray-700 text-lg leading-relaxed">
-            Курс <strong className="text-gradient bg-gradient-to-r from-crypto-purple to-crypto-lightPurple">"Блокчейн и криптовалюты"</strong> — это углубленное изучение технологии блокчейн 
+            Курс <strong className="text-gradient bg-gradient-to-r from-crypto-purple to-crypto-lightPurple">
+              "Блокчейн и криптовалюты"
+            </strong> — это углубленное изучение технологии блокчейн 
             и ее применения в мире цифровых валют. Этот курс подойдет для тех, кто уже знаком с основами 
             криптовалют и хочет расширить свои знания в области технической стороны блокчейна, смарт-контрактов 
             и принципов работы различных криптопроектов.
@@ -142,25 +144,25 @@ const BlockchainCoursePage = () => {
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-blue-500" />
                 </div>
-                <span className="text-sm">24 видео-урока</span>
+                <span className="text-sm text-gray-700">24 видео-урока</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-blue-500" />
                 </div>
-                <span className="text-sm">12 практических заданий</span>
+                <span className="text-sm text-gray-700">12 практических заданий</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-blue-500" />
                 </div>
-                <span className="text-sm">8 часов контента</span>
+                <span className="text-sm text-gray-700">8 часов контента</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-blue-500" />
                 </div>
-                <span className="text-sm">Доступ к Discord-сообществу</span>
+                <span className="text-sm text-gray-700">Доступ к Discord-сообществу</span>
               </div>
             </div>
           </div>
@@ -346,7 +348,7 @@ const BlockchainCoursePage = () => {
         <CourseFAQ faqItems={faqItems} />
         
         {/* Course Advantages */}
-        <div>
+        <div className="bg-white p-6 rounded-xl shadow-md">
           <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
             <Zap className="inline-block text-crypto-purple" size={24} />
             Преимущества нашего курса:

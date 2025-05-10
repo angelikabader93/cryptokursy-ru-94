@@ -38,7 +38,7 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 bg-white rounded-xl p-6 shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-crypto-blue">Программа курса</h2>
       
       {modules.map((module, index) => {
@@ -69,13 +69,13 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
             </button>
             
             {isExpanded && (
-              <div className="p-4 pt-0 border-t border-gray-100">
-                <p className="px-4 py-3 text-gray-600">{module.description}</p>
+              <div className="p-4 pt-0 border-t border-gray-100 bg-gray-50">
+                <p className="px-4 py-3 text-gray-700">{module.description}</p>
                 
                 <div className="mt-4 space-y-2">
                   {module.lessons.map((lesson, lessonIndex) => (
                     <div key={lessonIndex} 
-                      className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-md transition-colors"
+                      className="flex items-center justify-between p-3 bg-white hover:bg-gray-50 rounded-md transition-colors"
                     >
                       <div className="flex items-center">
                         <div className={`w-8 h-8 rounded-full ${
