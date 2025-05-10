@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Award, Briefcase, Check } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface InstructorProps {
   name: string;
@@ -23,15 +24,15 @@ const CourseInstructor: React.FC<InstructorProps> = ({
         <h2 className="text-2xl font-bold mb-6 text-crypto-blue">Преподаватель курса</h2>
         
         <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
-          <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+          <Avatar className="w-32 h-32 border-2 border-crypto-purple/20">
             {avatar ? (
-              <img src={avatar} alt={name} className="w-full h-full object-cover" />
+              <AvatarImage src={avatar} alt={name} />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-3xl font-bold text-gray-400">
+              <AvatarFallback className="text-3xl font-bold bg-gray-200 text-gray-400">
                 {name.charAt(0)}
-              </div>
+              </AvatarFallback>
             )}
-          </div>
+          </Avatar>
           
           <div className="flex-1 text-center md:text-left">
             <h3 className="text-xl font-bold text-crypto-blue mb-1">{name}</h3>
