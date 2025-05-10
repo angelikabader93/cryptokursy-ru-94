@@ -8,6 +8,13 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
+  const handleCoursesClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -27,8 +34,9 @@ const Header = () => {
             Главная
           </Link>
           <Link 
-            to="/courses" 
-            className={`font-medium hover:text-crypto-purple transition-colors ${location.pathname.includes('/courses') ? 'text-crypto-purple' : 'text-gray-700'}`}
+            to={location.pathname === '/' ? '#courses' : '/#courses'}
+            onClick={handleCoursesClick}
+            className={`font-medium hover:text-crypto-purple transition-colors ${location.pathname.includes('/courses') || location.hash === '#courses' ? 'text-crypto-purple' : 'text-gray-700'}`}
           >
             Курсы
           </Link>
@@ -88,9 +96,15 @@ const Header = () => {
               Главная
             </Link>
             <Link 
-              to="/courses" 
-              className={`font-medium hover:text-crypto-purple transition-colors px-2 py-1 ${location.pathname.includes('/courses') ? 'text-crypto-purple' : 'text-gray-700'}`}
-              onClick={() => setIsMenuOpen(false)}
+              to={location.pathname === '/' ? '#courses' : '/#courses'}
+              onClick={(e) => {
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' });
+                }
+                setIsMenuOpen(false);
+              }}
+              className={`font-medium hover:text-crypto-purple transition-colors px-2 py-1 ${location.pathname.includes('/courses') || location.hash === '#courses' ? 'text-crypto-purple' : 'text-gray-700'}`}
             >
               Курсы
             </Link>

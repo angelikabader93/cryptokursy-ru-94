@@ -1,10 +1,19 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SignupForm from './SignupForm';
 import { Instagram, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
+  const location = useLocation();
+
+  const handleCoursesClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-crypto-blue text-white pt-16 pb-6">
       <div className="container mx-auto px-4">
@@ -47,7 +56,13 @@ const Footer = () => {
                 <Link to="/" className="hover:text-crypto-orange transition-colors">Главная</Link>
               </li>
               <li>
-                <Link to="/courses" className="hover:text-crypto-orange transition-colors">Курсы</Link>
+                <Link 
+                  to={location.pathname === '/' ? '#courses' : '/#courses'} 
+                  onClick={handleCoursesClick}
+                  className="hover:text-crypto-orange transition-colors"
+                >
+                  Курсы
+                </Link>
               </li>
               <li>
                 <Link to="/about" className="hover:text-crypto-orange transition-colors">О нас</Link>
@@ -106,4 +121,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
