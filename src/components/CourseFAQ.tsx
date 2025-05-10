@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Accordion,
   AccordionContent,
@@ -15,11 +16,13 @@ interface FAQItem {
 interface CourseFAQProps {
   faqItems: FAQItem[];
   theme?: 'light' | 'dark';
+  showLink?: boolean;
 }
 
 const CourseFAQ: React.FC<CourseFAQProps> = ({ 
   faqItems,
-  theme = 'light' 
+  theme = 'light',
+  showLink = true
 }) => {
   return (
     <div className={`rounded-xl ${theme === 'light' ? 'bg-white' : 'bg-crypto-light'} p-6 shadow-md`}>
@@ -37,6 +40,17 @@ const CourseFAQ: React.FC<CourseFAQProps> = ({
           </AccordionItem>
         ))}
       </Accordion>
+      
+      {showLink && (
+        <div className="mt-6 text-center">
+          <Link 
+            to="/faq" 
+            className="inline-flex items-center justify-center gap-2 py-2 px-4 rounded-md text-crypto-purple border border-crypto-purple/20 hover:bg-crypto-light/50 hover:border-crypto-purple/30 transition-all duration-200"
+          >
+            Больше вопросов и ответов →
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

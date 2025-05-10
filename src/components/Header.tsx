@@ -1,11 +1,12 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -19,12 +20,42 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6">
-          <Link to="/" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Главная</Link>
-          <Link to="/courses" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Курсы</Link>
-          <Link to="/faq" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">FAQ</Link>
-          <Link to="/about" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">О нас</Link>
-          <Link to="/blog" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Блог</Link>
-          <Link to="/contact" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Контакты</Link>
+          <Link 
+            to="/" 
+            className={`font-medium hover:text-crypto-purple transition-colors ${location.pathname === '/' ? 'text-crypto-purple' : 'text-gray-700'}`}
+          >
+            Главная
+          </Link>
+          <Link 
+            to="/courses" 
+            className={`font-medium hover:text-crypto-purple transition-colors ${location.pathname.includes('/courses') ? 'text-crypto-purple' : 'text-gray-700'}`}
+          >
+            Курсы
+          </Link>
+          <Link 
+            to="/faq" 
+            className={`font-medium hover:text-crypto-purple transition-colors ${location.pathname === '/faq' ? 'text-crypto-purple' : 'text-gray-700'}`}
+          >
+            FAQ
+          </Link>
+          <Link 
+            to="/about" 
+            className={`font-medium hover:text-crypto-purple transition-colors ${location.pathname === '/about' ? 'text-crypto-purple' : 'text-gray-700'}`}
+          >
+            О нас
+          </Link>
+          <Link 
+            to="/blog" 
+            className={`font-medium hover:text-crypto-purple transition-colors ${location.pathname === '/blog' ? 'text-crypto-purple' : 'text-gray-700'}`}
+          >
+            Блог
+          </Link>
+          <Link 
+            to="/contact" 
+            className={`font-medium hover:text-crypto-purple transition-colors ${location.pathname === '/contact' ? 'text-crypto-purple' : 'text-gray-700'}`}
+          >
+            Контакты
+          </Link>
         </nav>
 
         <div className="hidden md:block">
@@ -51,42 +82,42 @@ const Header = () => {
           <nav className="flex flex-col space-y-4">
             <Link 
               to="/" 
-              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              className={`font-medium hover:text-crypto-purple transition-colors px-2 py-1 ${location.pathname === '/' ? 'text-crypto-purple' : 'text-gray-700'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Главная
             </Link>
             <Link 
               to="/courses" 
-              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              className={`font-medium hover:text-crypto-purple transition-colors px-2 py-1 ${location.pathname.includes('/courses') ? 'text-crypto-purple' : 'text-gray-700'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Курсы
             </Link>
             <Link 
               to="/faq" 
-              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              className={`font-medium hover:text-crypto-purple transition-colors px-2 py-1 ${location.pathname === '/faq' ? 'text-crypto-purple' : 'text-gray-700'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               FAQ
             </Link>
             <Link 
               to="/about" 
-              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              className={`font-medium hover:text-crypto-purple transition-colors px-2 py-1 ${location.pathname === '/about' ? 'text-crypto-purple' : 'text-gray-700'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               О нас
             </Link>
             <Link 
               to="/blog" 
-              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              className={`font-medium hover:text-crypto-purple transition-colors px-2 py-1 ${location.pathname === '/blog' ? 'text-crypto-purple' : 'text-gray-700'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Блог
             </Link>
             <Link 
               to="/contact" 
-              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              className={`font-medium hover:text-crypto-purple transition-colors px-2 py-1 ${location.pathname === '/contact' ? 'text-crypto-purple' : 'text-gray-700'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Контакты

@@ -1,4 +1,3 @@
-
 import React, { ReactNode, useState, useEffect, useRef } from 'react';
 import Header from './Header';
 import Footer from './Footer';
@@ -398,7 +397,7 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
                       </button>
                     </div>
                     
-                    {/* FAQ Preview */}
+                    {/* FAQ Preview with Link to FAQ Page */}
                     <div className="mt-6 bg-white p-6 rounded-xl shadow-lg">
                       <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-4">
                         <Info className="text-crypto-purple" size={18} />
@@ -416,9 +415,9 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
                         </div>
                       </div>
                       
-                      <button className="mt-4 text-crypto-purple text-sm font-medium hover:text-crypto-lightPurple transition-colors">
+                      <Link to="/faq" className="mt-4 inline-block text-crypto-purple text-sm font-medium hover:text-crypto-lightPurple transition-colors rounded-md py-2 px-4 border border-crypto-purple/20 hover:bg-crypto-light/50 hover:border-crypto-purple/30">
                         Больше вопросов и ответов →
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
