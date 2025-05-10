@@ -53,7 +53,7 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
     return () => clearInterval(timer);
   }, []);
 
-  // Sticky sidebar effect
+  // Enhanced sticky sidebar effect with better scroll detection
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -61,6 +61,8 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial position
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -221,186 +223,192 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
                   </div>
                 </div>
                 
-                {/* Course Info Sidebar with Enhanced Design */}
+                {/* Course Info Sidebar with Enhanced Sticky Behavior */}
                 <div className="w-full md:w-1/3">
-                  <Card className={`p-6 border-0 shadow-xl rounded-xl bg-white ${isSticky ? 'md:sticky md:top-4' : ''}`}>
-                    {/* Price Section with Better Visual Design */}
-                    <div className="mb-6 bg-gradient-to-r from-crypto-light to-white p-6 rounded-lg -mx-6 -mt-6 border-b">
-                      <div className="flex flex-col items-center text-center">
-                        <div className={`${priceData.badgeColor} text-xs font-semibold px-3 py-1 rounded-full mb-2`}>
-                          {priceData.badgeText}
-                        </div>
-                        
-                        <div className="flex items-center gap-3 mb-1">
-                          <div className="text-3xl font-extrabold text-crypto-blue">{priceData.price}</div>
-                          {priceData.originalPrice && (
-                            <div className="text-lg text-gray-400 line-through">{priceData.originalPrice}</div>
-                          )}
-                        </div>
-                        
-                        {priceData.discount && (
-                          <div className="text-sm font-semibold text-crypto-orange mb-2">{priceData.discount}</div>
-                        )}
-                        
-                        {price !== "Бесплатно" && (
-                          <div className="flex items-center gap-2 mb-2">
-                            <Star className="text-yellow-500 w-4 h-4 fill-yellow-500" />
-                            <Star className="text-yellow-500 w-4 h-4 fill-yellow-500" />
-                            <Star className="text-yellow-500 w-4 h-4 fill-yellow-500" />
-                            <Star className="text-yellow-500 w-4 h-4 fill-yellow-500" />
-                            <Star className="text-yellow-300 w-4 h-4 fill-yellow-300" />
-                            <span className="text-xs text-gray-600">({price === "Платно" ? "128" : "42"} отзыва)</span>
+                  <div 
+                    className={`transition-all duration-300 ${
+                      isSticky ? 'sticky top-4' : ''
+                    }`}
+                  >
+                    <Card className="p-6 border-0 shadow-xl rounded-xl bg-white">
+                      {/* Price Section with Better Visual Design */}
+                      <div className="mb-6 bg-gradient-to-r from-crypto-light to-white p-6 rounded-lg -mx-6 -mt-6 border-b">
+                        <div className="flex flex-col items-center text-center">
+                          <div className={`${priceData.badgeColor} text-xs font-semibold px-3 py-1 rounded-full mb-2`}>
+                            {priceData.badgeText}
                           </div>
-                        )}
-                        
-                        <p className="text-sm text-gray-600">
-                          {price === "Бесплатно" 
-                            ? "Доступ к базовым материалам курса" 
-                            : price === "Платно" 
-                              ? "Полный доступ на 6 месяцев с поддержкой"
-                              : "Персональное обучение с ментором и неограниченной поддержкой"}
-                        </p>
+                          
+                          <div className="flex items-center gap-3 mb-1">
+                            <div className="text-3xl font-extrabold text-crypto-blue">{priceData.price}</div>
+                            {priceData.originalPrice && (
+                              <div className="text-lg text-gray-400 line-through">{priceData.originalPrice}</div>
+                            )}
+                          </div>
+                          
+                          {priceData.discount && (
+                            <div className="text-sm font-semibold text-crypto-orange mb-2">{priceData.discount}</div>
+                          )}
+                          
+                          {price !== "Бесплатно" && (
+                            <div className="flex items-center gap-2 mb-2">
+                              <Star className="text-yellow-500 w-4 h-4 fill-yellow-500" />
+                              <Star className="text-yellow-500 w-4 h-4 fill-yellow-500" />
+                              <Star className="text-yellow-500 w-4 h-4 fill-yellow-500" />
+                              <Star className="text-yellow-500 w-4 h-4 fill-yellow-500" />
+                              <Star className="text-yellow-300 w-4 h-4 fill-yellow-300" />
+                              <span className="text-xs text-gray-600">({price === "Платно" ? "128" : "42"} отзыва)</span>
+                            </div>
+                          )}
+                          
+                          <p className="text-sm text-gray-600">
+                            {price === "Бесплатно" 
+                              ? "Доступ к базовым материалам курса" 
+                              : price === "Платно" 
+                                ? "Полный доступ на 6 месяцев с поддержкой"
+                                : "Персональное обучение с ментором и неограниченной поддержкой"}
+                          </p>
+                        </div>
                       </div>
-                    </div>
 
-                    <h3 className="text-2xl font-bold mb-6 text-crypto-blue border-b border-gray-100 pb-4">Информация о курсе</h3>
-                    
-                    {/* Course Stats with Enhanced Visual Design */}
-                    <div className="space-y-5 mb-8">
-                      <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
-                        <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
-                          <GraduationCap className="text-crypto-purple" size={22} />
+                      <h3 className="text-2xl font-bold mb-6 text-crypto-blue border-b border-gray-100 pb-4">Информация о курсе</h3>
+                      
+                      {/* Course Stats with Enhanced Visual Design */}
+                      <div className="space-y-5 mb-8">
+                        <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
+                          <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
+                            <GraduationCap className="text-crypto-purple" size={22} />
+                          </div>
+                          <span>Уровень: <strong className="text-crypto-blue">{level}</strong></span>
                         </div>
-                        <span>Уровень: <strong className="text-crypto-blue">{level}</strong></span>
-                      </div>
-                      <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
-                        <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
-                          <CalendarCheck className="text-crypto-purple" size={22} />
+                        <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
+                          <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
+                            <CalendarCheck className="text-crypto-purple" size={22} />
+                          </div>
+                          <span>Старт: <strong className="text-crypto-blue">В любое время</strong></span>
                         </div>
-                        <span>Старт: <strong className="text-crypto-blue">В любое время</strong></span>
-                      </div>
-                      <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
-                        <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
-                          <Clock className="text-crypto-purple" size={22} />
+                        <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
+                          <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
+                            <Clock className="text-crypto-purple" size={22} />
+                          </div>
+                          <span>Длительность: <strong className="text-crypto-blue">10 недель</strong></span>
                         </div>
-                        <span>Длительность: <strong className="text-crypto-blue">10 недель</strong></span>
-                      </div>
-                      <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
-                        <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
-                          <BookOpen className="text-crypto-purple" size={22} />
+                        <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
+                          <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
+                            <BookOpen className="text-crypto-purple" size={22} />
+                          </div>
+                          <span>Формат: <strong className="text-crypto-blue">Онлайн</strong></span>
                         </div>
-                        <span>Формат: <strong className="text-crypto-blue">Онлайн</strong></span>
-                      </div>
-                      <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
-                        <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
-                          <Users className="text-crypto-purple" size={22} />
+                        <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
+                          <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
+                            <Users className="text-crypto-purple" size={22} />
+                          </div>
+                          <span>Поддержка: <strong className="text-crypto-blue">Да</strong></span>
                         </div>
-                        <span>Поддержка: <strong className="text-crypto-blue">Да</strong></span>
-                      </div>
-                      <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
-                        <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
-                          <Shield className="text-crypto-purple" size={22} />
-                        </div>
-                        <span>Сертификат: <strong className="text-crypto-blue">Включен</strong></span>
-                      </div>
-                    </div>
-                    
-                    {/* Enhanced Call-To-Action Button */}
-                    <Button 
-                      className={`${
-                        price === "Бесплатно" 
-                          ? "bg-gradient-to-r from-crypto-orange to-amber-500 hover:from-amber-500 hover:to-crypto-orange" 
-                          : "bg-gradient-to-r from-crypto-purple to-crypto-lightPurple hover:from-crypto-lightPurple hover:to-crypto-purple"
-                      } text-white w-full text-lg py-7 rounded-lg shadow-lg hover:shadow-xl transition-all font-bold`}
-                      onClick={() => document.getElementById('signup-form-course')?.scrollIntoView({ behavior: 'smooth' })}
-                    >
-                      {price === "Бесплатно" ? "Начать бесплатно" : "Записаться на курс"}
-                    </Button>
-
-                    {/* Enrollment Stats */}
-                    <div className="mt-6 pt-6 border-t border-gray-100 grid grid-cols-2 gap-4 text-center">
-                      <div>
-                        <div className="text-xl font-bold text-crypto-purple">500+</div>
-                        <div className="text-xs text-gray-500">студентов прошли</div>
-                      </div>
-                      <div>
-                        <div className="text-xl font-bold text-crypto-purple">4.8/5</div>
-                        <div className="text-xs text-gray-500">средняя оценка</div>
-                      </div>
-                    </div>
-                    
-                    {/* Course Guarantees */}
-                    <div className="mt-6 pt-4 border-t border-gray-100">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span className="text-sm">Доступ сразу после оплаты</span>
-                      </div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span className="text-sm">Поддержка от экспертов</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span className="text-sm">30 дней гарантия возврата</span>
-                      </div>
-                    </div>
-                  </Card>
-
-                  {/* Enhanced Social Proof */}
-                  <div className="mt-6 bg-white p-6 rounded-xl shadow-lg">
-                    <div className="flex items-center gap-3 mb-4">
-                      <Medal className="text-crypto-orange" size={22} />
-                      <h4 className="font-semibold text-gray-700">Выбор студентов</h4>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <div className="pb-4 border-b border-gray-100">
-                        <p className="text-sm text-gray-600 italic">
-                          "Этот курс дал мне все необходимые знания для начала работы с криптовалютами. Рекомендую!"
-                        </p>
-                        <div className="mt-2 flex items-center">
-                          <div className="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
-                          <span className="text-xs font-medium text-gray-700">Михаил К.</span>
+                        <div className="flex items-center gap-3 group hover:bg-crypto-light/50 p-2 rounded-lg -mx-2 transition-colors">
+                          <div className="bg-crypto-light p-2 rounded-full group-hover:bg-white transition-colors">
+                            <Shield className="text-crypto-purple" size={22} />
+                          </div>
+                          <span>Сертификат: <strong className="text-crypto-blue">Включен</strong></span>
                         </div>
                       </div>
                       
-                      <div>
-                        <p className="text-sm text-gray-600 italic">
-                          "Благодаря курсу я смог разобраться в блокчейне и теперь уверенно инвестирую."
-                        </p>
-                        <div className="mt-2 flex items-center">
-                          <div className="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
-                          <span className="text-xs font-medium text-gray-700">Елена С.</span>
+                      {/* Enhanced Call-To-Action Button */}
+                      <Button 
+                        className={`${
+                          price === "Бесплатно" 
+                            ? "bg-gradient-to-r from-crypto-orange to-amber-500 hover:from-amber-500 hover:to-crypto-orange" 
+                            : "bg-gradient-to-r from-crypto-purple to-crypto-lightPurple hover:from-crypto-lightPurple hover:to-crypto-purple"
+                        } text-white w-full text-lg py-7 rounded-lg shadow-lg hover:shadow-xl transition-all font-bold`}
+                        onClick={() => document.getElementById('signup-form-course')?.scrollIntoView({ behavior: 'smooth' })}
+                      >
+                        {price === "Бесплатно" ? "Начать бесплатно" : "Записаться на курс"}
+                      </Button>
+
+                      {/* Enrollment Stats */}
+                      <div className="mt-6 pt-6 border-t border-gray-100 grid grid-cols-2 gap-4 text-center">
+                        <div>
+                          <div className="text-xl font-bold text-crypto-purple">500+</div>
+                          <div className="text-xs text-gray-500">студентов прошли</div>
+                        </div>
+                        <div>
+                          <div className="text-xl font-bold text-crypto-purple">4.8/5</div>
+                          <div className="text-xs text-gray-500">средняя оценка</div>
                         </div>
                       </div>
+                      
+                      {/* Course Guarantees */}
+                      <div className="mt-6 pt-4 border-t border-gray-100">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Check className="h-4 w-4 text-green-500" />
+                          <span className="text-sm">Доступ сразу после оплаты</span>
+                        </div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <Check className="h-4 w-4 text-green-500" />
+                          <span className="text-sm">Поддержка от экспертов</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Check className="h-4 w-4 text-green-500" />
+                          <span className="text-sm">30 дней гарантия возврата</span>
+                        </div>
+                      </div>
+                    </Card>
+
+                    {/* Enhanced Social Proof */}
+                    <div className="mt-6 bg-white p-6 rounded-xl shadow-lg">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Medal className="text-crypto-orange" size={22} />
+                        <h4 className="font-semibold text-gray-700">Выбор студентов</h4>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="pb-4 border-b border-gray-100">
+                          <p className="text-sm text-gray-600 italic">
+                            "Этот курс дал мне все необходимые знания для начала работы с криптовалютами. Рекомендую!"
+                          </p>
+                          <div className="mt-2 flex items-center">
+                            <div className="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                            <span className="text-xs font-medium text-gray-700">Михаил К.</span>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <p className="text-sm text-gray-600 italic">
+                            "Благодаря курсу я смог разобраться в блокчейне и теперь уверенно инвестирую."
+                          </p>
+                          <div className="mt-2 flex items-center">
+                            <div className="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                            <span className="text-xs font-medium text-gray-700">Елена С.</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <button className="mt-4 text-crypto-purple text-sm font-medium hover:text-crypto-lightPurple transition-colors">
+                        Смотреть все отзывы →
+                      </button>
                     </div>
                     
-                    <button className="mt-4 text-crypto-purple text-sm font-medium hover:text-crypto-lightPurple transition-colors">
-                      Смотреть все отзывы →
-                    </button>
-                  </div>
-                  
-                  {/* FAQ Preview */}
-                  <div className="mt-6 bg-white p-6 rounded-xl shadow-lg">
-                    <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-4">
-                      <Info className="text-crypto-purple" size={18} />
-                      Часто задаваемые вопросы
-                    </h4>
-                    
-                    <div className="text-sm text-gray-600">
-                      <div className="mb-3 pb-3 border-b border-gray-100">
-                        <p className="font-medium text-gray-700 mb-1">Нужны ли начальные знания?</p>
-                        <p>Нет, наш курс подходит для абсолютных новичков.</p>
+                    {/* FAQ Preview */}
+                    <div className="mt-6 bg-white p-6 rounded-xl shadow-lg">
+                      <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-4">
+                        <Info className="text-crypto-purple" size={18} />
+                        Часто задаваемые вопросы
+                      </h4>
+                      
+                      <div className="text-sm text-gray-600">
+                        <div className="mb-3 pb-3 border-b border-gray-100">
+                          <p className="font-medium text-gray-700 mb-1">Нужны ли начальные знания?</p>
+                          <p>Нет, наш курс подходит для абсолютных новичков.</p>
+                        </div>
+                        <div>
+                          <p className="font-medium text-gray-700 mb-1">Как долго у меня будет доступ?</p>
+                          <p>Доступ к материалам курса предоставляется на 6 месяцев.</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="font-medium text-gray-700 mb-1">Как долго у меня будет доступ?</p>
-                        <p>Доступ к материалам курса предоставляется на 6 месяцев.</p>
-                      </div>
+                      
+                      <button className="mt-4 text-crypto-purple text-sm font-medium hover:text-crypto-lightPurple transition-colors">
+                        Больше вопросов и ответов →
+                      </button>
                     </div>
-                    
-                    <button className="mt-4 text-crypto-purple text-sm font-medium hover:text-crypto-lightPurple transition-colors">
-                      Больше вопросов и ответов →
-                    </button>
                   </div>
                 </div>
               </div>
@@ -444,4 +452,3 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
 };
 
 export default CourseLayout;
-
