@@ -31,7 +31,7 @@ const CourseFAQ: React.FC<CourseFAQProps> = ({
             <AccordionTrigger className="text-left font-medium text-gray-800 hover:text-crypto-purple">
               {item.question}
             </AccordionTrigger>
-            <AccordionContent className="text-gray-600">
+            <AccordionContent className="text-gray-700">
               {item.answer}
             </AccordionContent>
           </AccordionItem>

@@ -54,7 +54,7 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
               <div className="flex items-center">
                 <div className={`w-2 h-12 ${moduleColor} rounded-r-full mr-4`}></div>
                 <div className="text-left">
-                  <h3 className="font-semibold text-lg">Модуль {index + 1}: {module.title}</h3>
+                  <h3 className="font-semibold text-lg text-gray-800">Модуль {index + 1}: {module.title}</h3>
                   <div className="text-sm text-gray-500 flex items-center mt-1">
                     <Clock className="w-4 h-4 mr-1" />
                     {module.duration}
@@ -85,7 +85,7 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
                         } flex items-center justify-center mr-3`}>
                           {getIconByType(lesson.type)}
                         </div>
-                        <span>{lesson.title}</span>
+                        <span className="text-gray-700">{lesson.title}</span>
                       </div>
                       {lesson.duration && (
                         <span className="text-xs text-gray-500">{lesson.duration}</span>
@@ -101,7 +101,7 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
       
       <div className="flex justify-center mt-8">
         <Button 
-          className="bg-gradient-to-r from-crypto-purple to-crypto-lightPurple hover:from-crypto-lightPurple hover:to-crypto-purple text-white font-semibold px-8 py-6 rounded-lg shadow-md hover:shadow-lg transition-all"
+          className="bg-gradient-to-r from-crypto-purple to-crypto-lightPurple text-white font-semibold px-8 py-6 rounded-lg shadow-md hover:shadow-lg transition-all"
           onClick={() => document.getElementById('signup-form-course')?.scrollIntoView({ behavior: 'smooth' })}
         >
           Записаться на курс
