@@ -10,6 +10,7 @@ import BeginnerCoursePage from "./pages/courses/BeginnerCoursePage";
 import BlockchainCoursePage from "./pages/courses/BlockchainCoursePage";
 import BitcoinCoursePage from "./pages/courses/BitcoinCoursePage";
 import PremiumCoursePage from "./pages/courses/PremiumCoursePage";
+import LowercaseRedirect from "./components/LowercaseRedirect";
 
 const queryClient = new QueryClient();
 
@@ -19,15 +20,17 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/courses/crypto-for-beginners" element={<BeginnerCoursePage />} />
-          <Route path="/courses/blockchain-and-crypto" element={<BlockchainCoursePage />} />
-          <Route path="/courses/bitcoin-and-altcoins" element={<BitcoinCoursePage />} />
-          <Route path="/courses/premium-crypto-school" element={<PremiumCoursePage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <LowercaseRedirect>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/courses/crypto-for-beginners" element={<BeginnerCoursePage />} />
+            <Route path="/courses/blockchain-and-crypto" element={<BlockchainCoursePage />} />
+            <Route path="/courses/bitcoin-and-altcoins" element={<BitcoinCoursePage />} />
+            <Route path="/courses/premium-crypto-school" element={<PremiumCoursePage />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </LowercaseRedirect>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
