@@ -45,14 +45,14 @@ const CourseInstructor: React.FC<InstructorProps> = ({
             <div className="bg-white rounded-lg p-4 shadow-sm">
               <div className="flex items-center mb-2">
                 <Award className="text-crypto-purple mr-2" size={18} />
-                <h4 className="font-semibold">Опыт и достижения</h4>
+                <h4 className="font-semibold text-gray-800">Опыт и достижения</h4>
               </div>
               
               <ul className="space-y-2">
                 {experience.map((item, i) => (
                   <li key={i} className="flex items-start">
                     <Check className="text-green-500 mt-1 mr-2 flex-shrink-0" size={16} />
-                    <span className="text-sm">{item}</span>
+                    <span className="text-gray-700">{item}</span>
                   </li>
                 ))}
               </ul>
