@@ -11,6 +11,7 @@ import BlockchainCoursePage from "./pages/courses/BlockchainCoursePage";
 import BitcoinCoursePage from "./pages/courses/BitcoinCoursePage";
 import PremiumCoursePage from "./pages/courses/PremiumCoursePage";
 import LowercaseRedirect from "./components/LowercaseRedirect";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <ScrollToTopButton />
         </LowercaseRedirect>
       </BrowserRouter>
     </TooltipProvider>
