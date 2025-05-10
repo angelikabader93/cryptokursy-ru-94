@@ -10,6 +10,7 @@ import BeginnerCoursePage from "./pages/courses/BeginnerCoursePage";
 import BlockchainCoursePage from "./pages/courses/BlockchainCoursePage";
 import BitcoinCoursePage from "./pages/courses/BitcoinCoursePage";
 import PremiumCoursePage from "./pages/courses/PremiumCoursePage";
+import FAQ from "./pages/FAQ";
 import LowercaseRedirect from "./components/LowercaseRedirect";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/courses/blockchain-and-crypto" element={<BlockchainCoursePage />} />
             <Route path="/courses/bitcoin-and-altcoins" element={<BitcoinCoursePage />} />
             <Route path="/courses/premium-crypto-school" element={<PremiumCoursePage />} />
+            <Route path="/faq" element={<FAQ />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

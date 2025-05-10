@@ -21,6 +21,7 @@ const Header = () => {
         <nav className="hidden md:flex space-x-6">
           <Link to="/" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Главная</Link>
           <Link to="/courses" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Курсы</Link>
+          <Link to="/faq" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">FAQ</Link>
           <Link to="/about" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">О нас</Link>
           <Link to="/blog" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Блог</Link>
           <Link to="/contact" className="font-medium text-gray-700 hover:text-crypto-purple transition-colors">Контакты</Link>
@@ -61,6 +62,13 @@ const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Курсы
+            </Link>
+            <Link 
+              to="/faq" 
+              className="font-medium text-gray-700 hover:text-crypto-purple transition-colors px-2 py-1"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              FAQ
             </Link>
             <Link 
               to="/about" 
