@@ -106,7 +106,7 @@ const BeginnerCoursePage = () => {
       price="Бесплатно"
       popular={true}
     >
-      <div className="space-y-12">
+      <div className="space-y-12 bg-white p-6 rounded-lg">
         {/* Introduction Section with Better Typography */}
         <div>
           <h2 className="text-2xl font-bold mb-4 text-crypto-blue flex items-center gap-2">
@@ -133,25 +133,25 @@ const BeginnerCoursePage = () => {
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-green-500" />
                 </div>
-                <span className="text-sm">18 видео-уроков</span>
+                <span className="text-sm text-gray-700">18 видео-уроков</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-green-500" />
                 </div>
-                <span className="text-sm">8 практических заданий</span>
+                <span className="text-sm text-gray-700">8 практических заданий</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-green-500" />
                 </div>
-                <span className="text-sm">5 часов контента</span>
+                <span className="text-sm text-gray-700">5 часов контента</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-green-500" />
                 </div>
-                <span className="text-sm">Сертификат о прохождении</span>
+                <span className="text-sm text-gray-700">Сертификат о прохождении</span>
               </div>
             </div>
           </div>
@@ -168,37 +168,37 @@ const BeginnerCoursePage = () => {
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-green-500 mt-1 flex-shrink-0 bg-green-100 p-1 rounded-full" />
-                <span>Основы технологии блокчейн и принципы ее работы</span>
+                <span className="text-gray-700">Основы технологии блокчейн и принципы ее работы</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-green-500 mt-1 flex-shrink-0 bg-green-100 p-1 rounded-full" />
-                <span>Что такое криптовалюты и чем они отличаются от традиционных денег</span>
+                <span className="text-gray-700">Что такое криптовалюты и чем они отличаются от традиционных денег</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-green-500 mt-1 flex-shrink-0 bg-green-100 p-1 rounded-full" />
-                <span>Как создать и безопасно использовать криптокошелек</span>
+                <span className="text-gray-700">Как создать и безопасно использовать криптокошелек</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-green-500 mt-1 flex-shrink-0 bg-green-100 p-1 rounded-full" />
-                <span>Как покупать, продавать и хранить криптовалюты без риска</span>
+                <span className="text-gray-700">Как покупать, продавать и хранить криптовалюты без риска</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-green-500 mt-1 flex-shrink-0 bg-green-100 p-1 rounded-full" />
-                <span>Основные термины и понятия в мире криптовалют</span>
+                <span className="text-gray-700">Основные термины и понятия в мире криптовалют</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-green-500 mt-1 flex-shrink-0 bg-green-100 p-1 rounded-full" />
-                <span>Как избежать мошенников и распознать опасные схемы</span>
+                <span className="text-gray-700">Как избежать мошенников и распознать опасные схемы</span>
               </div>
             </div>
           </div>

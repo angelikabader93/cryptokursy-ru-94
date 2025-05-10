@@ -1,3 +1,4 @@
+
 import React from 'react';
 import CourseLayout from '@/components/CourseLayout';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle } from 'lucide-react';
@@ -106,7 +107,7 @@ const BitcoinCoursePage = () => {
       level="Новичок"
       price="Бесплатно"
     >
-      <div className="space-y-12">
+      <div className="space-y-12 bg-white p-6 rounded-lg">
         {/* Introduction Section */}
         <div>
           <h2 className="text-2xl font-bold mb-4 text-crypto-blue flex items-center gap-2">
@@ -132,25 +133,25 @@ const BitcoinCoursePage = () => {
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-orange-500" />
                 </div>
-                <span className="text-sm">15 видео-уроков</span>
+                <span className="text-sm text-gray-700">15 видео-уроков</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-orange-500" />
                 </div>
-                <span className="text-sm">5 практических заданий</span>
+                <span className="text-sm text-gray-700">5 практических заданий</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-orange-500" />
                 </div>
-                <span className="text-sm">3 часа контента</span>
+                <span className="text-sm text-gray-700">3 часа контента</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                   <Check className="text-orange-500" />
                 </div>
-                <span className="text-sm">Сертификат о прохождении</span>
+                <span className="text-sm text-gray-700">Сертификат о прохождении</span>
               </div>
             </div>
           </div>
@@ -167,37 +168,37 @@ const BitcoinCoursePage = () => {
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span>История создания Bitcoin и его основные принципы</span>
+                <span className="text-gray-700">История создания Bitcoin и его основные принципы</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span>Как работает сеть Bitcoin и процесс майнинга</span>
+                <span className="text-gray-700">Как работает сеть Bitcoin и процесс майнинга</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span>Как безопасно хранить и использовать Bitcoin</span>
+                <span className="text-gray-700">Как безопасно хранить и использовать Bitcoin</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span>Основные понятия и термины, связанные с Bitcoin</span>
+                <span className="text-gray-700">Основные понятия и термины, связанные с Bitcoin</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span>Как защитить себя от мошенничества и кражи Bitcoin</span>
+                <span className="text-gray-700">Как защитить себя от мошенничества и кражи Bitcoin</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
                 <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span>Перспективы развития Bitcoin и его влияние на финансовый мир</span>
+                <span className="text-gray-700">Перспективы развития Bitcoin и его влияние на финансовый мир</span>
               </div>
             </div>
           </div>

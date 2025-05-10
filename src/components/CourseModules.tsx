@@ -46,7 +46,7 @@ const CourseModules: React.FC<CourseModulesProps> = ({ modules }) => {
         const moduleColor = module.color || 'bg-blue-500';
         
         return (
-          <div key={index} className="border border-gray-200 rounded-lg overflow-hidden bg-white">
+          <div key={index} className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm">
             <button
               onClick={() => toggleModule(index)}
               className={`w-full p-4 flex items-center justify-between hover:bg-gray-50 transition-colors`}
