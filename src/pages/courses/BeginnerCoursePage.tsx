@@ -16,10 +16,10 @@ const BeginnerCoursePage = () => {
       duration: "45 минут",
       color: "bg-green-500",
       lessons: [
-        { title: "Что такое криптовалюта?", type: "video", duration: "12 мин" },
-        { title: "История создания Bitcoin", type: "video", duration: "15 мин" },
-        { title: "Основные преимущества и недостатки", type: "video", duration: "18 мин" },
-        { title: "Проверка знаний", type: "test" }
+        { title: "Что такое криптовалюта?", type: "video" as const, duration: "12 мин" },
+        { title: "История создания Bitcoin", type: "video" as const, duration: "15 мин" },
+        { title: "Основные преимущества и недостатки", type: "video" as const, duration: "18 мин" },
+        { title: "Проверка знаний", type: "test" as const }
       ]
     },
     {
@@ -28,11 +28,11 @@ const BeginnerCoursePage = () => {
       duration: "60 минут",
       color: "bg-blue-500",
       lessons: [
-        { title: "Основы технологии блокчейн", type: "video", duration: "18 мин" },
-        { title: "Как работает блокчейн", type: "video", duration: "15 мин" },
-        { title: "Безопасность блокчейна", type: "video", duration: "12 мин" },
-        { title: "Майнинг и валидация", type: "video", duration: "15 мин" },
-        { title: "Тест по блокчейну", type: "test" }
+        { title: "Основы технологии блокчейн", type: "video" as const, duration: "18 мин" },
+        { title: "Как работает блокчейн", type: "video" as const, duration: "15 мин" },
+        { title: "Безопасность блокчейна", type: "video" as const, duration: "12 мин" },
+        { title: "Майнинг и валидация", type: "video" as const, duration: "15 мин" },
+        { title: "Тест по блокчейну", type: "test" as const }
       ]
     },
     {
@@ -41,12 +41,12 @@ const BeginnerCoursePage = () => {
       duration: "90 минут",
       color: "bg-purple-500",
       lessons: [
-        { title: "Обзор типов криптокошельков", type: "video", duration: "15 мин" },
-        { title: "Создание и настройка кошелька", type: "video", duration: "20 мин" },
-        { title: "Резервное копирование", type: "video", duration: "15 мин" },
-        { title: "Безопасное хранение ключей", type: "video", duration: "20 мин" },
-        { title: "Защита от мошенничества", type: "video", duration: "20 мин" },
-        { title: "Практическое задание", type: "test" }
+        { title: "Обзор типов криптокошельков", type: "video" as const, duration: "15 мин" },
+        { title: "Создание и настройка кошелька", type: "video" as const, duration: "20 мин" },
+        { title: "Резервное копирование", type: "video" as const, duration: "15 мин" },
+        { title: "Безопасное хранение ключей", type: "video" as const, duration: "20 мин" },
+        { title: "Защита от мошенничества", type: "video" as const, duration: "20 мин" },
+        { title: "Практическое задание", type: "test" as const }
       ]
     }
   ];

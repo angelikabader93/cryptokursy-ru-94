@@ -16,13 +16,13 @@ const BlockchainCoursePage = () => {
       duration: "120 минут",
       color: "bg-blue-500",
       lessons: [
-        { title: "Введение в распределенные реестры", type: "video", duration: "18 мин" },
-        { title: "Хеширование и криптография", type: "video", duration: "22 мин" },
-        { title: "Устройство блоков и цепочек", type: "video", duration: "20 мин" },
-        { title: "Механизмы консенсуса (PoW, PoS)", type: "video", duration: "25 мин" },
-        { title: "Децентрализация и ее преимущества", type: "video", duration: "20 мин" },
-        { title: "Безопасность блокчейна", type: "video", duration: "15 мин" },
-        { title: "Проверка знаний - Архитектура блокчейна", type: "test" }
+        { title: "Введение в распределенные реестры", type: "video" as const, duration: "18 мин" },
+        { title: "Хеширование и криптография", type: "video" as const, duration: "22 мин" },
+        { title: "Устройство блоков и цепочек", type: "video" as const, duration: "20 мин" },
+        { title: "Механизмы консенсуса (PoW, PoS)", type: "video" as const, duration: "25 мин" },
+        { title: "Децентрализация и ее преимущества", type: "video" as const, duration: "20 мин" },
+        { title: "Безопасность блокчейна", type: "video" as const, duration: "15 мин" },
+        { title: "Проверка знаний - Архитектура блокчейна", type: "test" as const }
       ]
     },
     {
@@ -31,15 +31,15 @@ const BlockchainCoursePage = () => {
       duration: "180 минут",
       color: "bg-purple-500",
       lessons: [
-        { title: "Что такое смарт-контракты", type: "video", duration: "15 мин" },
-        { title: "Язык Solidity - основы", type: "video", duration: "25 мин" },
-        { title: "Создание первого смарт-контракта", type: "video", duration: "30 мин" },
-        { title: "Тестирование смарт-контрактов", type: "video", duration: "20 мин" },
-        { title: "Аудит и безопасность", type: "video", duration: "25 мин" },
-        { title: "Оптимизация газа", type: "video", duration: "20 мин" },
-        { title: "Интеграция с фронтендом", type: "video", duration: "25 мин" },
-        { title: "Анализ популярных смарт-контрактов", type: "video", duration: "20 мин" },
-        { title: "Практическое задание - Смарт-контракты", type: "test" }
+        { title: "Что такое смарт-контракты", type: "video" as const, duration: "15 мин" },
+        { title: "Язык Solidity - основы", type: "video" as const, duration: "25 мин" },
+        { title: "Создание первого смарт-контракта", type: "video" as const, duration: "30 мин" },
+        { title: "Тестирование смарт-контрактов", type: "video" as const, duration: "20 мин" },
+        { title: "Аудит и безопасность", type: "video" as const, duration: "25 мин" },
+        { title: "Оптимизация газа", type: "video" as const, duration: "20 мин" },
+        { title: "Интеграция с фронтендом", type: "video" as const, duration: "25 мин" },
+        { title: "Анализ популярных смарт-контрактов", type: "video" as const, duration: "20 мин" },
+        { title: "Практическое задание - Смарт-контракты", type: "test" as const }
       ]
     },
     {
@@ -48,14 +48,14 @@ const BlockchainCoursePage = () => {
       duration: "150 минут",
       color: "bg-indigo-500",
       lessons: [
-        { title: "Архитектура Ethereum", type: "video", duration: "25 мин" },
-        { title: "Масштабируемость и слои L2", type: "video", duration: "20 мин" },
-        { title: "Экосистема Solana", type: "video", duration: "22 мин" },
-        { title: "Архитектура и производительность Solana", type: "video", duration: "18 мин" },
-        { title: "Polkadot и парачейны", type: "video", duration: "20 мин" },
-        { title: "Кросс-чейн взаимодействие", type: "video", duration: "25 мин" },
-        { title: "Сравнительный анализ платформ", type: "video", duration: "20 мин" },
-        { title: "Тест - Сравнение платформ", type: "test" }
+        { title: "Архитектура Ethereum", type: "video" as const, duration: "25 мин" },
+        { title: "Масштабируемость и слои L2", type: "video" as const, duration: "20 мин" },
+        { title: "Экосистема Solana", type: "video" as const, duration: "22 мин" },
+        { title: "Архитектура и производительность Solana", type: "video" as const, duration: "18 мин" },
+        { title: "Polkadot и парачейны", type: "video" as const, duration: "20 мин" },
+        { title: "Кросс-чейн взаимодействие", type: "video" as const, duration: "25 мин" },
+        { title: "Сравнительный анализ платформ", type: "video" as const, duration: "20 мин" },
+        { title: "Тест - Сравнение платформ", type: "test" as const }
       ]
     }
   ];

@@ -1,7 +1,6 @@
-
 import React from 'react';
 import CourseLayout from '@/components/CourseLayout';
-import { Check, Users, Award, BookOpen, Clock, Zap, BarChart2, TrendingUp, DollarSign } from 'lucide-react';
+import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle } from 'lucide-react';
 import CourseModules from '@/components/CourseModules';
 import CourseTestimonials from '@/components/CourseTestimonials';
 import CourseFAQ from '@/components/CourseFAQ';
@@ -11,50 +10,44 @@ const BitcoinCoursePage = () => {
   // Course modules data
   const modules = [
     {
-      title: "Биткоин – первая и главная криптовалюта",
-      description: "История, технические особенности, экономическая модель, роль в криптоэкосистеме.",
-      duration: "110 минут",
-      color: "bg-amber-500",
+      title: "Основы Bitcoin",
+      description: "История создания, принципы работы, техническая архитектура.",
+      duration: "90 минут",
+      color: "bg-orange-500",
       lessons: [
-        { title: "История создания Bitcoin", type: "video", duration: "18 мин" },
-        { title: "Техническое устройство Bitcoin", type: "video", duration: "25 мин" },
-        { title: "Майнинг и принцип Proof-of-Work", type: "video", duration: "22 мин" },
-        { title: "Экономическая модель и халвинги", type: "video", duration: "20 мин" },
-        { title: "Роль Bitcoin в криптоэкосистеме", type: "video", duration: "25 мин" },
-        { title: "Проверка знаний - Bitcoin", type: "test" }
+        { title: "История создания Bitcoin", type: "video" as const, duration: "18 мин" },
+        { title: "Белая книга Сатоши Накамото", type: "video" as const, duration: "22 мин" },
+        { title: "Архитектура сети Bitcoin", type: "video" as const, duration: "25 мин" },
+        { title: "Как работают транзакции", type: "video" as const, duration: "25 мин" },
+        { title: "Проверочный тест", type: "test" as const }
       ]
     },
     {
-      title: "Альткоины и их категории",
-      description: "Классификация криптовалют, основные проекты, их технологии и отличия.",
-      duration: "140 минут",
-      color: "bg-purple-500",
+      title: "Майнинг и консенсус",
+      description: "Процесс майнинга, алгоритмы консенсуса Proof-of-Work, сложность сети.",
+      duration: "120 минут",
+      color: "bg-yellow-500",
       lessons: [
-        { title: "Что такое альткоины", type: "video", duration: "15 мин" },
-        { title: "Ethereum и смарт-контракты", type: "video", duration: "20 мин" },
-        { title: "Платежные монеты (XRP, LTC и др.)", type: "video", duration: "18 мин" },
-        { title: "Стейблкоины (USDT, USDC, DAI)", type: "video", duration: "20 мин" },
-        { title: "DeFi-токены", type: "video", duration: "25 мин" },
-        { title: "NFT и метавселенные", type: "video", duration: "22 мин" },
-        { title: "Memcoins и их особенности", type: "video", duration: "20 мин" },
-        { title: "Тест - Классификация криптовалют", type: "test" }
+        { title: "Что такое майнинг", type: "video" as const, duration: "20 мин" },
+        { title: "Алгоритм Proof-of-Work", type: "video" as const, duration: "25 мин" },
+        { title: "Сложность сети и хешрейт", type: "video" as const, duration: "20 мин" },
+        { title: "Энергопотребление Bitcoin", type: "video" as const, duration: "25 мин" },
+        { title: "Альтернативные алгоритмы", type: "video" as const, duration: "30 мин" },
+        { title: "Тест по майнингу", type: "test" as const }
       ]
     },
     {
-      title: "Анализ криптовалютного рынка",
-      description: "Фундаментальный и технический анализ, индикаторы, чтение графиков.",
-      duration: "180 минут",
-      color: "bg-blue-500",
+      title: "Безопасность и анонимность",
+      description: "Криптография, приватные и публичные ключи, защита от атак.",
+      duration: "90 минут",
+      color: "bg-red-500",
       lessons: [
-        { title: "Основы фундаментального анализа", type: "video", duration: "22 мин" },
-        { title: "Оценка команды и технологии проекта", type: "video", duration: "20 мин" },
-        { title: "Основы технического анализа", type: "video", duration: "25 мин" },
-        { title: "Свечные паттерны", type: "video", duration: "22 мин" },
-        { title: "Ключевые индикаторы (RSI, MACD, MA)", type: "video", duration: "25 мин" },
-        { title: "Уровни поддержки и сопротивления", type: "video", duration: "20 мин" },
-        { title: "Психология рынка и поведенческая экономика", type: "video", duration: "18 мин" },
-        { title: "Анализ on-chain метрик", type: "video", duration: "28 мин" },
-        { title: "Практическое задание - Технический анализ", type: "test" }
+        { title: "Основы криптографии", type: "video" as const, duration: "15 мин" },
+        { title: "Приватные и публичные ключи", type: "video" as const, duration: "20 мин" },
+        { title: "Адреса Bitcoin", type: "video" as const, duration: "15 мин" },
+        { title: "Анонимность в Bitcoin", type: "video" as const, duration: "20 мин" },
+        { title: "Защита от атак", type: "video" as const, duration: "20 мин" },
+        { title: "Практическое задание", type: "test" as const }
       ]
     }
   ];
@@ -62,336 +55,280 @@ const BitcoinCoursePage = () => {
   // Testimonials data
   const testimonials = [
     {
-      name: "Игорь Л.",
-      position: "Частный инвестор",
-      content: "Этот курс полностью изменил мой подход к инвестированию в криптовалюты. Теперь я владею инструментами анализа, которые дают мне уверенность в принимаемых решениях.",
+      name: "Иван П.",
+      position: "Инженер",
+      content: "Курс помог разобраться в технических деталях Bitcoin. Особенно полезны модули про майнинг и безопасность.",
       rating: 5
     },
     {
-      name: "Мария Т.",
-      position: "Финансовый консультант",
-      content: "Отличный курс для тех, кто хочет профессионально подходить к инвестициям в криптовалюты. Особенно ценны разделы по управлению рисками и построению портфеля.",
-      rating: 5
-    },
-    {
-      name: "Александр Ф.",
-      position: "Предприниматель",
-      content: "Начал инвестировать в криптовалюты год назад, но только после этого курса почувствовал, что действительно понимаю, что делаю. Материал понятный, с конкретными примерами.",
+      name: "Светлана М.",
+      position: "Финансист",
+      content: "Отличный курс для понимания основ Bitcoin. Рекомендую всем, кто хочет разобраться в криптовалютах.",
       rating: 4
+    },
+    {
+      name: "Алексей К.",
+      position: "Предприниматель",
+      content: "Курс дал понимание, как работает Bitcoin изнутри. Теперь я увереннее принимаю решения об инвестициях.",
+      rating: 5
     }
   ];
 
   // FAQ data
   const faqItems = [
     {
-      question: "С какой суммы можно начать инвестировать по стратегиям из курса?",
-      answer: "Стратегии, представленные в курсе, масштабируемы и подходят для любых сумм. Мы рекомендуем начинать с той суммы, которую вы готовы рисковать без ущерба для основного бюджета. В курсе представлены примеры для разных сумм инвестирования."
+      question: "Нужны ли специальные знания для прохождения курса?",
+      answer: "Нет, курс предназначен для начинающих и не требует специальных знаний."
     },
     {
-      question: "Будут ли конкретные рекомендации по покупке определенных криптовалют?",
-      answer: "Курс не дает инвестиционных рекомендаций по конкретным активам. Вместо этого мы обучаем вас методикам анализа и принципам построения портфеля, чтобы вы могли самостоятельно принимать обоснованные решения."
+      question: "Сколько времени занимает прохождение курса?",
+      answer: "Курс рассчитан на 3-4 недели, в зависимости от вашего темпа обучения."
     },
     {
-      question: "Подходит ли курс для начинающих инвесторов?",
-      answer: "Курс предназначен для людей с базовым пониманием криптовалют. Если вы совсем новичок, мы рекомендуем сначала пройти наш бесплатный курс 'Криптовалюта для чайников', а затем переходить к данному курсу."
+      question: "Будет ли поддержка от преподавателей?",
+      answer: "Да, вы можете задавать вопросы преподавателям в течение всего курса."
     },
     {
-      question: "Сколько времени нужно уделять инвестициям после прохождения курса?",
-      answer: "В зависимости от выбранной стратегии. Долгосрочные инвестиции требуют минимум времени на поддержание (например, несколько часов в месяц на ребалансировку), в то время как активные стратегии требуют регулярного внимания."
+      question: "Предоставляется ли сертификат по окончании курса?",
+      answer: "Да, после успешного завершения курса вы получите сертификат."
     },
     {
-      question: "Как часто обновляется содержание курса?",
-      answer: "Материалы курса обновляются ежеквартально, чтобы отражать актуальные тенденции на рынке. Кроме того, мы проводим ежемесячные вебинары, где анализируем текущую ситуацию и стратегии."
+      question: "Можно ли скачать материалы курса?",
+      answer: "Да, все материалы курса доступны для скачивания."
     }
   ];
 
   return (
-    <CourseLayout 
-      courseTitle="Биткоин и альткоины" 
-      courseImage="https://images.unsplash.com/photo-1605792657660-596af9009e82?q=80&w=2002"
-      courseSlug="bitcoin-and-altcoins"
-      level="Средний"
-      price="Платно"
+    <CourseLayout
+      courseTitle="Bitcoin для начинающих"
+      courseImage="https://images.unsplash.com/photo-1606143509433-949c317f3905?q=80&w=2070"
+      courseSlug="bitcoin-for-beginners"
+      level="Новичок"
+      price="Бесплатно"
     >
       <div className="space-y-12">
         {/* Introduction Section */}
         <div>
           <h2 className="text-2xl font-bold mb-4 text-crypto-blue flex items-center gap-2">
-            <BookOpen className="inline-block text-crypto-purple" size={24} /> 
+            <BookOpen className="inline-block text-crypto-purple" size={24} />
             О чем этот курс?
           </h2>
           <p className="text-gray-700 text-lg leading-relaxed">
-            Курс <strong className="text-gradient bg-gradient-to-r from-crypto-purple to-crypto-lightPurple">"Биткоин и альткоины"</strong> представляет собой комплексное руководство по инвестированию 
-            в криптовалюты. Вы изучите основы анализа рынка, различные инвестиционные стратегии и научитесь формировать 
-            сбалансированный криптопортфель. Курс сочетает теоретические знания и практические навыки для успешного 
-            инвестирования в Биткоин и альтернативные криптовалюты.
+            Курс <strong className="text-gradient bg-gradient-to-r from-crypto-purple to-crypto-lightPurple">"Bitcoin для начинающих"</strong>
+            — это ваш первый шаг в мир криптовалют. Вы узнаете историю создания Bitcoin, принципы его работы
+            и основные понятия, необходимые для понимания этой технологии.
           </p>
-          
-          {/* Investment Returns Preview - Enhanced with better visuals */}
-          <div className="bg-gradient-to-r from-blue-500/10 to-indigo-500/10 mt-6 p-6 rounded-lg shadow-sm">
-            <h3 className="text-blue-700 text-lg font-semibold mb-3">Исторические показатели доходности:</h3>
-            
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-white p-4 rounded-lg shadow-sm text-center hover:shadow-md transition-all">
-                <div className="text-blue-700 text-lg font-bold">BTC</div>
-                <div className="text-2xl font-bold text-blue-800">+312%</div>
-                <div className="text-xs text-gray-600">за последние 3 года</div>
-                <div className="w-full h-1 bg-gray-100 mt-2">
-                  <div className="h-full bg-blue-500 w-[75%]"></div>
+
+          {/* Highlighted Box */}
+          <div className="bg-gradient-to-r from-orange-50 to-white mt-6 p-6 rounded-lg border-l-4 border-orange-500 shadow-sm">
+            <div className="font-medium text-orange-700 mb-2 text-lg">Что вы получите, пройдя этот курс:</div>
+            <p className="text-gray-700">
+              Понимание основ Bitcoin, умение безопасно хранить и использовать криптовалюту, а также знания
+              для дальнейшего изучения мира блокчейна.
+            </p>
+
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                  <Check className="text-orange-500" />
                 </div>
+                <span className="text-sm">15 видео-уроков</span>
               </div>
-              <div className="bg-white p-4 rounded-lg shadow-sm text-center hover:shadow-md transition-all">
-                <div className="text-blue-700 text-lg font-bold">ETH</div>
-                <div className="text-2xl font-bold text-blue-800">+456%</div>
-                <div className="text-xs text-gray-600">за последние 3 года</div>
-                <div className="w-full h-1 bg-gray-100 mt-2">
-                  <div className="h-full bg-indigo-500 w-[90%]"></div>
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                  <Check className="text-orange-500" />
                 </div>
+                <span className="text-sm">5 практических заданий</span>
               </div>
-              <div className="bg-white p-4 rounded-lg shadow-sm text-center hover:shadow-md transition-all">
-                <div className="text-blue-700 text-lg font-bold">Альткоины</div>
-                <div className="text-2xl font-bold text-blue-800">+200-1000%</div>
-                <div className="text-xs text-gray-600">потенциал роста</div>
-                <div className="w-full h-1 bg-gray-100 mt-2">
-                  <div className="h-full bg-gradient-to-r from-purple-500 to-pink-500 w-[80%]"></div>
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                  <Check className="text-orange-500" />
                 </div>
+                <span className="text-sm">3 часа контента</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                  <Check className="text-orange-500" />
+                </div>
+                <span className="text-sm">Сертификат о прохождении</span>
               </div>
             </div>
-            
-            <p className="text-sm text-gray-500 mt-3 text-center">
-              * Данные показатели основаны на исторических данных и не являются гарантией будущей доходности
-            </p>
           </div>
         </div>
-        
+
         {/* What You'll Learn Section */}
-        <div className="bg-gradient-to-r from-blue-50 to-white p-6 rounded-xl shadow-sm">
+        <div className="bg-gradient-to-r from-orange-50 to-white p-6 rounded-xl shadow-sm">
           <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
-            <Award className="inline-block text-blue-600" size={24} />
+            <Award className="inline-block text-orange-600" size={24} />
             Что вы изучите:
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Фундаментальные отличия Биткоина от других криптовалют</span>
+                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
+                <span>История создания Bitcoin и его основные принципы</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Методы анализа криптовалютного рынка (технический и фундаментальный)</span>
+                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
+                <span>Как работает сеть Bitcoin и процесс майнинга</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Стратегии инвестирования и управления рисками в криптовалютах</span>
+                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
+                <span>Как безопасно хранить и использовать Bitcoin</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Принципы формирования и управления криптовалютным портфелем</span>
+                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
+                <span>Основные понятия и термины, связанные с Bitcoin</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Оценка перспективности альткоинов и новых токенов</span>
+                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
+                <span>Как защитить себя от мошенничества и кражи Bitcoin</span>
               </div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span>Налогообложение криптовалютных операций и правовые аспекты</span>
+                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
+                <span>Перспективы развития Bitcoin и его влияние на финансовый мир</span>
               </div>
             </div>
           </div>
         </div>
-        
+
         {/* Interactive Course Modules */}
         <CourseModules modules={modules} />
-        
-        {/* Course Instructor */}
-        <CourseInstructor 
-          name="Андрей Соколов"
-          position="Криптоаналитик и инвестор"
-          bio="Андрей занимается инвестициями в криптовалюты с 2015 года. Имеет опыт работы в криптовалютных фондах, ведет популярный Telegram-канал с аналитикой и является приглашенным экспертом на финансовых мероприятиях."
-          experience={[
-            "8+ лет опыта инвестирования в криптовалюты",
-            "Соавтор стратегии криптоинвестирования с ROI +680%",
-            "Более 300 успешных учеников",
-            "Автор книги «Криптовалютный портфель: от теории к практике»"
-          ]}
-        />
-        
-        {/* Investment Strategies Section - Enhanced with better visuals */}
-        <div className="bg-gradient-to-r from-gray-50 to-white p-8 rounded-xl shadow-sm">
-          <h2 className="text-xl font-bold mb-6 text-crypto-blue">Стратегии инвестирования, которые вы освоите:</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg text-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 duration-300">
-              <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
-                <BarChart2 className="text-blue-600" size={28} />
-              </div>
-              <div className="font-medium text-lg mb-1">DCA</div>
-              <div className="text-gray-500 text-sm mb-3">Dollar Cost Averaging</div>
-              <p className="text-gray-600 text-sm">Стратегия регулярных покупок для усреднения цены входа и снижения влияния волатильности</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg text-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 duration-300">
-              <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
-                <TrendingUp className="text-blue-600" size={28} />
-              </div>
-              <div className="font-medium text-lg mb-1">Торговля на волатильности</div>
-              <div className="text-gray-500 text-sm mb-3">Инвестиции на колебаниях</div>
-              <p className="text-gray-600 text-sm">Использование рыночных циклов для входа и выхода с позиций с целью увеличения прибыли</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg text-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 duration-300">
-              <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
-                <DollarSign className="text-blue-600" size={28} />
-              </div>
-              <div className="font-medium text-lg mb-1">Стейкинг</div>
-              <div className="text-gray-500 text-sm mb-3">Пассивный доход</div>
-              <p className="text-gray-600 text-sm">Получение дополнительной прибыли за хранение и поддержку работы блокчейн-сетей</p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Course Testimonials */}
-        <CourseTestimonials testimonials={testimonials} />
-        
+
         {/* Who This Course Is For */}
-        <div className="bg-blue-50 p-8 rounded-xl shadow-sm">
-          <h2 className="text-2xl font-bold mb-6 text-blue-700 flex items-center gap-2">
-            <Users className="inline-block text-blue-600" size={24} />
+        <div className="bg-orange-50 p-8 rounded-xl shadow-sm">
+          <h2 className="text-2xl font-bold mb-6 text-orange-700 flex items-center gap-2">
+            <Users className="inline-block text-orange-600" size={24} />
             Для кого этот курс?
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
+                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
                 <div>
-                  <h4 className="font-medium text-blue-800 text-lg">Для инвесторов</h4>
-                  <p className="text-gray-600">Для инвесторов, желающих диверсифицировать портфель криптовалютами</p>
+                  <h4 className="font-medium text-orange-800 text-lg">Для новичков</h4>
+                  <p className="text-gray-600">Для тех, кто только начинает знакомиться с криптовалютами</p>
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
+                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
                 <div>
-                  <h4 className="font-medium text-blue-800 text-lg">Для владельцев</h4>
-                  <p className="text-gray-600">Для тех, кто уже владеет криптовалютой и хочет научиться управлять инвестициями</p>
+                  <h4 className="font-medium text-orange-800 text-lg">Для инвесторов</h4>
+                  <p className="text-gray-600">Для тех, кто хочет понять, стоит ли инвестировать в Bitcoin</p>
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
+                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
                 <div>
-                  <h4 className="font-medium text-blue-800 text-lg">Для энтузиастов</h4>
-                  <p className="text-gray-600">Для криптоэнтузиастов, стремящихся понимать рыночные тренды и формировать стратегии</p>
+                  <h4 className="font-medium text-orange-800 text-lg">Для энтузиастов</h4>
+                  <p className="text-gray-600">Для тех, кто интересуется технологией блокчейн и ее применением</p>
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
+                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
                 <div>
-                  <h4 className="font-medium text-blue-800 text-lg">Для трейдеров</h4>
-                  <p className="text-gray-600">Для начинающих трейдеров, желающих освоить основы анализа и торговли криптовалютами</p>
+                  <h4 className="font-medium text-orange-800 text-lg">Для всех</h4>
+                  <p className="text-gray-600">Для тех, кто хочет быть в курсе современных финансовых технологий</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
-        {/* FAQ Section */}
-        <CourseFAQ faqItems={faqItems} />
-        
+
+        {/* Course Testimonials */}
+        <CourseTestimonials testimonials={testimonials} />
+
+        {/* Course Instructor */}
+        <CourseInstructor
+          name="Екатерина Смирнова"
+          position="Крипто-аналитик"
+          bio="Екатерина — опытный крипто-аналитик с 5-летним стажем. Автор популярного блога о криптовалютах и блокчейне."
+          experience={[
+            "5+ лет опыта в анализе криптовалют",
+            "Автор статей о Bitcoin и блокчейне",
+            "Участник международных конференций",
+            "Консультант по инвестициям в криптовалюты"
+          ]}
+        />
+
         {/* Course Advantages */}
         <div>
           <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
             <Zap className="inline-block text-crypto-purple" size={24} />
             Преимущества нашего курса:
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
                 <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">1</div>
-                Реальные кейсы
+                Простота изложения
               </h3>
-              <p className="text-gray-700">Разбор успешных и провальных инвестиционных решений на реальных историях из рынка с анализом причин</p>
+              <p className="text-gray-700">Материал изложен простым и понятным языком, без сложных технических терминов</p>
             </div>
-            
+
             <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
                 <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">2</div>
-                Торговые симуляторы
+                Практические примеры
               </h3>
-              <p className="text-gray-700">Специальные тренажеры для практики без риска потери реальных средств с историческими данными</p>
+              <p className="text-gray-700">Каждый урок содержит практические примеры и задания для закрепления материала</p>
             </div>
-            
+
             <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
                 <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">3</div>
-                Профессиональные инструменты
+                Актуальная информация
               </h3>
-              <p className="text-gray-700">Доступ к премиум аналитическим платформам и торговым инструментам на период обучения</p>
+              <p className="text-gray-700">Курс содержит самую актуальную информацию о Bitcoin и блокчейне на сегодняшний день</p>
             </div>
-            
+
             <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
               <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
                 <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">4</div>
-                Сообщество инвесторов
+                Поддержка экспертов
               </h3>
-              <p className="text-gray-700">Закрытый клуб для общения с единомышленниками и обмена опытом, доступ на весь период обучения</p>
+              <p className="text-gray-700">Вы всегда можете задать вопросы преподавателям и получить квалифицированную помощь</p>
             </div>
           </div>
         </div>
-        
-        {/* ROI Calculator Preview - Enhanced with better visuals */}
-        <div className="bg-blue-50 p-8 rounded-lg border border-blue-200">
-          <h3 className="text-lg font-semibold text-blue-700 mb-5">Оценка потенциальной доходности:</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-5 bg-white rounded-lg shadow-sm hover:shadow-md transition-all text-center">
-              <div className="text-xs text-gray-500 mb-2">Начальные инвестиции</div>
-              <div className="font-bold text-xl text-blue-700 mb-2">100 000 ₽</div>
-              <div className="text-green-500 text-sm mb-3">+25% / 1 год</div>
-              <div className="w-full h-2 bg-gray-100 rounded-full">
-                <div className="h-full rounded-full bg-green-500 w-1/4"></div>
-              </div>
-              <div className="text-sm mt-2 text-gray-600">Консервативный портфель</div>
-            </div>
-            <div className="p-5 bg-white rounded-lg shadow-sm hover:shadow-md transition-all text-center">
-              <div className="text-xs text-gray-500 mb-2">Диверсифицированный портфель</div>
-              <div className="font-bold text-xl text-blue-700 mb-2">100 000 ₽</div>
-              <div className="text-green-500 text-sm mb-3">+42% / 1 год</div>
-              <div className="w-full h-2 bg-gray-100 rounded-full">
-                <div className="h-full rounded-full bg-green-500 w-[42%]"></div>
-              </div>
-              <div className="text-sm mt-2 text-gray-600">Сбалансированный портфель</div>
-            </div>
-            <div className="p-5 bg-white rounded-lg shadow-sm hover:shadow-md transition-all text-center">
-              <div className="text-xs text-gray-500 mb-2">С оптимизацией рисков</div>
-              <div className="font-bold text-xl text-blue-700 mb-2">100 000 ₽</div>
-              <div className="text-green-500 text-sm mb-3">+32% / 1 год</div>
-              <div className="w-full h-2 bg-gray-100 rounded-full">
-                <div className="h-full rounded-full bg-green-500 w-[32%]"></div>
-              </div>
-              <div className="text-sm mt-2 text-gray-600">Умеренно-агрессивный портфель</div>
+
+        {/* FAQ Section */}
+        <CourseFAQ faqItems={faqItems} />
+
+        {/* Warning Box */}
+        <div className="bg-orange-50 border-l-4 border-crypto-orange p-5 rounded-r-lg">
+          <div className="flex items-start">
+            <AlertCircle className="text-crypto-orange mr-3 flex-shrink-0" />
+            <div>
+              <h4 className="font-semibold text-crypto-orange">Важно помнить</h4>
+              <p className="text-sm text-gray-700 mt-1">
+                Инвестиции в криптовалюты сопряжены с риском. Всегда проводите собственное исследование перед
+                инвестированием.
+              </p>
             </div>
           </div>
-          <p className="text-xs text-gray-500 mt-4 text-center">
-            * Данные на основе исторических показателей. Не является инвестиционной рекомендацией.
-            Доходность в прошлом не гарантирует доходность в будущем.
-          </p>
         </div>
       </div>
     </CourseLayout>

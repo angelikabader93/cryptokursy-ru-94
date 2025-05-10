@@ -9,7 +9,7 @@ interface Module {
   duration: string;
   lessons: {
     title: string;
-    type: 'video' | 'text' | 'test';
+    type: "video" | "text" | "test";
     duration?: string;
   }[];
   color?: string;
