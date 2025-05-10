@@ -40,7 +40,7 @@ const CalloutSection = () => {
           
           <div className="mt-8 flex flex-col md:flex-row gap-6 justify-center">
             <a 
-              href="https://t.me/cryptoschool" 
+              href="https://t.me/ru_holder" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="flex items-center justify-center space-x-2 text-white hover:text-crypto-orange transition-colors"
