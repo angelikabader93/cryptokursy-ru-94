@@ -163,4 +163,54 @@
   .section-title {
     @apply text-center font-bold text-3xl md:text-4xl mb-10 text-crypto-blue;
   }
+
+  /* New gradient text effect */
+  .text-gradient {
+    @apply text-transparent bg-clip-text;
+  }
+  
+  /* Card hover effects */
+  .card-hover-effect {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  /* Interactive button style */
+  .interactive-button {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+  
+  .interactive-button::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-current transform scale-x-0 origin-bottom-right transition-transform duration-300;
+  }
+  
+  .interactive-button:hover::after {
+    @apply transform scale-x-100 origin-bottom-left;
+  }
+  
+  /* Testimonial card style */
+  .testimonial-card {
+    @apply bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all;
+  }
+  
+  /* Timeline step */
+  .timeline-step {
+    @apply relative pl-8 pb-8 border-l-2;
+  }
+  
+  .timeline-step::before {
+    content: '';
+    @apply absolute left-[-8px] top-2 w-4 h-4 rounded-full;
+  }
+
+  /* Animation classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
 }
