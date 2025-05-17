@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Users, Award, BookOpen, LucideGraph } from 'lucide-react';
+import { Users, Award, BookOpen, LineChart } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SignupForm from '@/components/SignupForm';
@@ -92,7 +92,7 @@ const About = () => {
 
               <div className="bg-white p-8 rounded-lg shadow-md">
                 <div className="bg-crypto-blue/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
-                  <LucideGraph className="text-crypto-blue w-8 h-8" />
+                  <LineChart className="text-crypto-blue w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-bold mb-4">Постоянное развитие</h3>
                 <p>
@@ -182,7 +182,7 @@ const About = () => {
               </p>
             </div>
             <div className="max-w-lg mx-auto">
-              <SignupForm formType="about" />
+              <SignupForm formType="hero" />
             </div>
           </div>
         </section>

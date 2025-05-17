@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
 
 interface SignupFormProps {
-  formType: 'hero' | 'popup' | 'footer' | 'course';
+  formType: 'hero' | 'popup' | 'footer' | 'course' | 'about';
   onSubmitSuccess?: () => void;
   courseTitle?: string;
 }
@@ -49,6 +49,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
         return 'Присоединяйтесь к нам';
       case 'course':
         return courseTitle ? `Запись на курс "${courseTitle}"` : 'Запись на курс';
+      case 'about':
+        return 'Присоединяйтесь к нашему сообществу';
       default:
         return 'Зарегистрируйтесь сейчас';
     }
@@ -64,6 +66,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
         return 'Присоединиться';
       case 'course':
         return 'Записаться на курс';
+      case 'about':
+        return 'Присоединиться к нам';
       default:
         return 'Отправить';
     }
