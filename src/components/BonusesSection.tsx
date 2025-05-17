@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -10,7 +9,7 @@ const BonusesSection = () => {
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="section-title mb-12">Помимо 2 недельного обучения на курсе, Вы дополнительно получите бонусы:</h2>
+        <h2 className="section-title mb-12">Помимо обучения на курсе, Вы дополнительно получите бонусы:</h2>
         
         <div className="space-y-8 max-w-4xl mx-auto">
           <div className="bg-blue-50 rounded-lg overflow-hidden shadow-md">
