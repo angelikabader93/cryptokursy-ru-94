@@ -10,6 +10,12 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import CalloutSection from '@/components/CalloutSection';
 import Footer from '@/components/Footer';
 import PopupForm from '@/components/PopupForm';
+import StudentResultsSection from '@/components/StudentResultsSection';
+import PracticalValueSection from '@/components/PracticalValueSection';
+import FearsSection from '@/components/FearsSection';
+import MarathonSection from '@/components/MarathonSection';
+import BonusesSection from '@/components/BonusesSection';
+import CourseModulesSection from '@/components/CourseModulesSection';
 
 const Index = () => {
   // Прокрутка к якорю при загрузке страницы, если есть хэш в URL
@@ -31,7 +37,13 @@ const Index = () => {
       <main>
         <HeroSection />
         <FeaturesSection />
+        <StudentResultsSection />
+        <PracticalValueSection />
+        <FearsSection />
         <CoursesSection />
+        <CourseModulesSection />
+        <BonusesSection />
+        <MarathonSection />
         <InstructorsSection />
         <ComparisonSection />
         <TestimonialsSection />
