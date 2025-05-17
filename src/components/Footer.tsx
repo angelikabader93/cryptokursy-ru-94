@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SignupForm from './SignupForm';
@@ -66,9 +65,6 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/about" className="hover:text-crypto-orange transition-colors">О нас</Link>
-              </li>
-              <li>
-                <Link to="/blog" className="hover:text-crypto-orange transition-colors">Блог</Link>
               </li>
               <li>
                 <Link to="/contact" className="hover:text-crypto-orange transition-colors">Контакты</Link>

@@ -53,12 +53,6 @@ const Header = () => {
             О нас
           </Link>
           <Link 
-            to="/blog" 
-            className={`font-medium hover:text-crypto-purple transition-colors ${location.pathname === '/blog' ? 'text-crypto-purple' : 'text-gray-700'}`}
-          >
-            Блог
-          </Link>
-          <Link 
             to="/contact" 
             className={`font-medium hover:text-crypto-purple transition-colors ${location.pathname === '/contact' ? 'text-crypto-purple' : 'text-gray-700'}`}
           >
@@ -121,13 +115,6 @@ const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               О нас
-            </Link>
-            <Link 
-              to="/blog" 
-              className={`font-medium hover:text-crypto-purple transition-colors px-2 py-1 ${location.pathname === '/blog' ? 'text-crypto-purple' : 'text-gray-700'}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Блог
             </Link>
             <Link 
               to="/contact" 
