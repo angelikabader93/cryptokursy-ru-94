@@ -2,22 +2,18 @@
 import React from 'react';
 import { Award, Briefcase, Check } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { instructors } from './InstructorsSection';
 
 interface InstructorProps {
-  name: string;
-  position: string;
-  bio: string;
-  experience: string[];
-  avatar?: string;
+  instructorId: string;
 }
 
-const CourseInstructor: React.FC<InstructorProps> = ({
-  name,
-  position,
-  bio,
-  experience,
-  avatar
-}) => {
+const CourseInstructor: React.FC<InstructorProps> = ({ instructorId }) => {
+  // Find the instructor by ID from our instructor data
+  const instructor = instructors.find(i => i.id === instructorId) || instructors[0];
+  
+  const { name, position, bio, experience, avatar } = instructor;
+  
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden">
       <div className="bg-gradient-to-r from-crypto-purple/10 to-crypto-lightPurple/10 p-6">

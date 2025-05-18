@@ -21,17 +21,17 @@ interface Instructor {
 
 const instructors: Instructor[] = [
   {
-    id: "ekaterina",
-    name: "Екатерина Смирнова",
+    id: "efimov",
+    name: "Александр Ефимов",
     position: "Крипто-аналитик",
-    bio: "Екатерина — опытный крипто-аналитик с 5-летним стажем. Автор популярного блога о криптовалютах и блокчейне.",
+    bio: "Александр — опытный крипто-аналитик с 7-летним стажем. Автор многочисленных исследований рынка криптовалют.",
     experience: [
-      "5+ лет опыта в анализе криптовалют",
-      "Автор статей о Bitcoin и блокчейне",
+      "7+ лет опыта в анализе криптовалют",
+      "Консультант по инвестициям в криптовалюты",
       "Участник международных конференций",
-      "Консультант по инвестициям в криптовалюты"
+      "Разработчик инвестиционных стратегий"
     ],
-    avatar: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=1887",
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
     courses: [
       {
         id: "beginners",
@@ -39,49 +39,34 @@ const instructors: Instructor[] = [
         url: "/courses/crypto-for-beginners"
       },
       {
-        id: "blockchain",
-        title: "Блокчейн и криптовалюты",
-        url: "/courses/blockchain-and-crypto"
+        id: "premium",
+        title: "Премиальная криптошкола",
+        url: "/courses/premium-crypto-school"
       }
     ]
   },
   {
-    id: "mikhail",
-    name: "Михаил Петров",
+    id: "zubkov",
+    name: "Александр Зубков",
     position: "Трейдер криптовалют",
-    bio: "Профессиональный трейдер с опытом работы на различных криптовалютных биржах более 7 лет. Специалист по техническому анализу.",
+    bio: "Профессиональный трейдер с опытом работы на различных криптовалютных биржах более 8 лет. Специалист по техническому анализу.",
     experience: [
-      "7+ лет опыта трейдинга криптовалют",
+      "8+ лет опыта трейдинга криптовалют",
       "Разработчик торговых стратегий",
       "Технический аналитик",
-      "Ведущий вебинаров по трейдингу"
+      "Эксперт по блокчейн-технологиям"
     ],
-    avatar: "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?q=80&w=1935",
+    avatar: "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
     courses: [
       {
         id: "bitcoin",
         title: "Биткоин и альткоины",
         url: "/courses/bitcoin-and-altcoins"
-      }
-    ]
-  },
-  {
-    id: "anna",
-    name: "Анна Иванова",
-    position: "DeFi специалист",
-    bio: "Эксперт в области децентрализованных финансов и смарт-контрактов. Имеет богатый опыт разработки и аудита DeFi проектов.",
-    experience: [
-      "Эксперт по децентрализованным финансам",
-      "Разработка смарт-контрактов",
-      "Аудит безопасности блокчейн-проектов",
-      "Преподаватель криптоэкономики"
-    ],
-    avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=2071",
-    courses: [
+      },
       {
-        id: "premium",
-        title: "Премиальная криптошкола",
-        url: "/courses/premium-crypto-school"
+        id: "blockchain",
+        title: "Блокчейн и криптовалюты",
+        url: "/courses/blockchain-and-crypto"
       }
     ]
   }
@@ -97,7 +82,7 @@ const InstructorsSection: React.FC = () => {
         </div>
         <h2 className="section-title mb-12 text-center text-3xl font-bold text-crypto-blue">Наши преподаватели</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {instructors.map((instructor) => (
             <Card key={instructor.id} className="border border-gray-200 transition-all duration-200 hover:shadow-md">
               <CardHeader className="text-center pb-2">

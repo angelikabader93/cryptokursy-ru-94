@@ -4,6 +4,7 @@ import { Users, Award, BookOpen, LineChart } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SignupForm from '@/components/SignupForm';
+import { instructors } from '@/components/InstructorsSection';
 
 const About = () => {
   return (
@@ -115,58 +116,21 @@ const About = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="mb-4 overflow-hidden rounded-full mx-auto w-40 h-40">
-                  <img 
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
-                    alt="Алексей Петров" 
-                    className="w-full h-full object-cover"
-                  />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {instructors.map(instructor => (
+                <div key={instructor.id} className="text-center">
+                  <div className="mb-4 overflow-hidden rounded-full mx-auto w-40 h-40">
+                    <img 
+                      src={instructor.avatar} 
+                      alt={instructor.name} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold">{instructor.name}</h3>
+                  <p className="text-crypto-blue font-medium">{instructor.position}</p>
+                  <p className="mt-2">{instructor.bio}</p>
                 </div>
-                <h3 className="text-xl font-bold">Алексей Петров</h3>
-                <p className="text-crypto-blue font-medium">Основатель и CEO</p>
-                <p className="mt-2">С 2014 года в криптоиндустрии. Бывший аналитик JPMorgan.</p>
-              </div>
-
-              <div className="text-center">
-                <div className="mb-4 overflow-hidden rounded-full mx-auto w-40 h-40">
-                  <img 
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
-                    alt="Елена Соколова" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold">Елена Соколова</h3>
-                <p className="text-crypto-blue font-medium">Руководитель обучения</p>
-                <p className="mt-2">Эксперт по DeFi и NFT. Автор книги "Блокчейн для всех".</p>
-              </div>
-
-              <div className="text-center">
-                <div className="mb-4 overflow-hidden rounded-full mx-auto w-40 h-40">
-                  <img 
-                    src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
-                    alt="Дмитрий Иванов" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold">Дмитрий Иванов</h3>
-                <p className="text-crypto-blue font-medium">Технический директор</p>
-                <p className="mt-2">Разработчик с 10+ годами опыта. Контрибьютор Ethereum.</p>
-              </div>
-
-              <div className="text-center">
-                <div className="mb-4 overflow-hidden rounded-full mx-auto w-40 h-40">
-                  <img 
-                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" 
-                    alt="Анна Новикова" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold">Анна Новикова</h3>
-                <p className="text-crypto-blue font-medium">Крипто-аналитик</p>
-                <p className="mt-2">Бывший трейдер Goldman Sachs. Эксперт по техническому анализу.</p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -182,7 +146,7 @@ const About = () => {
               </p>
             </div>
             <div className="max-w-lg mx-auto">
-              <SignupForm formType="hero" />
+              <SignupForm formType="about" />
             </div>
           </div>
         </section>
