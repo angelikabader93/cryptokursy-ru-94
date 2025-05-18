@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SignupForm from './SignupForm';
@@ -20,7 +21,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-6">
               <span className="text-white font-heading font-extrabold text-2xl">КРИПТО</span>
-              <span className="text-crypto-orange font-heading font-bold text-2xl">СТАРТ</span>
+              <span className="text-crypto-orange font-heading font-bold text-2xl">КУРСЫ</span>
             </div>
             <p className="mb-6">
               Мы предлагаем бесплатные и платные курсы по криптовалютам и блокчейну для всех уровней подготовки.
@@ -104,7 +105,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="mb-4 md:mb-0">&copy; {new Date().getFullYear()} КриптоСтарт. Все права защищены.</p>
+            <p className="mb-4 md:mb-0">&copy; {new Date().getFullYear()} КриптоКурсы. Все права защищены.</p>
             <div className="flex space-x-6">
               <Link to="/privacy" className="text-sm hover:text-crypto-orange transition-colors">Политика конфиденциальности</Link>
               <Link to="/terms" className="text-sm hover:text-crypto-orange transition-colors">Условия использования</Link>
