@@ -1,4 +1,3 @@
-
 import React from 'react';
 import CourseLayout from '@/components/CourseLayout';
 import { Check, Users, Award, BookOpen, Clock, Zap, Code, FileCode, Shield } from 'lucide-react';
@@ -279,17 +278,7 @@ const BlockchainCoursePage = () => {
         </div>
         
         {/* Course Instructor */}
-        <CourseInstructor 
-          name="Максим Волков"
-          position="Blockchain Developer & DeFi Архитектор"
-          bio="Максим — один из лидирующих разработчиков блокчейн-решений в России. Имеет за плечами более 50 успешных проектов на Ethereum и Solana. Соавтор нескольких EIP (Ethereum Improvement Proposals)."
-          experience={[
-            "5+ лет опыта в разработке смарт-контрактов",
-            "Автор библиотеки для безопасного взаимодействия с DeFi-протоколами",
-            "Победитель международных хакатонов по блокчейну",
-            "Консультант нескольких успешных ICO/IDO проектов"
-          ]}
-        />
+        <CourseInstructor instructorId="efimov" />
         
         {/* Course Testimonials */}
         <CourseTestimonials testimonials={testimonials} />

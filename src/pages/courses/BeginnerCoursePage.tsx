@@ -1,4 +1,3 @@
-
 import React from 'react';
 import CourseLayout from '@/components/CourseLayout';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle } from 'lucide-react';
@@ -261,17 +260,7 @@ const BeginnerCoursePage = () => {
         <CourseTestimonials testimonials={testimonials} />
         
         {/* Course Instructor */}
-        <CourseInstructor 
-          name="Алексей Петров"
-          position="Эксперт по криптовалютам"
-          bio="Алексей имеет более 7 лет опыта в криптоиндустрии. Участвовал в запуске нескольких успешных проектов и является автором популярного блога о криптовалютах."
-          experience={[
-            "Более 7 лет опыта в криптоиндустрии",
-            "Консультант крупных блокчейн-проектов",
-            "Автор серии статей о криптобезопасности",
-            "Регулярный спикер на конференциях"
-          ]}
-        />
+        <CourseInstructor instructorId="efimov" />
         
         {/* Course Advantages Section */}
         <div className="bg-white p-6 rounded-xl shadow-md">
