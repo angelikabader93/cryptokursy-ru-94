@@ -31,21 +31,18 @@ export const sendLeadToWebhook = async (data: LeadData): Promise<WebhookResponse
   try {
     console.log("Отправка данных на веб-хук:", data);
 
-    // Создаем объект FormData для отправки
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("phone", data.phone);
+    // Google Apps Script обычно ожидает данные в URL-encoded формате
+    const params = new URLSearchParams();
+    params.append("name", data.name);
+    params.append("phone", data.phone);
     if (data.source) {
-      formData.append("source", data.source);
+      params.append("source", data.source);
     }
 
-    // CORS для Google Apps Script требует особого подхода
-    // Отправляем запрос в формате, который принимает Google Apps Script
-    const response = await fetch(WEBHOOK_URL, {
-      method: "POST",
-      body: formData,
-      // Не указываем mode: "no-cors" и не устанавливаем заголовки Content-Type,
-      // позволим браузеру автоматически установить правильные заголовки для FormData
+    // Отправляем запрос в формате, который точно принимает Google Apps Script
+    const response = await fetch(`${WEBHOOK_URL}?${params.toString()}`, {
+      method: "GET", // Используем GET, т.к. это более надежный способ для Google Apps Script
+      // Не устанавливаем никаких заголовков, чтобы не вызвать CORS-проблемы
     });
 
     console.log("Ответ от веб-хука:", response.status, response.statusText);
