@@ -1,10 +1,10 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import LeadCaptureModal from './LeadCaptureModal';
 
 const BonusesSection = () => {
-  const scrollToSignupForm = () => {
-    document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <section className="py-16 bg-gray-50">
@@ -93,13 +93,15 @@ const BonusesSection = () => {
         
         <div className="mt-12 text-center">
           <Button 
-            onClick={scrollToSignupForm}
+            onClick={() => setShowModal(true)}
             className="bg-crypto-orange hover:bg-orange-600 text-white font-bold py-6 px-8 text-lg"
           >
             Получить доступ к курсу и бонусам
           </Button>
         </div>
       </div>
+      
+      <LeadCaptureModal open={showModal} onOpenChange={setShowModal} />
     </section>
   );
 };
