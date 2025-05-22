@@ -55,7 +55,7 @@ const StudentResultsSection = () => {
                   </svg>
                 </div>
                 
-                <div className="flex justify-between text-gray-500 text-xs mt-2 mb-4">
+                <div className="flex justify-between text-gray-500 text-xs mt-2">
                   <span>24ч</span>
                   <span>1Н</span>
                   <span>1М</span>
@@ -63,26 +63,6 @@ const StudentResultsSection = () => {
                   <span>6М</span>
                   <span>1Г</span>
                   <span>Все</span>
-                </div>
-                
-                <div className="flex gap-2 mb-4">
-                  <button className="border border-gray-600 rounded-full flex items-center px-3 py-2 text-white">
-                    <svg width="16" height="16" viewBox="0 0 24 24" className="mr-2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 4V20M4 12H20" stroke="white" strokeWidth="2" />
-                    </svg>
-                    Add Transaction
-                  </button>
-                  <button className="border border-gray-600 rounded-full flex items-center px-3 py-2 text-white">
-                    <svg width="16" height="16" viewBox="0 0 24 24" className="mr-2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4 12L20 12M20 12L14 6M20 12L14 18" stroke="white" strokeWidth="2" />
-                    </svg>
-                    Share
-                  </button>
-                </div>
-                
-                <div className="flex justify-between border-t border-gray-800 pt-2">
-                  <button className="text-white font-medium">Assets</button>
-                  <button className="text-gray-500">History</button>
                 </div>
               </div>
             </div>
@@ -137,7 +117,7 @@ const StudentResultsSection = () => {
                   </svg>
                 </div>
                 
-                <div className="flex justify-between text-gray-500 text-xs mt-2 mb-4">
+                <div className="flex justify-between text-gray-500 text-xs mt-2">
                   <span>24ч</span>
                   <span>1Н</span>
                   <span>1М</span>
@@ -145,26 +125,6 @@ const StudentResultsSection = () => {
                   <span>6М</span>
                   <span>1Г</span>
                   <span>Все</span>
-                </div>
-                
-                <div className="flex gap-2 mb-4">
-                  <button className="border border-gray-600 rounded-full flex items-center px-3 py-2 text-white">
-                    <svg width="16" height="16" viewBox="0 0 24 24" className="mr-2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 4V20M4 12H20" stroke="white" strokeWidth="2" />
-                    </svg>
-                    Add Transaction
-                  </button>
-                  <button className="border border-gray-600 rounded-full flex items-center px-3 py-2 text-white">
-                    <svg width="16" height="16" viewBox="0 0 24 24" className="mr-2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4 12L20 12M20 12L14 6M20 12L14 18" stroke="white" strokeWidth="2" />
-                    </svg>
-                    Share
-                  </button>
-                </div>
-                
-                <div className="flex justify-between border-t border-gray-800 pt-2">
-                  <button className="text-white font-medium">Assets</button>
-                  <button className="text-gray-500">History</button>
                 </div>
               </div>
             </div>
@@ -185,3 +145,4 @@ const StudentResultsSection = () => {
 };
 
 export default StudentResultsSection;
+
