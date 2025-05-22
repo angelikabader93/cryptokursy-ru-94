@@ -31,29 +31,24 @@ export const sendLeadToWebhook = async (data: LeadData): Promise<WebhookResponse
   try {
     console.log("Отправка данных на веб-хук:", data);
     
-    // Формируем данные для отправки в виде URL-encoded строки
-    const formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('phone', data.phone);
-    formData.append('source', data.source || '');
-    
-    // Создаем URL с параметрами для GET-запроса (обходим CORS)
+    // Формируем параметры для GET запроса (формат, ожидаемый Google Apps Script)
     const params = new URLSearchParams();
     params.append('name', data.name);
     params.append('phone', data.phone);
     params.append('source', data.source || '');
     
+    // Создаем URL с параметрами для GET запроса
     const url = `${WEBHOOK_URL}?${params.toString()}`;
     console.log("URL для отправки:", url);
     
-    // Отправляем GET-запрос (более надежный способ обойти CORS)
+    // Отправляем GET запрос (этот метод точно работает с Google Apps Script)
     const response = await fetch(url, {
       method: "GET",
-      mode: "no-cors" // Важно: этот режим позволяет обойти CORS-ограничения
+      mode: "no-cors" // Режим no-cors для обхода CORS-ограничений
     });
 
-    // Из-за режима no-cors мы не можем читать ответ напрямую
-    // Предполагаем, что запрос успешен, если не произошло исключение
+    // Из-за режима no-cors мы не можем прочитать ответ напрямую
+    // Предполагаем, что запрос успешен, если не произошло исключения
     return {
       success: true,
       status: 200,

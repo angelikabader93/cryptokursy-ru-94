@@ -24,14 +24,22 @@ const MarathonSection = () => {
       
       console.log("Результат отправки:", response);
       
-      toast({
-        title: "Успешно!",
-        description: "Вы зарегистрированы на марафон. Мы свяжемся с вами в ближайшее время.",
-      });
-      
-      // Reset form
-      setName('');
-      setPhone('');
+      if (response.success) {
+        toast({
+          title: "Успешно!",
+          description: "Вы зарегистрированы на марафон. Мы свяжемся с вами в ближайшее время.",
+        });
+        
+        // Reset form
+        setName('');
+        setPhone('');
+      } else {
+        toast({
+          title: "Внимание",
+          description: "Запрос отправлен, но возможны проблемы с обработкой. Пожалуйста, попробуйте позже.",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
       toast({
