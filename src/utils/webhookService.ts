@@ -31,18 +31,20 @@ export const sendLeadToWebhook = async (data: LeadData): Promise<WebhookResponse
   try {
     console.log("Отправка данных на веб-хук:", data);
 
-    // Google Apps Script обычно ожидает данные в URL-encoded формате
-    const params = new URLSearchParams();
-    params.append("name", data.name);
-    params.append("phone", data.phone);
-    if (data.source) {
-      params.append("source", data.source);
-    }
+    // Создаем JSON-данные для отправки, аналогично PowerShell-скрипту
+    const jsonData = JSON.stringify({
+      name: data.name,
+      phone: data.phone,
+      source: data.source || ''
+    });
 
-    // Отправляем запрос в формате, который точно принимает Google Apps Script
-    const response = await fetch(`${WEBHOOK_URL}?${params.toString()}`, {
-      method: "GET", // Используем GET, т.к. это более надежный способ для Google Apps Script
-      // Не устанавливаем никаких заголовков, чтобы не вызвать CORS-проблемы
+    // Отправляем запрос с теми же параметрами, что и в PowerShell-скрипте
+    const response = await fetch(WEBHOOK_URL, {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: jsonData
     });
 
     console.log("Ответ от веб-хука:", response.status, response.statusText);
