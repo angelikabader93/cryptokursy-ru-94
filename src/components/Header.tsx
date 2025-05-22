@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import LeadCaptureModal from '@/components/LeadCaptureModal';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const location = useLocation();
 
   const handleCoursesClick = (e: React.MouseEvent) => {
@@ -63,7 +65,7 @@ const Header = () => {
         <div className="hidden md:block">
           <Button 
             className="bg-crypto-orange text-white font-bold hover:bg-orange-600"
-            onClick={() => document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => setShowModal(true)}
           >
             Начать бесплатно
           </Button>
@@ -126,7 +128,7 @@ const Header = () => {
             <Button 
               className="bg-crypto-orange text-white font-bold hover:bg-orange-600 w-full"
               onClick={() => {
-                document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' });
+                setShowModal(true);
                 setIsMenuOpen(false);
               }}
             >
@@ -135,6 +137,8 @@ const Header = () => {
           </nav>
         </div>
       )}
+      
+      <LeadCaptureModal open={showModal} onOpenChange={setShowModal} />
     </header>
   );
 };

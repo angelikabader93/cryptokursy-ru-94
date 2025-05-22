@@ -1,11 +1,15 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SignupForm from '@/components/SignupForm';
+import LeadCaptureModal from '@/components/LeadCaptureModal';
+import { Button } from '@/components/ui/button';
 
 const Contact = () => {
+  const [showModal, setShowModal] = useState(false);
+  
   useEffect(() => {
     // Create and append Yandex Maps script
     const script = document.createElement('script');
@@ -203,13 +207,17 @@ const Contact = () => {
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Запишитесь на бесплатную консультацию, и наш эксперт поможет вам разобраться во всех вопросах, связанных с криптовалютами.
             </p>
-            <button className="bg-crypto-orange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-md transition-colors text-lg">
+            <Button 
+              className="bg-crypto-orange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-md transition-colors text-lg"
+              onClick={() => setShowModal(true)}
+            >
               Получить консультацию
-            </button>
+            </Button>
           </div>
         </section>
       </main>
       <Footer />
+      <LeadCaptureModal open={showModal} onOpenChange={setShowModal} />
     </div>
   );
 };

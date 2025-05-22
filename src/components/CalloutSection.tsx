@@ -9,9 +9,11 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import SignupForm from './SignupForm';
+import LeadCaptureModal from './LeadCaptureModal';
 
 const CalloutSection = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
 
   return (
     <section className="py-16 bg-crypto-blue text-white">
@@ -25,14 +27,14 @@ const CalloutSection = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button 
               className="bg-crypto-orange hover:bg-orange-600 text-white font-bold py-6 px-8 text-lg"
-              onClick={() => document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => setShowModal(true)}
             >
               Начать бесплатный курс
             </Button>
             <Button 
               variant="outline" 
               className="border-white bg-transparent hover:bg-white hover:text-crypto-blue text-white font-bold py-6 px-8 text-lg"
-              onClick={() => setShowModal(true)}
+              onClick={() => setShowPremiumModal(true)}
             >
               Узнать о премиум-курсах
             </Button>
@@ -65,7 +67,9 @@ const CalloutSection = () => {
         </div>
       </div>
 
-      <Dialog open={showModal} onOpenChange={setShowModal}>
+      <LeadCaptureModal open={showModal} onOpenChange={setShowModal} />
+
+      <Dialog open={showPremiumModal} onOpenChange={setShowPremiumModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Получите информацию о премиум-курсах</DialogTitle>
@@ -74,7 +78,7 @@ const CalloutSection = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="py-4">
-            <SignupForm formType="popup" onSubmitSuccess={() => setShowModal(false)} />
+            <SignupForm formType="popup" onSubmitSuccess={() => setShowPremiumModal(false)} />
           </div>
         </DialogContent>
       </Dialog>

@@ -45,13 +45,11 @@ const courses = [
 
 const CoursesSection = () => {
   const [showModal, setShowModal] = useState(false);
+  const [currentCourse, setCurrentCourse] = useState("");
 
-  const handleCourseClick = (price: string) => {
-    if (price === "Бесплатно") {
-      setShowModal(true);
-    } else {
-      document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleCourseClick = (price: string, title: string) => {
+    setCurrentCourse(title);
+    setShowModal(true);
   };
 
   return (
@@ -111,9 +109,9 @@ const CoursesSection = () => {
                       'bg-crypto-orange hover:bg-orange-600' : 
                       'bg-crypto-purple hover:bg-crypto-lightPurple'
                     } text-white`}
-                    asChild
+                    onClick={() => handleCourseClick(course.price, course.title)}
                   >
-                    <Link to={course.url}>Подробнее</Link>
+                    Подробнее
                   </Button>
                 </div>
               </div>
