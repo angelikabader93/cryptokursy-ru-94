@@ -31,23 +31,30 @@ export const sendLeadToWebhook = async (data: LeadData): Promise<WebhookResponse
   try {
     console.log("Отправка данных на веб-хук:", data);
 
-    // Создаем JSON-данные для отправки, аналогично PowerShell-скрипту
-    const jsonData = JSON.stringify({
+    // Создаем JSON строку
+    const jsonString = JSON.stringify({
       name: data.name,
       phone: data.phone,
       source: data.source || ''
     });
-
-    // Отправляем запрос с теми же параметрами, что и в PowerShell-скрипте
+    
+    console.log("JSON для отправки:", jsonString);
+    
+    // Преобразуем JSON строку в Blob с явной UTF-8 кодировкой
+    // это аналог PowerShell: [System.Text.Encoding]::UTF8.GetBytes(jsonString)
+    const blob = new Blob([jsonString], { type: 'application/json;charset=utf-8' });
+    
+    // Отправляем запрос в точности как PowerShell скрипт
     const response = await fetch(WEBHOOK_URL, {
-      method: "POST", 
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: jsonData
+      body: blob
     });
 
-    console.log("Ответ от веб-хука:", response.status, response.statusText);
+    console.log("Статус ответа:", response.status, response.statusText);
+    console.log("Заголовки ответа:", [...response.headers.entries()]);
     
     let responseText = "";
     try {
