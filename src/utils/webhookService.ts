@@ -22,22 +22,20 @@ export const sendLeadToWebhook = async (data: LeadData): Promise<boolean> => {
   try {
     console.log("Отправка данных на веб-хук:", data);
 
-    // Создаем объект FormData для отправки данных
-    const formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('phone', data.phone);
-    if (data.source) {
-      formData.append('source', data.source);
-    }
-
-    // Отправляем POST запрос на веб-хук
-    // Используем FormData вместо JSON и убираем режим no-cors
+    // Отправляем POST запрос на веб-хук с JSON данными
     const response = await fetch(WEBHOOK_URL, {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        phone: data.phone,
+        source: data.source || ""
+      }),
     });
 
-    console.log("Ответ от веб-хука:", response.status);
+    console.log("Ответ от веб-хука:", response.status, response.statusText);
     
     // Проверяем статус ответа
     return response.status >= 200 && response.status < 300;

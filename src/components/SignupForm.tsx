@@ -20,41 +20,48 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
     e.preventDefault();
     setIsLoading(true);
     
-    // Формируем источник лида
-    const source = courseTitle 
-      ? `Форма ${formType} - Курс "${courseTitle}"` 
-      : `Форма ${formType}`;
-    
-    // Отправляем данные на веб-хук
-    const webhookSuccess = await sendLeadToWebhook({
-      name,
-      phone,
-      source
-    });
-    
-    // Даже если веб-хук не сработал, показываем пользователю успех
-    // чтобы не ухудшать UX
-    toast({
-      title: "Успешно!",
-      description: courseTitle 
-        ? `Мы отправили вам доступ к курсу "${courseTitle}"`
-        : "Мы отправили вам доступ к бесплатному курсу",
-    });
-    
-    // Логируем результат для отладки
-    if (webhookSuccess) {
-      console.log("Данные успешно отправлены на веб-хук");
-    } else {
-      console.error("Не удалось отправить данные на веб-хук");
-    }
-    
-    // Сбрасываем форму
-    setName('');
-    setPhone('');
-    setIsLoading(false);
-    
-    if (onSubmitSuccess) {
-      onSubmitSuccess();
+    try {
+      // Формируем источник лида
+      const source = courseTitle 
+        ? `Форма ${formType} - Курс "${courseTitle}"` 
+        : `Форма ${formType}`;
+      
+      // Отправляем данные на веб-хук
+      const webhookSuccess = await sendLeadToWebhook({
+        name,
+        phone,
+        source
+      });
+      
+      // Показываем уведомление результата отправки
+      toast({
+        title: webhookSuccess ? "Успешно!" : "Внимание!",
+        description: webhookSuccess 
+          ? (courseTitle 
+            ? `Мы отправили вам доступ к курсу "${courseTitle}"`
+            : "Мы отправили вам доступ к бесплатному курсу")
+          : "Ваш запрос получен, но возможны задержки в обработке",
+      });
+      
+      // Логируем результат для отладки
+      console.log(`Результат отправки данных на веб-хук (${formType}): `, webhookSuccess);
+      
+      // Сбрасываем форму
+      setName('');
+      setPhone('');
+      
+      if (onSubmitSuccess) {
+        onSubmitSuccess();
+      }
+    } catch (error) {
+      console.error("Ошибка при отправке формы:", error);
+      toast({
+        title: "Ошибка",
+        description: "Произошла ошибка при отправке данных. Пожалуйста, попробуйте позже.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 

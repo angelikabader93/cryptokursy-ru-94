@@ -26,31 +26,43 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
     e.preventDefault();
     setIsLoading(true);
     
-    // Отправляем данные на веб-хук
-    const webhookSuccess = await sendLeadToWebhook({
-      name,
-      phone,
-      source: "Модальное окно лида"
-    });
-    
-    // Показываем уведомление об успешной отправке
-    toast({
-      title: "Успешно!",
-      description: "Мы отправили вам доступ к бесплатному курсу",
-    });
-    
-    // Логируем результат для отладки
-    if (webhookSuccess) {
-      console.log("Данные успешно отправлены на веб-хук из модального окна");
-    } else {
-      console.error("Не удалось отправить данные на веб-хук из модального окна");
+    try {
+      // Отправляем данные на веб-хук
+      const webhookSuccess = await sendLeadToWebhook({
+        name,
+        phone,
+        source: "Модальное окно лида"
+      });
+      
+      // Показываем уведомление об успешной отправке
+      toast({
+        title: webhookSuccess ? "Успешно!" : "Внимание!",
+        description: webhookSuccess 
+          ? "Мы отправили вам доступ к бесплатному курсу" 
+          : "Ваш запрос получен, но возможны задержки в обработке",
+      });
+      
+      // Логируем результат для отладки
+      if (webhookSuccess) {
+        console.log("Данные успешно отправлены на веб-хук из модального окна");
+      } else {
+        console.error("Не удалось отправить данные на веб-хук из модального окна");
+      }
+      
+      // Сбрасываем форму и закрываем модальное окно
+      setName('');
+      setPhone('');
+      onOpenChange(false);
+    } catch (error) {
+      console.error("Ошибка при отправке формы:", error);
+      toast({
+        title: "Ошибка",
+        description: "Произошла ошибка при отправке данных. Пожалуйста, попробуйте позже.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
-    
-    // Сбрасываем форму и закрываем модальное окно
-    setName('');
-    setPhone('');
-    setIsLoading(false);
-    onOpenChange(false);
   };
 
   return (
