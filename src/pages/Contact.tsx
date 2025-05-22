@@ -1,10 +1,33 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SignupForm from '@/components/SignupForm';
 
 const Contact = () => {
+  useEffect(() => {
+    // Create and append Yandex Maps script
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
+    script.async = true;
+    script.src = 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A17a7d913f32b3c946722fc0d7772c87f9107fcde4d2a4f43af41034af07acf14&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true';
+    
+    // Find the map container and append the script
+    const mapContainer = document.getElementById('yandex-map-container');
+    if (mapContainer) {
+      mapContainer.appendChild(script);
+    }
+    
+    // Cleanup function
+    return () => {
+      if (mapContainer && mapContainer.contains(script)) {
+        mapContainer.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -165,10 +188,9 @@ const Contact = () => {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center text-crypto-blue">Как нас найти</h2>
-            <div className="h-96 bg-gray-200 rounded-lg overflow-hidden">
-              {/* Replace with actual map embed code */}
-              <div className="w-full h-full flex items-center justify-center bg-gray-300">
-                <p className="text-gray-600 text-lg">Карта будет размещена здесь</p>
+            <div className="h-[400px] rounded-lg overflow-hidden">
+              <div id="yandex-map-container" className="w-full h-full">
+                {/* Yandex map will be loaded here via script */}
               </div>
             </div>
           </div>
