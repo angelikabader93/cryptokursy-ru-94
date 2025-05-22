@@ -51,10 +51,9 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
       console.log("Результат отправки формы:", response);
       
       if (response.success) {
-        // Сбрасываем форму и закрываем модальное окно только при успехе
+        // Сбрасываем форму, но НЕ закрываем окно в режиме отладки
         setName('');
         setPhone('');
-        // НЕ закрываем окно в режиме отладки, чтобы показать ответ
       }
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
