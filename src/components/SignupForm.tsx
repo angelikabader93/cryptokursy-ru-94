@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
-import { sendLeadToWebhook } from '@/utils/webhookService';
+import { sendLeadToWebhook, WebhookResponse } from '@/utils/webhookService';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface SignupFormProps {
   formType: 'hero' | 'popup' | 'footer' | 'course' | 'about';
@@ -15,6 +17,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [debugResponse, setDebugResponse] = useState<WebhookResponse | null>(null);
+  const [debugDialogOpen, setDebugDialogOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,34 +31,49 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
         : `Форма ${formType}`;
       
       // Отправляем данные на веб-хук
-      const webhookSuccess = await sendLeadToWebhook({
+      const response = await sendLeadToWebhook({
         name,
         phone,
         source
       });
       
+      // Сохраняем полный ответ для отладки и показываем диалог
+      setDebugResponse(response);
+      setDebugDialogOpen(true);
+      
       // Показываем уведомление результата отправки
       toast({
-        title: webhookSuccess ? "Успешно!" : "Внимание!",
-        description: webhookSuccess 
+        title: response.success ? "Успешно!" : "Внимание!",
+        description: response.success 
           ? (courseTitle 
             ? `Мы отправили вам доступ к курсу "${courseTitle}"`
             : "Мы отправили вам доступ к бесплатному курсу")
-          : "Ваш запрос получен, но возможны задержки в обработке",
+          : `Ваш запрос получен, но возможны задержки в обработке. Статус: ${response.status}`,
       });
       
       // Логируем результат для отладки
-      console.log(`Результат отправки данных на веб-хук (${formType}): `, webhookSuccess);
+      console.log(`Результат отправки данных на веб-хук (${formType}):`, response);
       
-      // Сбрасываем форму
-      setName('');
-      setPhone('');
-      
-      if (onSubmitSuccess) {
-        onSubmitSuccess();
+      if (response.success) {
+        // Сбрасываем форму
+        setName('');
+        setPhone('');
+        
+        if (onSubmitSuccess) {
+          onSubmitSuccess();
+        }
       }
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
+      
+      setDebugResponse({
+        success: false,
+        status: 0,
+        statusText: "Исключение в коде",
+        error: error instanceof Error ? error.message : String(error)
+      });
+      setDebugDialogOpen(true);
+      
       toast({
         title: "Ошибка",
         description: "Произошла ошибка при отправке данных. Пожалуйста, попробуйте позже.",
@@ -143,6 +162,46 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
           Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности
         </p>
       </form>
+      
+      {/* Диалог для отображения отладочной информации */}
+      <Dialog open={debugDialogOpen} onOpenChange={setDebugDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Отладочная информация</DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            {debugResponse && (
+              <Alert className={debugResponse.success ? "bg-green-50 border-green-300" : "bg-red-50 border-red-300"}>
+                <AlertTitle className={debugResponse.success ? "text-green-800" : "text-red-800"}>
+                  Результат отправки формы ({formType})
+                </AlertTitle>
+                <AlertDescription>
+                  <div className="space-y-2 text-sm">
+                    <p><strong>Статус:</strong> {debugResponse.status} {debugResponse.statusText}</p>
+                    <p><strong>Успех:</strong> {debugResponse.success ? "Да" : "Нет"}</p>
+                    {debugResponse.error && (
+                      <p><strong>Ошибка:</strong> {debugResponse.error}</p>
+                    )}
+                    {debugResponse.responseText && (
+                      <div>
+                        <p><strong>Ответ сервера:</strong></p>
+                        <pre className="mt-1 p-2 bg-gray-100 rounded text-xs overflow-auto max-h-40">
+                          {debugResponse.responseText}
+                        </pre>
+                      </div>
+                    )}
+                  </div>
+                </AlertDescription>
+              </Alert>
+            )}
+            <div className="mt-4 flex justify-end">
+              <Button onClick={() => setDebugDialogOpen(false)}>
+                Закрыть
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
