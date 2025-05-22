@@ -6,9 +6,16 @@ import Footer from '@/components/Footer';
 import SignupForm from '@/components/SignupForm';
 import LeadCaptureModal from '@/components/LeadCaptureModal';
 import { Button } from '@/components/ui/button';
+import { toast } from '@/hooks/use-toast';
+import { sendLeadToWebhook } from '@/utils/webhookService';
 
 const Contact = () => {
   const [showModal, setShowModal] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [isFormSubmitting, setIsFormSubmitting] = useState(false);
   
   useEffect(() => {
     // Create and append Yandex Maps script
@@ -31,6 +38,42 @@ const Contact = () => {
       }
     };
   }, []);
+
+  // Обработчик отправки контактной формы
+  const handleContactFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsFormSubmitting(true);
+    
+    try {
+      // Отправляем данные на веб-хук
+      await sendLeadToWebhook({
+        name,
+        phone: email, // Используем поле email вместо phone для этой формы
+        source: `Контактная форма: ${subject}`
+      });
+      
+      // Показываем уведомление об успешной отправке
+      toast({
+        title: "Сообщение отправлено",
+        description: "Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.",
+      });
+      
+      // Сбрасываем форму
+      setName('');
+      setEmail('');
+      setSubject('');
+      setMessage('');
+    } catch (error) {
+      console.error("Ошибка при отправке формы:", error);
+      toast({
+        title: "Ошибка",
+        description: "Не удалось отправить сообщение. Пожалуйста, попробуйте позже.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsFormSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -130,13 +173,15 @@ const Contact = () => {
               <div className="bg-gray-50 p-8 rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold mb-6 text-crypto-blue">Напишите нам</h2>
                 
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleContactFormSubmit}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Имя</label>
                       <input 
                         type="text" 
                         id="name" 
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-crypto-purple"
                         placeholder="Ваше имя"
                         required
@@ -147,6 +192,8 @@ const Contact = () => {
                       <input 
                         type="email" 
                         id="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-crypto-purple"
                         placeholder="Ваш email"
                         required
@@ -159,6 +206,8 @@ const Contact = () => {
                     <input 
                       type="text" 
                       id="subject" 
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-crypto-purple"
                       placeholder="Тема сообщения"
                       required
@@ -169,7 +218,9 @@ const Contact = () => {
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Сообщение</label>
                     <textarea 
                       id="message" 
-                      rows={5} 
+                      rows={5}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-crypto-purple"
                       placeholder="Ваше сообщение"
                       required
@@ -178,9 +229,10 @@ const Contact = () => {
                   
                   <button 
                     type="submit"
+                    disabled={isFormSubmitting}
                     className="bg-crypto-purple hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-md transition-colors w-full"
                   >
-                    Отправить сообщение
+                    {isFormSubmitting ? 'Отправка...' : 'Отправить сообщение'}
                   </button>
                 </form>
               </div>

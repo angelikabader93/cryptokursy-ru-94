@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
+import { sendLeadToWebhook } from '@/utils/webhookService';
 
 interface SignupFormProps {
   formType: 'hero' | 'popup' | 'footer' | 'course' | 'about';
@@ -15,28 +16,46 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
   const [phone, setPhone] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsLoading(false);
-      toast({
-        title: "Успешно!",
-        description: courseTitle 
-          ? `Мы отправили вам доступ к курсу "${courseTitle}"`
-          : "Мы отправили вам доступ к бесплатному курсу",
-      });
-      
-      // Reset form
-      setName('');
-      setPhone('');
-      
-      if (onSubmitSuccess) {
-        onSubmitSuccess();
-      }
-    }, 1000);
+    // Формируем источник лида
+    const source = courseTitle 
+      ? `Форма ${formType} - Курс "${courseTitle}"` 
+      : `Форма ${formType}`;
+    
+    // Отправляем данные на веб-хук
+    const webhookSuccess = await sendLeadToWebhook({
+      name,
+      phone,
+      source
+    });
+    
+    // Даже если веб-хук не сработал, показываем пользователю успех
+    // чтобы не ухудшать UX
+    toast({
+      title: "Успешно!",
+      description: courseTitle 
+        ? `Мы отправили вам доступ к курсу "${courseTitle}"`
+        : "Мы отправили вам доступ к бесплатному курсу",
+    });
+    
+    // Логируем результат для отладки
+    if (webhookSuccess) {
+      console.log("Данные успешно отправлены на веб-хук");
+    } else {
+      console.error("Не удалось отправить данные на веб-хук");
+    }
+    
+    // Сбрасываем форму
+    setName('');
+    setPhone('');
+    setIsLoading(false);
+    
+    if (onSubmitSuccess) {
+      onSubmitSuccess();
+    }
   };
 
   const getFormTitle = () => {

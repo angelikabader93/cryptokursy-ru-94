@@ -10,6 +10,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
+import { sendLeadToWebhook } from '@/utils/webhookService';
 
 interface LeadCaptureModalProps {
   open: boolean;
@@ -21,23 +22,35 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
   const [phone, setPhone] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsLoading(false);
-      toast({
-        title: "Успешно!",
-        description: "Мы отправили вам доступ к бесплатному курсу",
-      });
-      
-      // Reset form
-      setName('');
-      setPhone('');
-      onOpenChange(false);
-    }, 1000);
+    // Отправляем данные на веб-хук
+    const webhookSuccess = await sendLeadToWebhook({
+      name,
+      phone,
+      source: "Модальное окно лида"
+    });
+    
+    // Показываем уведомление об успешной отправке
+    toast({
+      title: "Успешно!",
+      description: "Мы отправили вам доступ к бесплатному курсу",
+    });
+    
+    // Логируем результат для отладки
+    if (webhookSuccess) {
+      console.log("Данные успешно отправлены на веб-хук из модального окна");
+    } else {
+      console.error("Не удалось отправить данные на веб-хук из модального окна");
+    }
+    
+    // Сбрасываем форму и закрываем модальное окно
+    setName('');
+    setPhone('');
+    setIsLoading(false);
+    onOpenChange(false);
   };
 
   return (
