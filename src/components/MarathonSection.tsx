@@ -3,19 +3,27 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
+import { sendLeadToWebhook } from '@/utils/webhookService';
 
 const MarathonSection = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      // Отправляем данные на веб-хук
+      const response = await sendLeadToWebhook({
+        name,
+        phone,
+        source: "Марафон форма"
+      });
+      
+      console.log("Результат отправки:", response);
+      
       toast({
         title: "Успешно!",
         description: "Вы зарегистрированы на марафон. Мы свяжемся с вами в ближайшее время.",
@@ -24,7 +32,16 @@ const MarathonSection = () => {
       // Reset form
       setName('');
       setPhone('');
-    }, 1000);
+    } catch (error) {
+      console.error("Ошибка при отправке формы:", error);
+      toast({
+        title: "Ошибка",
+        description: "Произошла ошибка при регистрации. Пожалуйста, попробуйте позже или свяжитесь с нами.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
