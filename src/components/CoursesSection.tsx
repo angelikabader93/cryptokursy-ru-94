@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -101,20 +100,11 @@ const CoursesSection = () => {
             <Card key={index} className="hover:shadow-xl transition-all duration-300 h-full flex flex-col">
               <CardContent className="p-6 flex-1 flex flex-col">
                 <div className="mb-4">
-                  {course.isFree ? (
-                    <h3 
-                      className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 text-crypto-blue cursor-pointer hover:text-crypto-orange transition-colors"
-                      onClick={handleFreeClick}
-                    >
+                  <Link to={course.link}>
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 text-crypto-blue hover:text-crypto-orange transition-colors cursor-pointer">
                       {course.title}
                     </h3>
-                  ) : (
-                    <Link to={course.link}>
-                      <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 text-crypto-blue hover:text-crypto-orange transition-colors cursor-pointer">
-                        {course.title}
-                      </h3>
-                    </Link>
-                  )}
+                  </Link>
                   <p className="text-gray-600 mb-4">{course.description}</p>
                 </div>
                 
