@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Check, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import LeadCaptureModal from './LeadCaptureModal';
 import { 
   Table,
@@ -37,7 +38,11 @@ const ComparisonSection = () => {
             </TableHeader>
             <TableBody>
               <TableRow className="bg-white border-b">
-                <TableCell className="p-4 font-medium text-left">Крипта для начинающих</TableCell>
+                <TableCell className="p-4 font-medium text-left">
+                  <Link to="/courses/crypto-for-beginners" className="hover:text-crypto-orange hover:underline">
+                    Крипта для начинающих
+                  </Link>
+                </TableCell>
                 <TableCell className="p-4">Новичок</TableCell>
                 <TableCell className="p-4">Онлайн</TableCell>
                 <TableCell className="p-4">30 дней</TableCell>
@@ -49,7 +54,11 @@ const ComparisonSection = () => {
                 </TableCell>
               </TableRow>
               <TableRow className="bg-gray-50 border-b">
-                <TableCell className="p-4 font-medium text-left">Блокчейн технологии</TableCell>
+                <TableCell className="p-4 font-medium text-left">
+                  <Link to="/courses/blockchain-and-crypto" className="hover:text-crypto-orange hover:underline">
+                    Блокчейн технологии
+                  </Link>
+                </TableCell>
                 <TableCell className="p-4">Средний</TableCell>
                 <TableCell className="p-4">Онлайн + практика</TableCell>
                 <TableCell className="p-4">90 дней</TableCell>
@@ -59,7 +68,11 @@ const ComparisonSection = () => {
                 <TableCell className="p-4 font-bold">15 000 ₽</TableCell>
               </TableRow>
               <TableRow className="bg-white border-b">
-                <TableCell className="p-4 font-medium text-left">Трейдинг криптовалютами</TableCell>
+                <TableCell className="p-4 font-medium text-left">
+                  <Link to="/courses/bitcoin-and-altcoins" className="hover:text-crypto-orange hover:underline">
+                    Трейдинг криптовалютами
+                  </Link>
+                </TableCell>
                 <TableCell className="p-4">Средний</TableCell>
                 <TableCell className="p-4">Онлайн + практика</TableCell>
                 <TableCell className="p-4">Пожизненный</TableCell>
@@ -69,7 +82,11 @@ const ComparisonSection = () => {
                 <TableCell className="p-4 font-bold">29 000 ₽</TableCell>
               </TableRow>
               <TableRow className="bg-gray-50 border-b">
-                <TableCell className="p-4 font-medium text-left">Премиальная криптошкола</TableCell>
+                <TableCell className="p-4 font-medium text-left">
+                  <Link to="/courses/premium-crypto-school" className="hover:text-crypto-orange hover:underline">
+                    Премиальная криптошкола
+                  </Link>
+                </TableCell>
                 <TableCell className="p-4">Продвинутый</TableCell>
                 <TableCell className="p-4">Индивидуально</TableCell>
                 <TableCell className="p-4">Пожизненный</TableCell>
