@@ -25,11 +25,31 @@ export const validatePhoneNumber = (phone: string): PhoneValidationResult => {
     };
   }
 
-  // Удаляем пробелы, дефисы, скобки и другие символы, оставляем только цифры и "+"
-  const cleanedPhone = phone.replace(/[^\d+]/g, '');
+  // Удаляем пробелы, дефисы, скобки
+  const cleanedPhone = phone.replace(/[\s\-\(\)]/g, '');
+  
+  // Проверяем, что остались только цифры и максимум один знак "+" в начале
+  const validCharactersRegex = /^(\+?\d+)$/;
+  if (!validCharactersRegex.test(cleanedPhone)) {
+    return {
+      isValid: false,
+      errorMessage: "Номер телефона может содержать только цифры и знак '+' в начале"
+    };
+  }
+  
+  // Проверяем, что знак "+" может быть только в начале
+  const plusCount = (cleanedPhone.match(/\+/g) || []).length;
+  if (plusCount > 1 || (plusCount === 1 && !cleanedPhone.startsWith('+'))) {
+    return {
+      isValid: false,
+      errorMessage: "Знак '+' может быть только в начале номера"
+    };
+  }
+  
+  // Получаем только цифры для проверки длины
+  const digitsOnly = cleanedPhone.replace(/\+/g, '');
   
   // Проверка на минимальную длину (должно быть хотя бы 7 цифр)
-  const digitsOnly = cleanedPhone.replace(/\+/g, '');
   if (digitsOnly.length < 7) {
     return {
       isValid: false,
@@ -45,15 +65,6 @@ export const validatePhoneNumber = (phone: string): PhoneValidationResult => {
     };
   }
   
-  // Проверка на недопустимые символы (должны быть только цифры и один знак "+" в начале)
-  const validFormatRegex = /^\+?\d+$/;
-  if (!validFormatRegex.test(cleanedPhone)) {
-    return {
-      isValid: false,
-      errorMessage: "Номер телефона содержит недопустимые символы"
-    };
-  }
-  
   // Специальная проверка для российских номеров
   if (cleanedPhone.startsWith('+7') || cleanedPhone.startsWith('8')) {
     const russianPhoneRegex = /^(?:\+7|8)\d{10}$/;
@@ -63,15 +74,6 @@ export const validatePhoneNumber = (phone: string): PhoneValidationResult => {
         errorMessage: "Некорректный российский номер. Используйте формат +79991234567 или 89991234567"
       };
     }
-  }
-  
-  // Общая проверка для международных номеров
-  const internationalPhoneRegex = /^(?:\+?\d{1,3})?\d{7,15}$/;
-  if (!internationalPhoneRegex.test(cleanedPhone)) {
-    return {
-      isValid: false,
-      errorMessage: "Некорректный формат номера телефона"
-    };
   }
   
   return {
@@ -85,5 +87,5 @@ export const validatePhoneNumber = (phone: string): PhoneValidationResult => {
  * @returns очищенный номер телефона
  */
 export const formatPhoneNumber = (phone: string): string => {
-  return phone.replace(/[^\d+]/g, '');
+  return phone.replace(/[\s\-\(\)]/g, '');
 };
