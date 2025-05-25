@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Layers, Play, Star, Code, Globe, Database } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -118,7 +119,6 @@ const BlockchainCoursePage = () => {
       <SEOHead
         title="Блокчейн технологии - Технический курс"
         description="Глубокое погружение в техническую архитектуру блокчейна. Изучите смарт-контракты, Solidity, создание dApps и бизнес-применение блокчейна."
-        keywords="блокчейн, технологии, смарт-контракты, solidity, dapps, криптовалюты, курс, обучение"
         canonical="https://cryptokursy.ru/courses/blockchain-and-crypto"
       />
       
