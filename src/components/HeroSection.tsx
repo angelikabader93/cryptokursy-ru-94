@@ -44,6 +44,9 @@ const HeroSection = () => {
           <div className="w-full md:w-1/2" id="hero-signup-form">
             <Card className="shadow-xl">
               <CardContent className="p-6 md:p-8">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-crypto-blue mb-4">
+                  Получите бесплатный доступ к курсу
+                </h2>
                 <SignupForm formType="hero" />
               </CardContent>
             </Card>
