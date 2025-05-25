@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Gift, Play, Star, Bitcoin, TrendingUp, Shield, Coins } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -116,7 +115,7 @@ const BitcoinCoursePage = () => {
       />
       <CoursePageSchema 
         courseName="Bitcoin и альткоины"
-        courseDescription="Изучите Bitcoin и популярные альткоины: от технических основ до практического применения"
+        description="Изучите Bitcoin и популярные альткоины: от технических основ до практического применения"
         price="4990"
         currency="RUB"
         instructor="Максим Зубков"
