@@ -1,395 +1,335 @@
 
 import React from 'react';
 import CourseLayout from '@/components/CourseLayout';
-import { Check, Users, Award, BookOpen, Clock, Zap, Star, Shield, BookmarkCheck, BrainCircuit } from 'lucide-react';
+import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Crown, Play, Star, TrendingUp, Target, Briefcase } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import CourseModules from '@/components/CourseModules';
+import CourseTestimonials from '@/components/CourseTestimonials';
+import CourseFAQ from '@/components/CourseFAQ';
+import CourseInstructor from '@/components/CourseInstructor';
 
 const PremiumCoursePage = () => {
+  // Course modules data
+  const modules = [
+    {
+      title: "Продвинутый анализ рынка",
+      description: "Глубокий технический и фундаментальный анализ криптовалютного рынка.",
+      duration: "240 минут",
+      color: "bg-purple-500",
+      lessons: [
+        { title: "Продвинутый технический анализ", type: "video" as const, duration: "45 мин" },
+        { title: "Фундаментальный анализ проектов", type: "video" as const, duration: "40 мин" },
+        { title: "Анализ on-chain метрик", type: "video" as const, duration: "35 мин" },
+        { title: "Макроэкономические факторы", type: "video" as const, duration: "30 мин" },
+        { title: "Циклы рынка криптовалют", type: "video" as const, duration: "40 мин" },
+        { title: "Индикаторы настроений рынка", type: "video" as const, duration: "35 мин" },
+        { title: "Практический анализ", type: "test" as const },
+        { title: "Разбор кейсов", type: "video" as const, duration: "35 мин" }
+      ]
+    },
+    {
+      title: "Стратегии инвестирования",
+      description: "Профессиональные стратегии и методы управления портфелем.",
+      duration: "300 минут",
+      color: "bg-indigo-500",
+      lessons: [
+        { title: "Долгосрочные стратегии HODL", type: "video" as const, duration: "30 мин" },
+        { title: "DCA и усреднение позиций", type: "video" as const, duration: "35 мин" },
+        { title: "Портфельные стратегии", type: "video" as const, duration: "40 мин" },
+        { title: "Ребалансировка портфеля", type: "video" as const, duration: "25 мин" },
+        { title: "Управление рисками", type: "video" as const, duration: "45 мин" },
+        { title: "Стратегии для разных рынков", type: "video" as const, duration: "35 мин" },
+        { title: "Альтернативные инвестиции", type: "video" as const, duration: "30 мин" },
+        { title: "Налогообложение криптовалют", type: "video" as const, duration: "25 мин" },
+        { title: "Создание инвестплана", type: "test" as const },
+        { title: "Психология инвестирования", type: "video" as const, duration: "30 мин" }
+      ]
+    },
+    {
+      title: "DeFi и продвинутые инструменты",
+      description: "Изучение децентрализованных финансов и сложных криптоинструментов.",
+      duration: "180 минут",
+      color: "bg-pink-500",
+      lessons: [
+        { title: "Протоколы кредитования", type: "video" as const, duration: "30 мин" },
+        { title: "AMM и пулы ликвидности", type: "video" as const, duration: "35 мин" },
+        { title: "Фарминг доходности", type: "video" as const, duration: "30 мин" },
+        { title: "Стейкинг и валидация", type: "video" as const, duration: "25 мин" },
+        { title: "Деривативы в DeFi", type: "video" as const, duration: "30 мин" },
+        { title: "Риски DeFi протоколов", type: "video" as const, duration: "30 мин" },
+        { title: "Практическая работа с DeFi", type: "test" as const }
+      ]
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: "Владимир И.",
+      position: "Инвестиционный консультант",
+      content: "Курс дал мне глубокие знания для профессиональной работы с криптовалютами. Персональные консультации особенно ценны.",
+      rating: 5
+    },
+    {
+      name: "Екатерина Р.",
+      position: "Финансовый аналитик",
+      content: "Лучший курс по криптоинвестированию! Материал подан на высоком уровне, много практики.",
+      rating: 5
+    },
+    {
+      name: "Сергей Т.",
+      position: "Предприниматель",
+      content: "Благодаря курсу смог значительно улучшить результаты своих инвестиций в криптовалюты.",
+      rating: 5
+    }
+  ];
+
+  const faqItems = [
+    {
+      question: "Подходит ли курс для новичков?",
+      answer: "Курс рассчитан на людей с базовыми знаниями о криптовалютах. Рекомендуем сначала пройти базовый курс."
+    },
+    {
+      question: "Что включает персональное сопровождение?",
+      answer: "Индивидуальные консультации с экспертом, разбор вашего портфеля и персональные рекомендации."
+    },
+    {
+      question: "Сколько длится доступ к материалам?",
+      answer: "Пожизненный доступ ко всем материалам курса и обновлениям."
+    },
+    {
+      question: "Есть ли гарантия возврата средств?",
+      answer: "Да, мы предоставляем 30-дневную гарантию возврата средств без вопросов."
+    }
+  ];
+
   return (
-    <CourseLayout 
-      courseTitle="Премиальная криптошкола" 
-      courseImage="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=2070"
+    <CourseLayout
+      courseTitle="Премиальная криптошкола"
+      courseImage="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2032"
       courseSlug="premium-crypto-school"
       level="Продвинутый"
       price="Премиум"
+      popular={true}
     >
-      <div className="space-y-12">
-        {/* Introduction Section with Premium Features */}
-        <div>
-          <div className="flex items-center gap-2 mb-5">
-            <div className="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">ПРЕМИУМ</div>
-            <div className="bg-purple-100 text-purple-700 text-xs px-3 py-1 rounded-full">Индивидуальный подход</div>
-            <div className="bg-purple-100 text-purple-700 text-xs px-3 py-1 rounded-full">VIP-поддержка</div>
+      {/* Hero Content */}
+      <div className="space-y-16">
+        {/* Main CTA Section */}
+        <section className="text-center">
+          <div className="inline-flex items-center bg-purple-100 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+            <Crown className="w-5 h-5 mr-2 text-purple-700" />
+            <span className="font-semibold text-purple-700">ПРЕМИАЛЬНЫЙ КУРС</span>
           </div>
           
-          <h2 className="text-2xl font-bold mb-4 text-crypto-blue flex items-center gap-2">
-            <BookOpen className="inline-block text-purple-600" size={24} /> 
-            О чем этот курс?
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-crypto-blue">
+            СТАНЬТЕ ЭКСПЕРТОМ
+            <span className="block text-4xl md:text-6xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              В КРИПТОИНВЕСТИРОВАНИИ
+            </span>
           </h2>
           
-          <p className="text-gray-700 text-lg leading-relaxed">
-            <strong>"Премиальная криптошкола"</strong> — это эксклюзивная программа индивидуального обучения 
-            с лучшими экспертами криптоиндустрии. Это не просто курс, а полное погружение в мир криптовалют и 
-            трейдинга с персональным наставником, который адаптирует программу под ваш уровень и цели. 
-            Мы предлагаем высокоуровневые знания и индивидуальный подход, чтобы вы могли освоить продвинутые стратегии 
-            и добиться конкретных результатов.
+          <p className="text-xl md:text-2xl mb-8 font-medium text-gray-700">
+            Профессиональное обучение с персональным сопровождением эксперта
+            <br />
+            <span className="text-purple-600">Для серьезных инвесторов и трейдеров</span>
           </p>
           
-          {/* Premium Highlight Box */}
-          <div className="mt-6 bg-gradient-to-r from-purple-500/10 to-purple-700/10 p-5 rounded-lg border-l-4 border-purple-500">
-            <div className="text-lg font-medium text-purple-700 mb-2">Эксклюзивный доступ</div>
-            <p className="text-gray-700">
-              Только 15 участников в месяц получают возможность присоединиться к нашей премиальной программе. 
-              Это гарантирует индивидуальный подход и максимальное внимание к вашим целям и задачам.
+          <Button 
+            size="lg"
+            className="bg-purple-600 text-white hover:bg-purple-700 font-bold text-xl py-8 px-12 rounded-full shadow-2xl transform hover:scale-105 transition-all mb-12"
+            onClick={() => document.getElementById('signup-form-course')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            <Play className="w-6 h-6 mr-3" />
+            ЗАПИСАТЬСЯ НА КУРС
+          </Button>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">40+</div>
+              <div className="text-sm text-gray-600">Видео уроков</div>
+            </div>
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">50+</div>
+              <div className="text-sm text-gray-600">Студентов</div>
+            </div>
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">5.0★</div>
+              <div className="text-sm text-gray-600">Рейтинг курса</div>
+            </div>
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">16</div>
+              <div className="text-sm text-gray-600">Недель обучения</div>
+            </div>
+          </div>
+        </section>
+
+        {/* What You'll Learn */}
+        <section className="bg-gradient-to-r from-purple-50 to-white py-16 -mx-6 px-6 rounded-xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-crypto-blue mb-4">
+              Что включает премиальное обучение?
+            </h2>
+            <p className="text-xl text-gray-600">
+              Максимальный уровень подготовки для профессиональных инвесторов
             </p>
           </div>
-        </div>
-        
-        {/* What You'll Get Section */}
-        <div className="bg-gradient-to-r from-purple-50 to-white p-6 rounded-xl">
-          <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
-            <Award className="inline-block text-purple-600" size={24} />
-            Что вы получите:
-          </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-purple-500 mt-1 flex-shrink-0 bg-purple-100 p-1 rounded-full" />
-                <div>
-                  <span className="font-medium">Персональный наставник</span>
-                  <p className="text-sm text-gray-600 mt-1">Практикующий трейдер или инвестор с опытом от 5 лет</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-purple-500 mt-1 flex-shrink-0 bg-purple-100 p-1 rounded-full" />
-                <div>
-                  <span className="font-medium">Индивидуальный план обучения</span>
-                  <p className="text-sm text-gray-600 mt-1">Адаптированный под ваши цели и уровень подготовки</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-purple-500 mt-1 flex-shrink-0 bg-purple-100 p-1 rounded-full" />
-                <div>
-                  <span className="font-medium">Еженедельные персональные занятия</span>
-                  <p className="text-sm text-gray-600 mt-1">И сессии разбора вашего инвестиционного портфеля</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-purple-500 mt-1 flex-shrink-0 bg-purple-100 p-1 rounded-full" />
-                <div>
-                  <span className="font-medium">Закрытое VIP-сообщество</span>
-                  <p className="text-sm text-gray-600 mt-1">Доступ к сообществу трейдеров и инвесторов премиум-уровня</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-purple-500 mt-1 flex-shrink-0 bg-purple-100 p-1 rounded-full" />
-                <div>
-                  <span className="font-medium">Эксклюзивная аналитика</span>
-                  <p className="text-sm text-gray-600 mt-1">Материалы и прогнозы от команды экспертов-аналитиков</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-purple-500 mt-1 flex-shrink-0 bg-purple-100 p-1 rounded-full" />
-                <div>
-                  <span className="font-medium">Поддержка 24/7</span>
-                  <p className="text-sm text-gray-600 mt-1">Быстрые ответы на все ваши вопросы в любое время</p>
-                </div>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <TrendingUp className="w-8 h-8" />,
+                title: "Продвинутый анализ",
+                description: "Глубокий технический и фундаментальный анализ криптовалютного рынка"
+              },
+              {
+                icon: <Target className="w-8 h-8" />,
+                title: "Профессиональные стратегии",
+                description: "Эксклюзивные методы и стратегии от топовых криптоинвесторов"
+              },
+              {
+                icon: <Crown className="w-8 h-8" />,
+                title: "Персональное сопровождение",
+                description: "Индивидуальные консультации и разбор вашего портфеля"
+              },
+              {
+                icon: <Briefcase className="w-8 h-8" />,
+                title: "DeFi и продвинутые инструменты",
+                description: "Изучение сложных DeFi протоколов и криптоинструментов"
+              },
+              {
+                icon: <Users className="w-8 h-8" />,
+                title: "Закрытое сообщество",
+                description: "Доступ к элитному сообществу криптоинвесторов"
+              },
+              {
+                icon: <Award className="w-8 h-8" />,
+                title: "Пожизненный доступ",
+                description: "Неограниченный доступ ко всем материалам и обновлениям"
+              }
+            ].map((item, index) => (
+              <Card key={index} className="hover:shadow-lg transition-all transform hover:scale-105 border-2 border-purple-100">
+                <CardContent className="p-6 text-center">
+                  <div className="bg-purple-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center text-purple-600">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-crypto-blue">{item.title}</h3>
+                  <p className="text-gray-600">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        </div>
-        
-        {/* Course Curriculum Section */}
-        <div>
-          <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
-            <Clock className="inline-block text-crypto-purple" size={24} />
-            Программа обучения включает:
-          </h2>
+        </section>
+
+        {/* Course Program */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-crypto-blue mb-4">
+              Программа премиального курса
+            </h2>
+            <p className="text-xl text-gray-600">
+              Углубленное изучение профессиональных инвестиционных стратегий
+            </p>
+          </div>
           
-          <div className="space-y-0">
-            <div className="relative pl-8 pb-10 border-l-2 border-purple-300">
-              <div className="absolute left-[-8px] top-2 w-4 h-4 rounded-full bg-purple-500"></div>
-              <div className="flex items-center mb-2">
-                <h3 className="font-bold text-lg text-purple-700">Модуль 1: Стратегический анализ рынка</h3>
-                <div className="ml-3 bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded">Премиум</div>
-              </div>
-              <p className="text-gray-600">Продвинутые методы технического и фундаментального анализа, определение макротрендов.</p>
-              <div className="flex gap-2 mt-2">
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">6 видео</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">4 практических задания</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">2 персональные консультации</span>
-              </div>
-            </div>
-            
-            <div className="relative pl-8 pb-10 border-l-2 border-purple-300">
-              <div className="absolute left-[-8px] top-2 w-4 h-4 rounded-full bg-purple-500"></div>
-              <div className="flex items-center mb-2">
-                <h3 className="font-bold text-lg text-purple-700">Модуль 2: Профессиональный трейдинг</h3>
-                <div className="ml-3 bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded">Премиум</div>
-              </div>
-              <p className="text-gray-600">Маркет-мейкинг, ликвидность, торговля с кредитным плечом, хеджирование рисков.</p>
-              <div className="flex gap-2 mt-2">
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">8 видео</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">5 практических заданий</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">3 персональные консультации</span>
-              </div>
-            </div>
-            
-            <div className="relative pl-8 pb-10 border-l-2 border-purple-300">
-              <div className="absolute left-[-8px] top-2 w-4 h-4 rounded-full bg-purple-500"></div>
-              <div className="flex items-center mb-2">
-                <h3 className="font-bold text-lg text-purple-700">Модуль 3: Психология трейдинга</h3>
-                <div className="ml-3 bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded">Эксклюзив</div>
-              </div>
-              <p className="text-gray-600">Управление эмоциями, дисциплина, преодоление когнитивных искажений при принятии решений.</p>
-              <div className="flex gap-2 mt-2">
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">5 видео</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">3 практических задания</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">2 персональные консультации</span>
-              </div>
-            </div>
-            
-            <div className="relative pl-8 pb-10 border-l-2 border-purple-300">
-              <div className="absolute left-[-8px] top-2 w-4 h-4 rounded-full bg-purple-500"></div>
-              <div className="flex items-center mb-2">
-                <h3 className="font-bold text-lg text-purple-700">Модуль 4: Автоматизированный трейдинг</h3>
-                <div className="ml-3 bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded">Эксклюзив</div>
-              </div>
-              <p className="text-gray-600">Создание и настройка торговых ботов, алгоритмические стратегии, бэктестирование.</p>
-              <div className="flex gap-2 mt-2">
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">7 видео</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">6 практических заданий</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">3 персональные консультации</span>
-              </div>
-            </div>
-            
-            <div className="relative pl-8 pb-10 border-l-2 border-purple-300">
-              <div className="absolute left-[-8px] top-2 w-4 h-4 rounded-full bg-purple-500"></div>
-              <div className="flex items-center mb-2">
-                <h3 className="font-bold text-lg text-purple-700">Модуль 5: Управление капиталом и рисками</h3>
-                <div className="ml-3 bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded">Эксклюзив</div>
-              </div>
-              <p className="text-gray-600">Продвинутые техники риск-менеджмента, позиционирование, портфельные стратегии.</p>
-              <div className="flex gap-2 mt-2">
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">6 видео</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">4 практических задания</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">2 персональные консультации</span>
-              </div>
-            </div>
-            
-            <div className="relative pl-8 border-l-2 border-purple-300">
-              <div className="absolute left-[-8px] top-2 w-4 h-4 rounded-full bg-purple-500"></div>
-              <div className="flex items-center mb-2">
-                <h3 className="font-bold text-lg text-purple-700">Модуль 6: Налоговое планирование и юридические аспекты</h3>
-                <div className="ml-3 bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded">Эксклюзив</div>
-              </div>
-              <p className="text-gray-600">Легальные стратегии оптимизации налогообложения, работа с юрисдикциями, правовая защита активов.</p>
-              <div className="flex gap-2 mt-2">
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">5 видео</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">3 практических задания</span>
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">2 консультации с юристом</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Premium Tools Section */}
-        <div className="bg-gray-50 p-6 rounded-xl">
-          <h2 className="text-xl font-bold mb-4 text-crypto-blue">Премиальные инструменты в вашем доступе:</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white p-5 rounded-lg shadow-sm text-center">
-              <div className="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
-                <BookmarkCheck className="text-purple-600" size={28} />
-              </div>
-              <div className="font-bold text-lg mb-1">Торговые сигналы</div>
-              <div className="text-sm text-gray-600">Доступ к торговым сигналам от профессиональных аналитиков</div>
-            </div>
-            <div className="bg-white p-5 rounded-lg shadow-sm text-center">
-              <div className="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
-                <Shield className="text-purple-600" size={28} />
-              </div>
-              <div className="font-bold text-lg mb-1">Риск-калькулятор</div>
-              <div className="text-sm text-gray-600">Профессиональный инструмент для расчета и управления рисками</div>
-            </div>
-            <div className="bg-white p-5 rounded-lg shadow-sm text-center">
-              <div className="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
-                <BrainCircuit className="text-purple-600" size={28} />
-              </div>
-              <div className="font-bold text-lg mb-1">AI-аналитика</div>
-              <div className="text-sm text-gray-600">Искусственный интеллект для анализа рыночных трендов</div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Who This Course Is For */}
-        <div className="bg-purple-50 p-8 rounded-xl shadow-sm">
-          <h2 className="text-2xl font-bold mb-6 text-purple-700 flex items-center gap-2">
-            <Users className="inline-block text-purple-600" size={24} />
-            Для кого этот курс?
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-5 rounded-lg shadow-sm">
-              <div className="flex items-start">
-                <Check className="mr-3 text-purple-500 mt-1 flex-shrink-0 bg-purple-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-purple-800">Для амбициозных трейдеров</h4>
-                  <p className="text-sm text-gray-600">Для тех, кто стремится к высоким результатам в трейдинге криптовалют</p>
+          <div className="max-w-4xl mx-auto">
+            {[
+              {
+                phase: "Блок 1-5",
+                title: "Продвинутый анализ рынка",
+                lessons: ["Технический анализ", "Фундаментальный анализ", "On-chain метрики"],
+                color: "bg-purple-500"
+              },
+              {
+                phase: "Блок 6-10", 
+                title: "Стратегии инвестирования",
+                lessons: ["Портфельные стратегии", "Управление рисками", "Психология инвестирования"],
+                color: "bg-indigo-500"
+              },
+              {
+                phase: "Блок 11-13",
+                title: "DeFi и продвинутые инструменты",
+                lessons: ["Протоколы кредитования", "Фарминг доходности", "Деривативы"],
+                color: "bg-pink-500"
+              },
+              {
+                phase: "Блок 14-16",
+                title: "Персональное сопровождение",
+                lessons: ["Индивидуальные консультации", "Разбор портфеля", "Персональные рекомендации"],
+                color: "bg-rose-500"
+              }
+            ].map((phase, index) => (
+              <div key={index} className="flex items-start mb-8 group">
+                <div className={`${phase.color} text-white rounded-full p-4 mr-6 flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform`}>
+                  <Crown className="w-6 h-6" />
+                </div>
+                <div className="flex-1">
+                  <div className="bg-gray-50 rounded-lg p-6 group-hover:shadow-md transition-all">
+                    <h3 className="text-xl font-bold text-crypto-blue mb-2">
+                      {phase.phase}: {phase.title}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                      {phase.lessons.map((lesson, lessonIndex) => (
+                        <div key={lessonIndex} className="flex items-center text-gray-600">
+                          <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                          <span className="text-sm">{lesson}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="bg-white p-5 rounded-lg shadow-sm">
-              <div className="flex items-start">
-                <Check className="mr-3 text-purple-500 mt-1 flex-shrink-0 bg-purple-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-purple-800">Для опытных инвесторов</h4>
-                  <p className="text-sm text-gray-600">Для тех, кто хочет оптимизировать свои существующие инвестиционные стратегии</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-5 rounded-lg shadow-sm">
-              <div className="flex items-start">
-                <Check className="mr-3 text-purple-500 mt-1 flex-shrink-0 bg-purple-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-purple-800">Для профессионалов финансов</h4>
-                  <p className="text-sm text-gray-600">Для специалистов из смежных областей финансов, расширяющих свои компетенции</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-5 rounded-lg shadow-sm">
-              <div className="flex items-start">
-                <Check className="mr-3 text-purple-500 mt-1 flex-shrink-0 bg-purple-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-purple-800">Для руководителей</h4>
-                  <p className="text-sm text-gray-600">Для руководителей компаний, изучающих возможности блокчейн-технологий для бизнеса</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
-        
-        {/* Course Advantages */}
-        <div>
-          <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
-            <Zap className="inline-block text-crypto-purple" size={24} />
-            Преимущества премиальной криптошколы:
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-crypto-purple/5 p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">1</div>
-                Индивидуальный подход
-              </h3>
-              <p className="text-gray-700">Программа обучения полностью адаптируется под ваши цели и темп освоения материала</p>
-            </div>
-            
-            <div className="bg-crypto-purple/5 p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">2</div>
-                Эксклюзивные материалы
-              </h3>
-              <p className="text-gray-700">Доступ к информации и аналитике, недоступной в открытых источниках</p>
-            </div>
-            
-            <div className="bg-crypto-purple/5 p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">3</div>
-                VIP-сообщество
-              </h3>
-              <p className="text-gray-700">Возможность нетворкинга с успешными трейдерами и инвесторами в закрытом клубе</p>
-            </div>
-            
-            <div className="bg-crypto-purple/5 p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">4</div>
-                Персональные стратегии
-              </h3>
-              <p className="text-gray-700">Разработка уникальных инвестиционных планов под ваш профиль риска и цели</p>
-            </div>
-          </div>
-        </div>
-        
+        </section>
+
         {/* Testimonials */}
-        <div className="bg-crypto-purple/5 p-8 rounded-lg">
-          <h2 className="text-2xl font-bold mb-8 text-crypto-purple text-center">Отзывы наших учеников:</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-sm relative">
-              <div className="absolute -top-4 -left-4 text-purple-400 opacity-20 text-7xl font-serif">"</div>
-              <div className="relative z-10">
-                <div className="flex items-center mb-4">
-                  <div className="flex mr-2">
-                    <Star className="w-4 h-4 text-yellow-500" fill="currentColor" />
-                    <Star className="w-4 h-4 text-yellow-500" fill="currentColor" />
-                    <Star className="w-4 h-4 text-yellow-500" fill="currentColor" />
-                    <Star className="w-4 h-4 text-yellow-500" fill="currentColor" />
-                    <Star className="w-4 h-4 text-yellow-500" fill="currentColor" />
-                  </div>
-                  <span className="text-sm text-gray-500">5.0</span>
-                </div>
-                
-                <blockquote className="italic text-gray-700">
-                  "Благодаря премиальной криптошколе я смог увеличить доходность своего портфеля на 138% за 6 месяцев. 
-                  Индивидуальные консультации с наставником помогли избежать типичных ошибок и выработать собственную успешную стратегию."
-                </blockquote>
-                
-                <div className="mt-4 flex items-center">
-                  <div className="w-10 h-10 bg-gray-200 rounded-full mr-3"></div>
-                  <div>
-                    <div className="font-medium text-gray-800">Алексей</div>
-                    <div className="text-xs text-gray-500">Предприниматель, Москва</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-sm relative">
-              <div className="absolute -top-4 -left-4 text-purple-400 opacity-20 text-7xl font-serif">"</div>
-              <div className="relative z-10">
-                <div className="flex items-center mb-4">
-                  <div className="flex mr-2">
-                    <Star className="w-4 h-4 text-yellow-500" fill="currentColor" />
-                    <Star className="w-4 h-4 text-yellow-500" fill="currentColor" />
-                    <Star className="w-4 h-4 text-yellow-500" fill="currentColor" />
-                    <Star className="w-4 h-4 text-yellow-500" fill="currentColor" />
-                    <Star className="w-4 h-4 text-yellow-500" fill="currentColor" />
-                  </div>
-                  <span className="text-sm text-gray-500">5.0</span>
-                </div>
-                
-                <blockquote className="italic text-gray-700">
-                  "Я пришла с базовыми знаниями о криптовалютах, но чувствовала, что мне не хватает системного подхода. 
-                  После обучения в премиальной школе моя уверенность возросла в разы, а мои инвестиционные решения стали намного более взвешенными и успешными."
-                </blockquote>
-                
-                <div className="mt-4 flex items-center">
-                  <div className="w-10 h-10 bg-gray-200 rounded-full mr-3"></div>
-                  <div>
-                    <div className="font-medium text-gray-800">Марина</div>
-                    <div className="text-xs text-gray-500">Финансовый аналитик, Санкт-Петербург</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <section className="py-16 bg-gradient-to-r from-purple-50 to-white -mx-6 px-6 rounded-xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-crypto-blue mb-4">
+              Отзывы наших студентов
+            </h2>
           </div>
           
-          {/* Premium Guarantee */}
-          <div className="mt-8 text-center">
-            <div className="inline-flex items-center justify-center bg-purple-100 text-purple-700 px-4 py-2 rounded-full font-medium text-sm">
-              <Shield className="mr-2 w-4 h-4" /> Гарантия результата или возврат средств
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="hover:shadow-lg transition-all">
+                <CardContent className="p-6">
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-4 italic">"{testimonial.content}"</p>
+                  <div>
+                    <div className="font-semibold text-crypto-blue">{testimonial.name}</div>
+                    <div className="text-sm text-gray-500">{testimonial.position}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Interactive Course Modules */}
+        <CourseModules modules={modules} />
+
+        {/* Course Instructor */}
+        <CourseInstructor instructorId="zubkov" />
+
+        {/* FAQ Section */}
+        <CourseFAQ faqItems={faqItems} />
+
+        {/* Warning Box */}
+        <div className="bg-purple-50 border-l-4 border-purple-600 p-5 rounded-r-lg">
+          <div className="flex items-start">
+            <AlertCircle className="text-purple-600 mr-3 flex-shrink-0" />
+            <div>
+              <h4 className="font-semibold text-purple-600">Важное предупреждение</h4>
+              <p className="text-sm text-gray-700 mt-1">
+                Криптоинвестирование сопряжено с высокими рисками. Инвестируйте только те средства, 
+                потерю которых вы можете себе позволить.
+              </p>
             </div>
           </div>
         </div>

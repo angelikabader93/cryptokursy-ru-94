@@ -1,6 +1,9 @@
+
 import React from 'react';
 import CourseLayout from '@/components/CourseLayout';
-import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle } from 'lucide-react';
+import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Gift, Play, Star } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import CourseModules from '@/components/CourseModules';
 import CourseTestimonials from '@/components/CourseTestimonials';
 import CourseFAQ from '@/components/CourseFAQ';
@@ -106,203 +109,228 @@ const BitcoinCoursePage = () => {
       level="Новичок"
       price="Бесплатно"
     >
-      <div className="space-y-12 bg-white p-6 rounded-lg shadow-md">
-        {/* Introduction Section */}
-        <div>
-          <h2 className="text-2xl font-bold mb-4 text-crypto-blue flex items-center gap-2">
-            <BookOpen className="inline-block text-crypto-purple" size={24} />
-            О чем этот курс?
+      {/* Hero Content */}
+      <div className="space-y-16">
+        {/* Main CTA Section */}
+        <section className="text-center">
+          <div className="inline-flex items-center bg-crypto-orange/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+            <Gift className="w-5 h-5 mr-2 text-crypto-orange" />
+            <span className="font-semibold text-crypto-orange">100% БЕСПЛАТНЫЙ КУРС</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-crypto-blue">
+            ОСВОЙТЕ BITCOIN
+            <span className="block text-4xl md:text-6xl bg-gradient-to-r from-crypto-orange to-amber-500 bg-clip-text text-transparent">
+              ЗА 7 ДНЕЙ
+            </span>
           </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            Курс <strong className="text-gradient bg-gradient-to-r from-crypto-purple to-crypto-lightPurple">"Bitcoin для начинающих"</strong>
-            — это ваш первый шаг в мир криптовалют. Вы узнаете историю создания Bitcoin, принципы его работы
-            и основные понятия, необходимые для понимания этой технологии.
+          
+          <p className="text-xl md:text-2xl mb-8 font-medium text-gray-700">
+            От истории создания до практического использования Bitcoin
+            <br />
+            <span className="text-crypto-orange">Абсолютно бесплатно и без скрытых платежей</span>
           </p>
+          
+          <Button 
+            size="lg"
+            className="bg-crypto-orange text-white hover:bg-crypto-orange/90 font-bold text-xl py-8 px-12 rounded-full shadow-2xl transform hover:scale-105 transition-all mb-12"
+            onClick={() => document.getElementById('signup-form-course')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            <Play className="w-6 h-6 mr-3" />
+            НАЧАТЬ ОБУЧЕНИЕ БЕСПЛАТНО
+          </Button>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">15+</div>
+              <div className="text-sm text-gray-600">Видео уроков</div>
+            </div>
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">500+</div>
+              <div className="text-sm text-gray-600">Студентов</div>
+            </div>
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">4.9★</div>
+              <div className="text-sm text-gray-600">Рейтинг курса</div>
+            </div>
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">7</div>
+              <div className="text-sm text-gray-600">Дней обучения</div>
+            </div>
+          </div>
+        </section>
 
-          {/* Highlighted Box */}
-          <div className="bg-gradient-to-r from-orange-50 to-white mt-6 p-6 rounded-lg border-l-4 border-orange-500 shadow-sm">
-            <div className="font-medium text-orange-700 mb-2 text-lg">Что вы получите, пройдя этот курс:</div>
-            <p className="text-gray-700">
-              Понимание основ Bitcoin, умение безопасно хранить и использовать криптовалюту, а также знания
-              для дальнейшего изучения мира блокчейна.
+        {/* What You'll Learn */}
+        <section className="bg-gradient-to-r from-orange-50 to-white py-16 -mx-6 px-6 rounded-xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-crypto-blue mb-4">
+              Что вы изучите за 7 дней?
+            </h2>
+            <p className="text-xl text-gray-600">
+              Полная программа для новичков - от базовых понятий до практического использования
             </p>
-
-            <div className="grid grid-cols-2 gap-4 mt-4">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                  <Check className="text-orange-500" />
-                </div>
-                <span className="text-sm text-gray-700">15 видео-уроков</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                  <Check className="text-orange-500" />
-                </div>
-                <span className="text-sm text-gray-700">5 практических заданий</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                  <Check className="text-orange-500" />
-                </div>
-                <span className="text-sm text-gray-700">3 часа контента</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                  <Check className="text-orange-500" />
-                </div>
-                <span className="text-sm text-gray-700">Сертификат о прохождении</span>
-              </div>
-            </div>
           </div>
-        </div>
-
-        {/* What You'll Learn Section */}
-        <div className="bg-gradient-to-r from-orange-50 to-white p-6 rounded-xl shadow-sm">
-          <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
-            <Award className="inline-block text-orange-600" size={24} />
-            Что вы изучите:
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span className="text-gray-700">История создания Bitcoin и его основные принципы</span>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span className="text-gray-700">Как работает сеть Bitcoin и процесс майнинга</span>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span className="text-gray-700">Как безопасно хранить и использовать Bitcoin</span>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span className="text-gray-700">Основные понятия и термины, связанные с Bitcoin</span>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span className="text-gray-700">Как защитить себя от мошенничества и кражи Bitcoin</span>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <span className="text-gray-700">Перспективы развития Bitcoin и его влияние на финансовый мир</span>
-              </div>
-            </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <BookOpen className="w-8 h-8" />,
+                title: "Основы Bitcoin",
+                description: "Поймете историю создания и принципы работы первой криптовалюты"
+              },
+              {
+                icon: <Zap className="w-8 h-8" />,
+                title: "Техническая архитектура",
+                description: "Разберетесь в устройстве сети Bitcoin и работе транзакций"
+              },
+              {
+                icon: <Users className="w-8 h-8" />,
+                title: "Майнинг",
+                description: "Узнаете, как работает процесс майнинга и алгоритм Proof-of-Work"
+              },
+              {
+                icon: <AlertCircle className="w-8 h-8" />,
+                title: "Безопасность",
+                description: "Научитесь безопасно использовать и хранить Bitcoin"
+              },
+              {
+                icon: <Award className="w-8 h-8" />,
+                title: "Практические навыки",
+                description: "Получите реальные навыки работы с Bitcoin-кошельками"
+              },
+              {
+                icon: <Clock className="w-8 h-8" />,
+                title: "Актуальные знания",
+                description: "Изучите последние тренды и перспективы Bitcoin"
+              }
+            ].map((item, index) => (
+              <Card key={index} className="hover:shadow-lg transition-all transform hover:scale-105 border-2 border-orange-100">
+                <CardContent className="p-6 text-center">
+                  <div className="bg-crypto-orange/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center text-crypto-orange">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-crypto-blue">{item.title}</h3>
+                  <p className="text-gray-600">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        </div>
+        </section>
+
+        {/* Course Program */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-crypto-blue mb-4">
+              Программа курса по дням
+            </h2>
+            <p className="text-xl text-gray-600">
+              Структурированное обучение с практическими заданиями
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            {[
+              {
+                day: "День 1",
+                title: "Введение в Bitcoin",
+                lessons: ["История создания", "Белая книга Сатоши", "Основные принципы"],
+                color: "bg-red-500"
+              },
+              {
+                day: "День 2", 
+                title: "Техническая архитектура",
+                lessons: ["Как работает сеть", "Транзакции", "Блоки и цепочка"],
+                color: "bg-orange-500"
+              },
+              {
+                day: "День 3",
+                title: "Майнинг и консенсус",
+                lessons: ["Процесс майнинга", "Proof-of-Work", "Сложность сети"],
+                color: "bg-yellow-500"
+              },
+              {
+                day: "День 4",
+                title: "Криптография и безопасность",
+                lessons: ["Приватные ключи", "Публичные адреса", "Цифровые подписи"],
+                color: "bg-green-500"
+              },
+              {
+                day: "День 5",
+                title: "Bitcoin кошельки",
+                lessons: ["Типы кошельков", "Создание кошелька", "Резервные копии"],
+                color: "bg-blue-500"
+              },
+              {
+                day: "День 6",
+                title: "Практическое использование",
+                lessons: ["Отправка Bitcoin", "Получение платежей", "Комиссии"],
+                color: "bg-indigo-500"
+              },
+              {
+                day: "День 7",
+                title: "Перспективы Bitcoin",
+                lessons: ["Lightning Network", "Масштабируемость", "Будущее Bitcoin"],
+                color: "bg-purple-500"
+              }
+            ].map((day, index) => (
+              <div key={index} className="flex items-start mb-8 group">
+                <div className={`${day.color} text-white rounded-full p-4 mr-6 flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform`}>
+                  <Clock className="w-6 h-6" />
+                </div>
+                <div className="flex-1">
+                  <div className="bg-gray-50 rounded-lg p-6 group-hover:shadow-md transition-all">
+                    <h3 className="text-xl font-bold text-crypto-blue mb-2">
+                      {day.day}: {day.title}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                      {day.lessons.map((lesson, lessonIndex) => (
+                        <div key={lessonIndex} className="flex items-center text-gray-600">
+                          <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                          <span className="text-sm">{lesson}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-16 bg-gradient-to-r from-orange-50 to-white -mx-6 px-6 rounded-xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-crypto-blue mb-4">
+              Отзывы наших студентов
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="hover:shadow-lg transition-all">
+                <CardContent className="p-6">
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-4 italic">"{testimonial.content}"</p>
+                  <div>
+                    <div className="font-semibold text-crypto-blue">{testimonial.name}</div>
+                    <div className="text-sm text-gray-500">{testimonial.position}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
         {/* Interactive Course Modules */}
         <CourseModules modules={modules} />
 
-        {/* Who This Course Is For */}
-        <div className="bg-orange-50 p-8 rounded-xl shadow-sm">
-          <h2 className="text-2xl font-bold mb-6 text-orange-700 flex items-center gap-2">
-            <Users className="inline-block text-orange-600" size={24} />
-            Для кого этот курс?
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-orange-800 text-lg">Для новичков</h4>
-                  <p className="text-gray-600">Для тех, кто только начинает знакомиться с криптовалютами</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-orange-800 text-lg">Для инвесторов</h4>
-                  <p className="text-gray-600">Для тех, кто хочет понять, стоит ли инвестировать в Bitcoin</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-orange-800 text-lg">Для энтузиастов</h4>
-                  <p className="text-gray-600">Для тех, кто интересуется технологией блокчейн и ее применением</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-orange-500 mt-1 flex-shrink-0 bg-orange-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-orange-800 text-lg">Для всех</h4>
-                  <p className="text-gray-600">Для тех, кто хочет быть в курсе современных финансовых технологий</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Course Testimonials */}
-        <CourseTestimonials testimonials={testimonials} />
-
         {/* Course Instructor */}
         <CourseInstructor instructorId="zubkov" />
-
-        {/* Course Advantages */}
-        <div className="bg-white p-6 rounded-xl shadow-md">
-          <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
-            <Zap className="inline-block text-crypto-purple" size={24} />
-            Преимущества нашего курса:
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">1</div>
-                Простота изложения
-              </h3>
-              <p className="text-gray-700">Материал изложен простым и понятным языком, без сложных технических терминов</p>
-            </div>
-
-            <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">2</div>
-                Практические примеры
-              </h3>
-              <p className="text-gray-700">Каждый урок содержит практические примеры и задания для закрепления материала</p>
-            </div>
-
-            <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">3</div>
-                Актуальная информация
-              </h3>
-              <p className="text-gray-700">Курс содержит самую актуальную информацию о Bitcoin и блокчейне на сегодняшний день</p>
-            </div>
-
-            <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">4</div>
-                Поддержка экспертов
-              </h3>
-              <p className="text-gray-700">Вы всегда можете задать вопросы преподавателям и получить квалифицированную помощь</p>
-            </div>
-          </div>
-        </div>
 
         {/* FAQ Section */}
         <CourseFAQ faqItems={faqItems} />

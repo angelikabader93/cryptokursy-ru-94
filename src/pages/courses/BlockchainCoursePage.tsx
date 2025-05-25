@@ -1,6 +1,9 @@
+
 import React from 'react';
 import CourseLayout from '@/components/CourseLayout';
-import { Check, Users, Award, BookOpen, Clock, Zap, Code, FileCode, Shield } from 'lucide-react';
+import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Layers, Play, Star, Code, Globe, Database } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import CourseModules from '@/components/CourseModules';
 import CourseTestimonials from '@/components/CourseTestimonials';
 import CourseFAQ from '@/components/CourseFAQ';
@@ -10,391 +13,318 @@ const BlockchainCoursePage = () => {
   // Course modules data
   const modules = [
     {
-      title: "Архитектура блокчейна",
-      description: "Распределенные реестры, хеширование, блоки и цепочки, механизмы консенсуса.",
-      duration: "120 минут",
+      title: "Техническая архитектура блокчейна",
+      description: "Глубокое изучение технических аспектов блокчейн-технологий.",
+      duration: "200 минут",
+      color: "bg-cyan-500",
+      lessons: [
+        { title: "Структура блоков и цепочки", type: "video" as const, duration: "30 мин" },
+        { title: "Хеширование и криптография", type: "video" as const, duration: "35 мин" },
+        { title: "Меркл деревья", type: "video" as const, duration: "25 мин" },
+        { title: "Типы блокчейнов", type: "video" as const, duration: "30 мин" },
+        { title: "Форки и обновления", type: "video" as const, duration: "25 мин" },
+        { title: "Масштабируемость", type: "video" as const, duration: "30 мин" },
+        { title: "Практическая работа", type: "test" as const },
+        { title: "Анализ существующих блокчейнов", type: "video" as const, duration: "25 мин" }
+      ]
+    },
+    {
+      title: "Смарт-контракты и разработка",
+      description: "Изучение программирования смарт-контрактов и создания dApps.",
+      duration: "250 минут",
+      color: "bg-teal-500",
+      lessons: [
+        { title: "Введение в Solidity", type: "video" as const, duration: "40 мин" },
+        { title: "Структура смарт-контракта", type: "video" as const, duration: "35 мин" },
+        { title: "Переменные и функции", type: "video" as const, duration: "30 мин" },
+        { title: "События и модификаторы", type: "video" as const, duration: "25 мин" },
+        { title: "Безопасность контрактов", type: "video" as const, duration: "40 мин" },
+        { title: "Тестирование и деплой", type: "video" as const, duration: "35 мин" },
+        { title: "Создание dApp", type: "video" as const, duration: "30 мин" },
+        { title: "Практический проект", type: "test" as const },
+        { title: "Аудит смарт-контрактов", type: "video" as const, duration: "15 мин" }
+      ]
+    },
+    {
+      title: "Бизнес-применение блокчейна",
+      description: "Практическое применение блокчейна в различных отраслях.",
+      duration: "150 минут",
       color: "bg-blue-500",
       lessons: [
-        { title: "Введение в распределенные реестры", type: "video" as const, duration: "18 мин" },
-        { title: "Хеширование и криптография", type: "video" as const, duration: "22 мин" },
-        { title: "Устройство блоков и цепочек", type: "video" as const, duration: "20 мин" },
-        { title: "Механизмы консенсуса (PoW, PoS)", type: "video" as const, duration: "25 мин" },
-        { title: "Децентрализация и ее преимущества", type: "video" as const, duration: "20 мин" },
-        { title: "Безопасность блокчейна", type: "video" as const, duration: "15 мин" },
-        { title: "Проверка знаний - Архитектура блокчейна", type: "test" as const }
-      ]
-    },
-    {
-      title: "Глубокое погружение в смарт-контракты",
-      description: "Принципы работы, языки программирования, безопасность и аудит смарт-контрактов.",
-      duration: "180 минут",
-      color: "bg-purple-500",
-      lessons: [
-        { title: "Что такое смарт-контракты", type: "video" as const, duration: "15 мин" },
-        { title: "Язык Solidity - основы", type: "video" as const, duration: "25 мин" },
-        { title: "Создание первого смарт-контракта", type: "video" as const, duration: "30 мин" },
-        { title: "Тестирование смарт-контрактов", type: "video" as const, duration: "20 мин" },
-        { title: "Аудит и безопасность", type: "video" as const, duration: "25 мин" },
-        { title: "Оптимизация газа", type: "video" as const, duration: "20 мин" },
-        { title: "Интеграция с фронтендом", type: "video" as const, duration: "25 мин" },
-        { title: "Анализ популярных смарт-контрактов", type: "video" as const, duration: "20 мин" },
-        { title: "Практическое задание - Смарт-контракты", type: "test" as const }
-      ]
-    },
-    {
-      title: "Исследование экосистем Ethereum, Solana, Polkadot",
-      description: "Технические особенности, преимущества и недостатки различных блокчейн-платформ.",
-      duration: "150 минут",
-      color: "bg-indigo-500",
-      lessons: [
-        { title: "Архитектура Ethereum", type: "video" as const, duration: "25 мин" },
-        { title: "Масштабируемость и слои L2", type: "video" as const, duration: "20 мин" },
-        { title: "Экосистема Solana", type: "video" as const, duration: "22 мин" },
-        { title: "Архитектура и производительность Solana", type: "video" as const, duration: "18 мин" },
-        { title: "Polkadot и парачейны", type: "video" as const, duration: "20 мин" },
-        { title: "Кросс-чейн взаимодействие", type: "video" as const, duration: "25 мин" },
-        { title: "Сравнительный анализ платформ", type: "video" as const, duration: "20 мин" },
-        { title: "Тест - Сравнение платформ", type: "test" as const }
+        { title: "Блокчейн в финансах", type: "video" as const, duration: "25 мин" },
+        { title: "Supply chain и логистика", type: "video" as const, duration: "30 мин" },
+        { title: "Здравоохранение и блокчейн", type: "video" as const, duration: "20 мин" },
+        { title: "Недвижимость и токенизация", type: "video" as const, duration: "25 мин" },
+        { title: "Энергетика и блокчейн", type: "video" as const, duration: "20 мин" },
+        { title: "Образование и сертификация", type: "video" as const, duration: "15 мин" },
+        { title: "Будущее блокчейна", type: "video" as const, duration: "15 мин" },
+        { title: "Итоговый тест", type: "test" as const }
       ]
     }
   ];
 
-  // Testimonials data
   const testimonials = [
     {
-      name: "Дмитрий К.",
-      position: "Full-stack разработчик",
-      content: "Отличный курс для разработчиков, которые хотят погрузиться в блокчейн. Практические задания особенно полезны, позволяют сразу применить знания.",
+      name: "Андрей В.",
+      position: "Blockchain разработчик",
+      content: "Отличный технический курс! Получил глубокие знания по архитектуре блокчейна и смарт-контрактам.",
       rating: 5
     },
     {
-      name: "Олег М.",
-      position: "Менеджер IT-проектов",
-      content: "Очень структурированно и по делу. Курс дал глубокое понимание архитектуры различных блокчейнов и их особенностей. Рекомендую!",
+      name: "Ольга Л.",
+      position: "IT-директор",
+      content: "Курс помог понять, как внедрить блокчейн в нашу компанию. Много практических примеров.",
       rating: 5
     },
     {
-      name: "Татьяна П.",
-      position: "Предприниматель",
-      content: "Хотя некоторые технические моменты были сложными, преподаватели очень доступно все объясняют. Теперь гораздо лучше понимаю, как работают смарт-контракты.",
+      name: "Максим П.",
+      position: "Стартап основатель",
+      content: "Благодаря курсу смог создать собственный блокчейн-проект. Рекомендую всем техническим специалистам!",
       rating: 4
     }
   ];
 
-  // FAQ data
   const faqItems = [
     {
-      question: "Требуются ли навыки программирования для прохождения курса?",
-      answer: "Для комфортного прохождения курса желательно иметь базовое понимание программирования (особенно JavaScript). Однако даже без опыта вы сможете освоить материал, просто потребуется больше времени на практические задания."
+      question: "Нужны ли навыки программирования?",
+      answer: "Желательны базовые навыки программирования, но мы объясняем все с нуля."
     },
     {
-      question: "Какое оборудование необходимо для выполнения практических заданий?",
-      answer: "Достаточно компьютера с современным браузером и доступом в интернет. Для разработки смарт-контрактов и веб-интеграций рекомендуется иметь не менее 8 ГБ оперативной памяти."
+      question: "Какие инструменты понадобятся?",
+      answer: "Мы предоставляем список всех необходимых инструментов и помогаем с их установкой."
     },
     {
-      question: "Можно ли получить индивидуальные консультации по моему проекту?",
-      answer: "Да, в рамках курса предусмотрены групповые консультации, а также есть возможность заказать индивидуальную сессию с преподавателем для разбора вашего проекта (за дополнительную плату)."
+      question: "Смогу ли я создать свой блокчейн-проект?",
+      answer: "Да, в рамках курса вы создадите собственный смарт-контракт и dApp."
     },
     {
-      question: "Как долго действует доступ к материалам курса?",
-      answer: "Доступ к материалам курса предоставляется на 6 месяцев с возможностью продления. За это время вы сможете не только изучить все материалы, но и вернуться к ним при необходимости."
-    },
-    {
-      question: "Курс охватывает только технические аспекты или также бизнес-применение?",
-      answer: "Курс в основном фокусируется на технических аспектах, но включает модуль о практическом применении блокчейна в бизнесе и обзор успешных кейсов внедрения."
+      question: "Есть ли практические задания?",
+      answer: "Курс на 70% состоит из практических заданий и реальных проектов."
     }
   ];
 
   return (
-    <CourseLayout 
-      courseTitle="Блокчейн и криптовалюты" 
-      courseImage="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2032"
-      courseSlug="blockchain-and-crypto"
+    <CourseLayout
+      courseTitle="Биткоин и альткоины"
+      courseImage="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2032"
+      courseSlug="bitcoin-and-altcoins"
       level="Средний"
       price="Платно"
     >
-      <div className="space-y-12">
-        {/* Introduction Section */}
-        <div className="bg-white p-6 rounded-xl shadow-md">
-          <h2 className="text-2xl font-bold mb-4 text-crypto-blue flex items-center gap-2">
-            <BookOpen className="inline-block text-crypto-purple" size={24} /> 
-            О чем этот курс?
+      {/* Hero Content */}
+      <div className="space-y-16">
+        {/* Main CTA Section */}
+        <section className="text-center">
+          <div className="inline-flex items-center bg-cyan-100 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+            <Layers className="w-5 h-5 mr-2 text-cyan-700" />
+            <span className="font-semibold text-cyan-700">ТЕХНИЧЕСКИЙ КУРС</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-crypto-blue">
+            ИЗУЧИТЕ БЛОКЧЕЙН
+            <span className="block text-4xl md:text-6xl bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              НА ТЕХНИЧЕСКОМ УРОВНЕ
+            </span>
           </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            Курс <strong className="text-gradient bg-gradient-to-r from-crypto-purple to-crypto-lightPurple">
-              "Блокчейн и криптовалюты"
-            </strong> — это углубленное изучение технологии блокчейн 
-            и ее применения в мире цифровых валют. Этот курс подойдет для тех, кто уже знаком с основами 
-            криптовалют и хочет расширить свои знания в области технической стороны блокчейна, смарт-контрактов 
-            и принципов работы различных криптопроектов.
+          
+          <p className="text-xl md:text-2xl mb-8 font-medium text-gray-700">
+            Глубокое погружение в техническую архитектуру блокчейна
+            <br />
+            <span className="text-cyan-600">От устройства сети до создания смарт-контрактов</span>
           </p>
           
-          {/* Highlighted Box */}
-          <div className="bg-gradient-to-r from-blue-50 to-white mt-6 p-6 rounded-lg border-l-4 border-blue-500 shadow-sm">
-            <div className="font-medium text-blue-700 mb-2 text-lg">К концу курса вы сможете:</div>
-            <p className="text-gray-700">
-              Понимать технические аспекты работы различных блокчейнов, разбираться в смарт-контрактах, 
-              взаимодействовать с DeFi-протоколами и оценивать перспективность различных блокчейн-проектов 
-              с технической точки зрения.
-            </p>
-            
-            <div className="grid grid-cols-2 gap-4 mt-4">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                  <Check className="text-blue-500" />
-                </div>
-                <span className="text-sm text-gray-700">24 видео-урока</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                  <Check className="text-blue-500" />
-                </div>
-                <span className="text-sm text-gray-700">12 практических заданий</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                  <Check className="text-blue-500" />
-                </div>
-                <span className="text-sm text-gray-700">8 часов контента</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                  <Check className="text-blue-500" />
-                </div>
-                <span className="text-sm text-gray-700">Доступ к Discord-сообществу</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* What You'll Learn Section */}
-        <div className="bg-gradient-to-r from-blue-50 to-white p-6 rounded-xl shadow-sm">
-          <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
-            <Award className="inline-block text-blue-600" size={24} />
-            Что вы изучите:
-          </h2>
+          <Button 
+            size="lg"
+            className="bg-cyan-600 text-white hover:bg-cyan-700 font-bold text-xl py-8 px-12 rounded-full shadow-2xl transform hover:scale-105 transition-all mb-12"
+            onClick={() => document.getElementById('signup-form-course')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            <Play className="w-6 h-6 mr-3" />
+            ЗАПИСАТЬСЯ НА КУРС
+          </Button>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span className="text-gray-700">Детальное понимание архитектуры и принципов работы блокчейна</span>
-              </div>
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">30+</div>
+              <div className="text-sm text-gray-600">Видео уроков</div>
             </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span className="text-gray-700">Различия между типами блокчейнов: публичные, частные, консорциумные</span>
-              </div>
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">150+</div>
+              <div className="text-sm text-gray-600">Студентов</div>
             </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span className="text-gray-700">Технологию и применение смарт-контрактов в различных сферах</span>
-              </div>
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">4.7★</div>
+              <div className="text-sm text-gray-600">Рейтинг курса</div>
             </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span className="text-gray-700">Особенности различных криптовалютных платформ и их технические отличия</span>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span className="text-gray-700">Основы децентрализованных финансов (DeFi) и их возможности</span>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <span className="text-gray-700">Практическое взаимодействие с блокчейн-протоколами и платформами</span>
-              </div>
+            <div className="bg-white rounded-xl p-4 shadow-md">
+              <div className="text-3xl font-bold text-crypto-blue">12</div>
+              <div className="text-sm text-gray-600">Недель обучения</div>
             </div>
           </div>
-        </div>
-        
+        </section>
+
+        {/* What You'll Learn */}
+        <section className="bg-gradient-to-r from-cyan-50 to-white py-16 -mx-6 px-6 rounded-xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-crypto-blue mb-4">
+              Что вы изучите на техническом курсе?
+            </h2>
+            <p className="text-xl text-gray-600">
+              Глубокое понимание технических аспектов блокчейн-технологий
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Database className="w-8 h-8" />,
+                title: "Архитектура блокчейна",
+                description: "Изучение структуры блоков, хеширования и криптографических основ"
+              },
+              {
+                icon: <Code className="w-8 h-8" />,
+                title: "Смарт-контракты",
+                description: "Программирование на Solidity и создание децентрализованных приложений"
+              },
+              {
+                icon: <Layers className="w-8 h-8" />,
+                title: "Консенсусные алгоритмы",
+                description: "Глубокое понимание PoW, PoS и других механизмов консенсуса"
+              },
+              {
+                icon: <Globe className="w-8 h-8" />,
+                title: "Масштабируемость",
+                description: "Изучение решений для масштабирования блокчейн-сетей"
+              },
+              {
+                icon: <Award className="w-8 h-8" />,
+                title: "Практические проекты",
+                description: "Создание собственных блокчейн-приложений и смарт-контрактов"
+              },
+              {
+                icon: <Users className="w-8 h-8" />,
+                title: "Бизнес-применение",
+                description: "Практическое применение блокчейна в различных отраслях"
+              }
+            ].map((item, index) => (
+              <Card key={index} className="hover:shadow-lg transition-all transform hover:scale-105 border-2 border-cyan-100">
+                <CardContent className="p-6 text-center">
+                  <div className="bg-cyan-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center text-cyan-600">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-crypto-blue">{item.title}</h3>
+                  <p className="text-gray-600">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Course Program */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-crypto-blue mb-4">
+              Программа технического курса
+            </h2>
+            <p className="text-xl text-gray-600">
+              Последовательное изучение от основ до продвинутых технических концепций
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            {[
+              {
+                module: "Модуль 1-4",
+                title: "Техническая архитектура",
+                lessons: ["Структура блокчейна", "Криптография", "Типы сетей"],
+                color: "bg-cyan-500"
+              },
+              {
+                module: "Модуль 5-8", 
+                title: "Смарт-контракты",
+                lessons: ["Программирование Solidity", "dApps разработка", "Безопасность"],
+                color: "bg-teal-500"
+              },
+              {
+                module: "Модуль 9-12",
+                title: "Бизнес-применение",
+                lessons: ["Применение в отраслях", "Токенизация", "Будущее блокчейна"],
+                color: "bg-blue-500"
+              }
+            ].map((module, index) => (
+              <div key={index} className="flex items-start mb-8 group">
+                <div className={`${module.color} text-white rounded-full p-4 mr-6 flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform`}>
+                  <Code className="w-6 h-6" />
+                </div>
+                <div className="flex-1">
+                  <div className="bg-gray-50 rounded-lg p-6 group-hover:shadow-md transition-all">
+                    <h3 className="text-xl font-bold text-crypto-blue mb-2">
+                      {module.module}: {module.title}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                      {module.lessons.map((lesson, lessonIndex) => (
+                        <div key={lessonIndex} className="flex items-center text-gray-600">
+                          <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                          <span className="text-sm">{lesson}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-16 bg-gradient-to-r from-cyan-50 to-white -mx-6 px-6 rounded-xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-crypto-blue mb-4">
+              Отзывы наших студентов
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="hover:shadow-lg transition-all">
+                <CardContent className="p-6">
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-4 italic">"{testimonial.content}"</p>
+                  <div>
+                    <div className="font-semibold text-crypto-blue">{testimonial.name}</div>
+                    <div className="text-sm text-gray-500">{testimonial.position}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
         {/* Interactive Course Modules */}
         <CourseModules modules={modules} />
-        
-        {/* Tech Stack Section - Enhanced visual design */}
-        <div className="bg-gradient-to-r from-gray-50 to-white p-8 rounded-xl shadow-sm">
-          <h2 className="text-xl font-bold mb-6 text-crypto-blue">Технологии, которые вы изучите:</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="bg-white p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 duration-300">
-              <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
-                <Code className="text-blue-600" size={28} />
-              </div>
-              <div className="font-medium text-lg mb-1 text-gray-800">Solidity</div>
-              <div className="text-gray-500 text-sm">Язык смарт-контрактов</div>
-            </div>
-            <div className="bg-white p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 duration-300">
-              <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
-                <FileCode className="text-blue-600" size={28} />
-              </div>
-              <div className="font-medium text-lg mb-1 text-gray-800">Web3.js</div>
-              <div className="text-gray-500 text-sm">Библиотека для взаимодействия</div>
-            </div>
-            <div className="bg-white p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 duration-300">
-              <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
-                <Shield className="text-blue-600" size={28} />
-              </div>
-              <div className="font-medium text-lg mb-1 text-gray-800">MetaMask</div>
-              <div className="text-gray-500 text-sm">Криптокошелек</div>
-            </div>
-            <div className="bg-white p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 duration-300">
-              <div className="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
-                <Code className="text-blue-600" size={28} />
-              </div>
-              <div className="font-medium text-lg mb-1 text-gray-800">Truffle</div>
-              <div className="text-gray-500 text-sm">Фреймворк для разработки</div>
-            </div>
-          </div>
-          
-          <div className="mt-8 p-5 bg-blue-50 rounded-lg">
-            <div className="flex items-center gap-3 mb-3">
-              <Shield className="text-blue-600" />
-              <h3 className="font-semibold text-blue-800">В стоимость курса включено:</h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-start">
-                <Check className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-                <span className="text-gray-700">Доступ к закрытому GitHub-репозиторию с примерами кода</span>
-              </div>
-              <div className="flex items-start">
-                <Check className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-                <span className="text-gray-700">Готовые шаблоны смарт-контрактов для ваших проектов</span>
-              </div>
-              <div className="flex items-start">
-                <Check className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-                <span className="text-gray-700">4 еженедельных вебинара с преподавателем</span>
-              </div>
-              <div className="flex items-start">
-                <Check className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-                <span className="text-gray-700">Проверка и код-ревью ваших домашних заданий</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
+
         {/* Course Instructor */}
-        <CourseInstructor instructorId="efimov" />
-        
-        {/* Course Testimonials */}
-        <CourseTestimonials testimonials={testimonials} />
-        
-        {/* Who This Course Is For */}
-        <div className="bg-blue-50 p-8 rounded-xl shadow-sm">
-          <h2 className="text-2xl font-bold mb-6 text-blue-700 flex items-center gap-2">
-            <Users className="inline-block text-blue-600" size={24} />
-            Для кого этот курс?
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-blue-800 text-lg">Для продвинутых</h4>
-                  <p className="text-gray-600">Для тех, кто уже знаком с основами криптовалют и хочет углубить свои знания</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-blue-800 text-lg">Для разработчиков</h4>
-                  <p className="text-gray-600">Для разработчиков, желающих понять принципы работы блокчейна и смарт-контрактов</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-blue-800 text-lg">Для предпринимателей</h4>
-                  <p className="text-gray-600">Для тех, кто ищет возможности применения блокчейна в своем бизнесе</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-start">
-                <Check className="mr-3 text-blue-500 mt-1 flex-shrink-0 bg-blue-100 p-1 rounded-full" />
-                <div>
-                  <h4 className="font-medium text-blue-800 text-lg">Для энтузиастов DeFi</h4>
-                  <p className="text-gray-600">Для тех, кто стремится понять принципы работы протоколов</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
+        <CourseInstructor instructorId="petrov" />
+
         {/* FAQ Section */}
         <CourseFAQ faqItems={faqItems} />
-        
-        {/* Course Advantages */}
-        <div className="bg-white p-6 rounded-xl shadow-md">
-          <h2 className="text-2xl font-bold mb-6 text-crypto-blue flex items-center gap-2">
-            <Zap className="inline-block text-crypto-purple" size={24} />
-            Преимущества нашего курса:
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">1</div>
-                Актуальное содержание
-              </h3>
-              <p className="text-gray-700">Материалы постоянно обновляются с учетом последних технологических тенденций в блокчейн-индустрии</p>
-            </div>
-            
-            <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">2</div>
-                Практические проекты
-              </h3>
-              <p className="text-gray-700">Работа с реальными блокчейнами и смарт-контрактами на специальных тестовых сетях с пошаговыми инструкциями</p>
-            </div>
-            
-            <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">3</div>
-                Поддержка экспертов
-              </h3>
-              <p className="text-gray-700">Ответы на вопросы и разбор кода от специалистов с опытом работы в индустрии в течение всего обучения</p>
-            </div>
-            
-            <div className="bg-gradient-to-r from-crypto-purple/5 to-white p-6 rounded-xl border border-crypto-purple/20 hover:shadow-md transition-all">
-              <h3 className="font-bold text-lg text-crypto-purple mb-3 flex items-center gap-2">
-                <div className="w-10 h-10 bg-crypto-purple/10 rounded-full flex items-center justify-center text-crypto-purple">4</div>
-                Сертификация
-              </h3>
-              <p className="text-gray-700">Подтверждение ваших знаний по блокчейну после успешного прохождения курса с возможностью добавления в LinkedIn</p>
+
+        {/* Warning Box */}
+        <div className="bg-cyan-50 border-l-4 border-cyan-600 p-5 rounded-r-lg">
+          <div className="flex items-start">
+            <AlertCircle className="text-cyan-600 mr-3 flex-shrink-0" />
+            <div>
+              <h4 className="font-semibold text-cyan-600">Техническое примечание</h4>
+              <p className="text-sm text-gray-700 mt-1">
+                Этот курс требует базовых знаний программирования. Мы рекомендуем ознакомиться 
+                с основами JavaScript перед началом изучения.
+              </p>
             </div>
           </div>
-        </div>
-        
-        {/* Required Skills Box */}
-        <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-          <h3 className="text-lg font-semibold text-blue-700 mb-3">Необходимые навыки для успешного прохождения курса:</h3>
-          <ul className="space-y-3">
-            <li className="flex items-center">
-              <div className="w-2 h-2 rounded-full bg-blue-500 mr-3"></div>
-              <span className="text-gray-700">Базовые знания о криптовалютах (понимание основных принципов работы)</span>
-            </li>
-            <li className="flex items-center">
-              <div className="w-2 h-2 rounded-full bg-blue-500 mr-3"></div>
-              <span className="text-gray-700">Понимание основ программирования (желательно JavaScript)</span>
-            </li>
-            <li className="flex items-center">
-              <div className="w-2 h-2 rounded-full bg-blue-500 mr-3"></div>
-              <span className="text-gray-700">Общее представление о том, как работают интернет и веб-технологии</span>
-            </li>
-          </ul>
         </div>
       </div>
     </CourseLayout>
