@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,7 +6,7 @@ import { sendLeadToWebhook } from '@/utils/webhookService';
 import { validatePhoneNumber } from '@/utils/phoneValidation';
 
 interface SignupFormProps {
-  formType: 'hero' | 'popup' | 'footer' | 'course' | 'about';
+  formType: 'hero' | 'popup' | 'footer' | 'course' | 'about' | 'landing';
   onSubmitSuccess?: () => void;
   courseTitle?: string;
 }
@@ -119,6 +118,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
         return courseTitle ? `Запись на курс "${courseTitle}"` : 'Запись на курс';
       case 'about':
         return 'Присоединяйтесь к нашему сообществу';
+      case 'landing':
+        return 'Получите бесплатный доступ к курсу';
       default:
         return 'Зарегистрируйтесь сейчас';
     }
@@ -136,6 +137,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
         return 'Записаться на курс';
       case 'about':
         return 'Присоединиться к нам';
+      case 'landing':
+        return 'ПОЛУЧИТЬ БЕСПЛАТНЫЙ ДОСТУП';
       default:
         return 'Отправить';
     }
