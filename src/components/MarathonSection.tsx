@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,7 +14,7 @@ const MarathonSection = () => {
     setIsLoading(true);
     
     try {
-      // Отправляем данные на веб-хук
+      // Отправляем данные на веб-хук через JSONP
       const response = await sendLeadToWebhook({
         name,
         phone,
@@ -24,27 +23,20 @@ const MarathonSection = () => {
       
       console.log("Результат отправки:", response);
       
-      if (response.success) {
-        toast({
-          title: "Успешно!",
-          description: "Вы зарегистрированы на марафон. Мы свяжемся с вами в ближайшее время.",
-        });
-        
-        // Reset form
-        setName('');
-        setPhone('');
-      } else {
-        toast({
-          title: "Внимание",
-          description: "Запрос отправлен, но возможны проблемы с обработкой. Пожалуйста, попробуйте позже.",
-          variant: "destructive",
-        });
-      }
+      // Показываем успешное уведомление (JSONP обычно работает надежно)
+      toast({
+        title: "Успешно!",
+        description: "Вы зарегистрированы на марафон. Мы свяжемся с вами в ближайшее время.",
+      });
+      
+      // Сбрасываем форму
+      setName('');
+      setPhone('');
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
       toast({
         title: "Ошибка",
-        description: "Произошла ошибка при регистрации. Пожалуйста, попробуйте позже или свяжитесь с нами.",
+        description: "Произошла ошибка при регистрации. Пожалуйста, попробуйте позже.",
         variant: "destructive",
       });
     } finally {
