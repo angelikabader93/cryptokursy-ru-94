@@ -3,6 +3,8 @@ import React from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Gift, Play, Star, Bitcoin, TrendingUp, Shield, Coins } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import CourseModules from '@/components/CourseModules';
 import CourseTestimonials from '@/components/CourseTestimonials';
 import CourseFAQ from '@/components/CourseFAQ';
@@ -98,6 +100,8 @@ const BitcoinCoursePage = () => {
 
   return (
     <div className="min-h-screen">
+      <Header />
+      
       {/* Full-width Hero Section */}
       <section className="relative bg-gradient-to-r from-orange-500 to-amber-600 text-white py-20 md:py-32">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1605792657660-596af9009e82?q=80&w=2070')] bg-cover bg-center opacity-20"></div>
@@ -373,6 +377,8 @@ const BitcoinCoursePage = () => {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
