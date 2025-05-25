@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -59,7 +60,7 @@ const FAQ = () => {
           <div className="mt-12 text-center">
             <h2 className="text-2xl font-bold mb-4">Не нашли ответ на свой вопрос?</h2>
             <p className="text-gray-600 mb-6">Свяжитесь с нами, и мы поможем вам!</p>
-            <SignupForm formType="faq" />
+            <SignupForm formType="about" />
           </div>
         </div>
       </main>

@@ -4,8 +4,9 @@ import StructuredData from './StructuredData';
 
 interface CoursePageSchemaProps {
   courseName: string;
-  courseDescription: string;
+  description: string;
   price: string;
+  originalPrice?: string;
   currency: string;
   instructor: string;
   duration: string;
@@ -13,11 +14,22 @@ interface CoursePageSchemaProps {
   rating: string;
   reviewCount: string;
   isAccessibleForFree?: boolean;
+  modules?: Array<{
+    title: string;
+    description: string;
+    duration: string;
+    color: string;
+    lessons: Array<{
+      title: string;
+      type: 'video' | 'test';
+      duration?: string;
+    }>;
+  }>;
 }
 
 const CoursePageSchema: React.FC<CoursePageSchemaProps> = ({
   courseName,
-  courseDescription,
+  description,
   price,
   currency,
   instructor,
@@ -31,7 +43,7 @@ const CoursePageSchema: React.FC<CoursePageSchemaProps> = ({
     "@context": "https://schema.org",
     "@type": "Course",
     "name": courseName,
-    "description": courseDescription,
+    "description": description,
     "provider": {
       "@type": "Organization",
       "name": "КриптоКурсы",

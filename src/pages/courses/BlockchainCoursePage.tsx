@@ -127,11 +127,12 @@ const BlockchainCoursePage = () => {
         description="Глубокое погружение в техническую архитектуру блокчейна и создание смарт-контрактов"
         price="18000"
         originalPrice="24000"
+        currency="RUB"
         duration="12 недель"
         level="Технический"
         instructor="Алексей Петров"
-        rating={4.7}
-        reviewCount={89}
+        rating="4.7"
+        reviewCount="89"
         modules={modules}
       />
 

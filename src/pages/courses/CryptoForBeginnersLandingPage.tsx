@@ -20,16 +20,14 @@ const CryptoForBeginnersLandingPage = () => {
         canonical="https://cryptokursy.ru/courses/crypto-for-beginners"
       />
       <CourseSchema 
-        courseName="Криптовалюта для чайников"
-        courseDescription="Базовый курс для тех, кто только начинает свой путь в мире криптовалю"
+        name="Криптовалюта для чайников"
+        description="Базовый курс для тех, кто только начинает свой путь в мире криптовалют"
         price="0"
         currency="RUB"
-        instructor="Команда КриптоКурсы"
-        duration="7 дней"
         level="Начинающий"
-        rating="4.9"
-        reviewCount="5000"
-        isAccessibleForFree={true}
+        isFree={true}
+        duration="7 дней"
+        url="https://cryptokursy.ru/courses/crypto-for-beginners"
       />
       <Header />
       
