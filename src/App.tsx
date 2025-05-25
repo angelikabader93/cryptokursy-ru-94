@@ -18,6 +18,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import LowercaseRedirect from "./components/LowercaseRedirect";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <LowercaseRedirect>
           <Routes>
             <Route path="/" element={<Index />} />
