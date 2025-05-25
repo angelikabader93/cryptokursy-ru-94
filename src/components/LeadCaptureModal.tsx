@@ -10,9 +10,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
-import { sendLeadToWebhook, WebhookResponse } from '@/utils/webhookService';
+import { sendLeadToWebhook } from '@/utils/webhookService';
 import { validatePhoneNumber } from '@/utils/phoneValidation';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface LeadCaptureModalProps {
   open: boolean;
@@ -25,7 +24,6 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
   const [isLoading, setIsLoading] = React.useState(false);
   const [nameError, setNameError] = React.useState('');
   const [phoneError, setPhoneError] = React.useState('');
-  const [debugResponse, setDebugResponse] = React.useState<WebhookResponse | null>(null);
 
   const validateForm = (): boolean => {
     let isValid = true;
@@ -72,9 +70,6 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
         source: "Модальное окно лида"
       });
       
-      // Сохраняем полный ответ для отладки
-      setDebugResponse(response);
-      
       if (response.success) {
         // Показываем уведомление об успешной отправке
         toast({
@@ -82,29 +77,18 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
           description: "Мы отправили вам доступ к бесплатному курсу",
         });
         
-        // Сбрасываем форму
+        // Сбрасываем форму и закрываем модальное окно
         setName('');
         setPhone('');
         setNameError('');
         setPhoneError('');
+        onOpenChange(false);
       } else {
-        toast({
-          title: "Внимание!",
-          description: `Ваш запрос получен, но возможны задержки в обработке. Статус: ${response.status}`,
-        });
+        throw new Error(response.error || 'Неизвестная ошибка при отправке данных');
       }
-      
-      // Логируем результат для отладки
-      console.log("Результат отправки формы:", response);
       
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
-      setDebugResponse({
-        success: false,
-        status: 0,
-        statusText: "Исключение в коде",
-        error: error instanceof Error ? error.message : String(error)
-      });
       toast({
         title: "Ошибка",
         description: error instanceof Error ? error.message : "Произошла ошибка при отправке данных. Пожалуйста, попробуйте позже.",
@@ -116,7 +100,6 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
   };
 
   const handleClose = () => {
-    setDebugResponse(null);
     setName('');
     setPhone('');
     setNameError('');
@@ -134,97 +117,52 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
-          {debugResponse ? (
-            <div className="space-y-4">
-              <Alert className={debugResponse.success ? "bg-green-50 border-green-300" : "bg-red-50 border-red-300"}>
-                <AlertTitle className={debugResponse.success ? "text-green-800" : "text-red-800"}>
-                  Отладочная информация о запросе
-                </AlertTitle>
-                <AlertDescription>
-                  <div className="space-y-2 text-sm">
-                    <p><strong>Статус:</strong> {debugResponse.status} {debugResponse.statusText}</p>
-                    <p><strong>Успех:</strong> {debugResponse.success ? "Да" : "Нет"}</p>
-                    {debugResponse.error && (
-                      <p><strong>Ошибка:</strong> {debugResponse.error}</p>
-                    )}
-                    {debugResponse.responseText && (
-                      <div>
-                        <p><strong>Ответ сервера:</strong></p>
-                        <pre className="mt-1 p-2 bg-gray-100 rounded text-xs overflow-auto max-h-40">
-                          {debugResponse.responseText}
-                        </pre>
-                      </div>
-                    )}
-                  </div>
-                </AlertDescription>
-              </Alert>
-              
-              <div className="flex space-x-2">
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  onClick={handleClose}
-                  className="w-1/2"
-                >
-                  Закрыть
-                </Button>
-                <Button 
-                  type="button" 
-                  onClick={() => setDebugResponse(null)}
-                  className="w-1/2"
-                >
-                  Отправить еще
-                </Button>
-              </div>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Input
+                placeholder="Ваше имя"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (nameError) setNameError('');
+                }}
+                required
+                className={`w-full p-3 bg-gray-50 ${nameError ? 'border-red-500' : ''}`}
+              />
+              {nameError && (
+                <p className="text-red-500 text-sm mt-1">{nameError}</p>
+              )}
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Input
-                  placeholder="Ваше имя"
-                  value={name}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                    if (nameError) setNameError('');
-                  }}
-                  required
-                  className={`w-full p-3 bg-gray-50 ${nameError ? 'border-red-500' : ''}`}
-                />
-                {nameError && (
-                  <p className="text-red-500 text-sm mt-1">{nameError}</p>
-                )}
-              </div>
-              
-              <div>
-                <Input
-                  type="tel"
-                  placeholder="Номер телефона"
-                  value={phone}
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                    if (phoneError) setPhoneError('');
-                  }}
-                  required
-                  className={`w-full p-3 bg-gray-50 ${phoneError ? 'border-red-500' : ''}`}
-                />
-                {phoneError && (
-                  <p className="text-red-500 text-sm mt-1">{phoneError}</p>
-                )}
-              </div>
-              
-              <Button 
-                type="submit" 
-                className="w-full py-6 font-bold bg-crypto-lightPurple hover:bg-crypto-purple text-white"
-                disabled={isLoading}
-              >
-                {isLoading ? 'Загрузка...' : 'Получить доступ'}
-              </Button>
-              
-              <p className="text-xs text-center text-gray-500">
-                Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности
-              </p>
-            </form>
-          )}
+            
+            <div>
+              <Input
+                type="tel"
+                placeholder="Номер телефона"
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  if (phoneError) setPhoneError('');
+                }}
+                required
+                className={`w-full p-3 bg-gray-50 ${phoneError ? 'border-red-500' : ''}`}
+              />
+              {phoneError && (
+                <p className="text-red-500 text-sm mt-1">{phoneError}</p>
+              )}
+            </div>
+            
+            <Button 
+              type="submit" 
+              className="w-full py-6 font-bold bg-crypto-lightPurple hover:bg-crypto-purple text-white"
+              disabled={isLoading}
+            >
+              {isLoading ? 'Загрузка...' : 'Получить доступ'}
+            </Button>
+            
+            <p className="text-xs text-center text-gray-500">
+              Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности
+            </p>
+          </form>
         </div>
       </DialogContent>
     </Dialog>
