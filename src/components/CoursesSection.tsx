@@ -47,9 +47,15 @@ const CoursesSection = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentCourse, setCurrentCourse] = useState("");
 
-  const handleCourseClick = (price: string, title: string) => {
-    setCurrentCourse(title);
-    setShowModal(true);
+  const handleCourseClick = (price: string, title: string, url: string) => {
+    if (price === 'Бесплатно') {
+      // Для бесплатного курса переходим сразу на страницу
+      window.location.href = url;
+    } else {
+      // Для платных курсов показываем модальное окно
+      setCurrentCourse(title);
+      setShowModal(true);
+    }
   };
 
   return (
@@ -103,16 +109,20 @@ const CoursesSection = () => {
                     {course.price}
                   </span>
                   
-                  <Button 
-                    className={`${
-                      course.price === 'Бесплатно' ? 
-                      'bg-crypto-orange hover:bg-orange-600' : 
-                      'bg-crypto-purple hover:bg-crypto-lightPurple'
-                    } text-white`}
-                    onClick={() => handleCourseClick(course.price, course.title)}
-                  >
-                    Подробнее
-                  </Button>
+                  {course.price === 'Бесплатно' ? (
+                    <Link to={course.url}>
+                      <Button className="bg-crypto-orange hover:bg-orange-600 text-white">
+                        Подробнее
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button 
+                      className="bg-crypto-purple hover:bg-crypto-lightPurple text-white"
+                      onClick={() => handleCourseClick(course.price, course.title, course.url)}
+                    >
+                      Подробнее
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>

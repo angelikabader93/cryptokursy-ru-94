@@ -10,6 +10,7 @@ import BeginnerCoursePage from "./pages/courses/BeginnerCoursePage";
 import BlockchainCoursePage from "./pages/courses/BlockchainCoursePage";
 import BitcoinCoursePage from "./pages/courses/BitcoinCoursePage";
 import PremiumCoursePage from "./pages/courses/PremiumCoursePage";
+import CryptoForBeginnersLandingPage from "./pages/courses/CryptoForBeginnersLandingPage";
 import FAQ from "./pages/FAQ";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -29,7 +30,7 @@ const App = () => (
         <LowercaseRedirect>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/courses/crypto-for-beginners" element={<BeginnerCoursePage />} />
+            <Route path="/courses/crypto-for-beginners" element={<CryptoForBeginnersLandingPage />} />
             <Route path="/courses/blockchain-and-crypto" element={<BlockchainCoursePage />} />
             <Route path="/courses/bitcoin-and-altcoins" element={<BitcoinCoursePage />} />
             <Route path="/courses/premium-crypto-school" element={<PremiumCoursePage />} />
