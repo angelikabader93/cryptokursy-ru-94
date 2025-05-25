@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet-async';
 interface SEOHeadProps {
   title: string;
   description: string;
-  keywords?: string;
   ogImage?: string;
   canonical?: string;
   structuredData?: any;
@@ -14,7 +13,6 @@ interface SEOHeadProps {
 const SEOHead: React.FC<SEOHeadProps> = ({
   title,
   description,
-  keywords,
   ogImage = "https://cryptokursy.ru/og-image.jpg",
   canonical,
   structuredData
@@ -27,7 +25,6 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <Helmet>
         <title>{fullTitle}</title>
         <meta name="description" content={description} />
-        {keywords && <meta name="keywords" content={keywords} />}
         
         {/* Open Graph */}
         <meta property="og:title" content={fullTitle} />

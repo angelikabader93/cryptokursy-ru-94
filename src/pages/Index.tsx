@@ -16,6 +16,7 @@ import FearsSection from '@/components/FearsSection';
 import MarathonSection from '@/components/MarathonSection';
 import BonusesSection from '@/components/BonusesSection';
 import CourseModulesSection from '@/components/CourseModulesSection';
+import SEOHead from '@/components/SEOHead';
 
 const Index = () => {
   // Прокрутка к якорю при загрузке страницы, если есть хэш в URL
@@ -33,6 +34,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead 
+        title="Курсы по криптовалютам и блокчейну"
+        description="Изучите криптовалюты с нуля! Профессиональные курсы по Bitcoin, блокчейну и инвестициям в криптовалюты. Практические знания от экспертов индустрии."
+        canonical="https://cryptokursy.ru/"
+      />
       <Header />
       <main>
         <HeroSection />

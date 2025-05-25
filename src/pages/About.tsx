@@ -4,11 +4,17 @@ import { Users, Award, BookOpen, LineChart } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SignupForm from '@/components/SignupForm';
+import SEOHead from '@/components/SEOHead';
 import { instructors } from '@/components/InstructorsSection';
 
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead 
+        title="О нас"
+        description="Команда экспертов КриптоКурсы - ваши проводники в мир криптовалют и блокчейна. Узнайте больше о нашей миссии, ценностях и преподавателях."
+        canonical="https://cryptokursy.ru/about"
+      />
       <Header />
       <main>
         {/* Hero Section */}
@@ -57,7 +63,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* Миссия и ценности */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-12">
@@ -105,7 +110,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* Наша команда */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-12">
@@ -135,7 +139,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-16 bg-gradient-to-r from-crypto-blue to-crypto-purple text-white">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-8">
