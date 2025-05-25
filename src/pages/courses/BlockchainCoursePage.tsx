@@ -1,12 +1,17 @@
-
 import React from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Layers, Play, Star, Code, Globe, Database } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import CourseModules from '@/components/CourseModules';
 import CourseTestimonials from '@/components/CourseTestimonials';
 import CourseFAQ from '@/components/CourseFAQ';
 import CourseInstructor from '@/components/CourseInstructor';
+import SignupForm from '@/components/SignupForm';
+import SEOHead from '@/components/SEOHead';
+import CoursePageSchema from '@/components/CoursePageSchema';
+import CourseBreadcrumbs from '@/components/CourseBreadcrumbs';
 
 const BlockchainCoursePage = () => {
   // Course modules data
@@ -102,17 +107,43 @@ const BlockchainCoursePage = () => {
     }
   ];
 
+  const breadcrumbItems = [
+    { name: 'Главная', url: '/' },
+    { name: 'Курсы', url: '/#courses' },
+    { name: 'Блокчейн технологии' }
+  ];
+
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Блокчейн технологии - Технический курс"
+        description="Глубокое погружение в техническую архитектуру блокчейна. Изучите смарт-контракты, Solidity, создание dApps и бизнес-применение блокчейна."
+        keywords="блокчейн, технологии, смарт-контракты, solidity, dapps, криптовалюты, курс, обучение"
+        canonical="https://cryptokursy.ru/courses/blockchain-and-crypto"
+      />
+      
+      <CoursePageSchema
+        courseName="Блокчейн технологии"
+        description="Глубокое погружение в техническую архитектуру блокчейна и создание смарт-контрактов"
+        price="18000"
+        originalPrice="24000"
+        duration="12 недель"
+        level="Технический"
+        instructor="Алексей Петров"
+        rating={4.7}
+        reviewCount={89}
+        modules={modules}
+      />
+
+      <Header />
+      
       {/* Full-width Hero Section */}
       <section className="relative bg-gradient-to-r from-cyan-600 to-cyan-800 text-white py-20 md:py-32">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2032')] bg-cover bg-center opacity-20"></div>
         
         {/* Breadcrumb */}
         <div className="container mx-auto px-4 relative z-10 mb-8">
-          <nav className="text-cyan-200 text-sm">
-            <span>Главная</span> › <span>Курсы</span> › <span className="text-white">Блокчейн технологии</span>
-          </nav>
+          <CourseBreadcrumbs items={breadcrumbItems} />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -230,7 +261,10 @@ const BlockchainCoursePage = () => {
                     </div>
                   </div>
                   
-                  <Button className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 text-lg">
+                  <Button 
+                    className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 text-lg"
+                    onClick={() => document.getElementById('signup-form-course')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
                     Записаться на курс
                   </Button>
                 </CardContent>
@@ -364,6 +398,16 @@ const BlockchainCoursePage = () => {
         {/* Course Instructor */}
         <CourseInstructor instructorId="petrov" />
 
+        {/* Signup Form */}
+        <section id="signup-form-course" className="bg-gradient-to-r from-cyan-50 to-blue-50 py-16 -mx-4 px-4 rounded-xl">
+          <div className="max-w-md mx-auto">
+            <SignupForm 
+              formType="course" 
+              courseTitle="Блокчейн технологии"
+            />
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <CourseFAQ faqItems={faqItems} />
 
@@ -381,6 +425,8 @@ const BlockchainCoursePage = () => {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
