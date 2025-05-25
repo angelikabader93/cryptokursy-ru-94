@@ -47,15 +47,9 @@ const CoursesSection = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentCourse, setCurrentCourse] = useState("");
 
-  const handleCourseClick = (price: string, title: string, url: string) => {
-    if (price === 'Бесплатно') {
-      // Для бесплатного курса переходим сразу на страницу
-      window.location.href = url;
-    } else {
-      // Для платных курсов показываем модальное окно
-      setCurrentCourse(title);
-      setShowModal(true);
-    }
+  const handlePaidCourseClick = (title: string) => {
+    setCurrentCourse(title);
+    setShowModal(true);
   };
 
   return (
@@ -75,7 +69,7 @@ const CoursesSection = () => {
                 </div>
               )}
               
-              <div className="h-48 overflow-hidden">
+              <Link to={course.url} className="h-48 overflow-hidden block">
                 <img 
                   src={course.image} 
                   alt={course.title} 
@@ -85,7 +79,7 @@ const CoursesSection = () => {
                     target.src = "https://images.unsplash.com/photo-1639322537231-2f206e06af84?q=80&w=2032";
                   }}
                 />
-              </div>
+              </Link>
               
               <div className="flex-1 p-6 flex flex-col">
                 <div className="mb-4">
@@ -118,7 +112,7 @@ const CoursesSection = () => {
                   ) : (
                     <Button 
                       className="bg-crypto-purple hover:bg-crypto-lightPurple text-white"
-                      onClick={() => handleCourseClick(course.price, course.title, course.url)}
+                      onClick={() => handlePaidCourseClick(course.title)}
                     >
                       Подробнее
                     </Button>
