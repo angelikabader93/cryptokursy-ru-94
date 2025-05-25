@@ -25,6 +25,20 @@ export interface WebhookResponse {
 }
 
 /**
+ * Форматирует номер телефона для корректного отображения в Google Таблицах
+ * @param phone - номер телефона
+ * @returns отформатированный номер телефона
+ */
+const formatPhoneForGoogleSheets = (phone: string): string => {
+  const cleanedPhone = phone.trim();
+  // Если номер начинается с плюса, обрамляем в одинарные кавычки
+  if (cleanedPhone.startsWith('+')) {
+    return `'${cleanedPhone}`;
+  }
+  return cleanedPhone;
+};
+
+/**
  * Отправляет данные лида на веб-хук Google Apps Script через простой GET-запрос
  * @param data Данные лида (имя и телефон)
  * @returns Promise с результатом отправки
@@ -53,7 +67,9 @@ export const sendLeadToWebhook = async (data: LeadData): Promise<WebhookResponse
     
     // Кодируем параметры для URL (обеспечиваем корректную передачу кириллицы)
     const encodedName = encodeURIComponent(data.name.trim());
-    const encodedPhone = encodeURIComponent(data.phone.trim());
+    // Форматируем телефон для Google Таблиц и кодируем
+    const formattedPhone = formatPhoneForGoogleSheets(data.phone);
+    const encodedPhone = encodeURIComponent(formattedPhone);
     
     // Формируем URL с параметрами для GET-запроса
     const url = `${WEBHOOK_URL}?name=${encodedName}&phone=${encodedPhone}`;
