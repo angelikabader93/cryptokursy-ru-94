@@ -3,6 +3,8 @@
  * Сервис для отправки данных на веб-хук Google Apps Script через простой GET-запрос
  */
 
+import { validatePhoneNumber } from './phoneValidation';
+
 // URL веб-хука Google Apps Script
 const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxEk6BKQfkTm7oJR6NdC08pFgQMxVflNb_8goWHWlrFwgCiGAnWLmpbY41EDxp7zv5L/exec";
 
@@ -29,13 +31,31 @@ export interface WebhookResponse {
  */
 export const sendLeadToWebhook = async (data: LeadData): Promise<WebhookResponse> => {
   try {
-    console.log("Отправка данных на веб-хук через GET-запрос:", data);
+    console.log("Проверка данных перед отправкой:", data);
+    
+    // Проверяем, что имя заполнено
+    if (!data.name || data.name.trim().length === 0) {
+      throw new Error("Пожалуйста, заполните поле имени");
+    }
+    
+    // Проверяем, что телефон заполнен
+    if (!data.phone || data.phone.trim().length === 0) {
+      throw new Error("Пожалуйста, заполните поле телефона");
+    }
+    
+    // Валидируем номер телефона
+    const phoneValidation = validatePhoneNumber(data.phone);
+    if (!phoneValidation.isValid) {
+      throw new Error(phoneValidation.errorMessage || "Некорректный номер телефона");
+    }
+    
+    console.log("Данные прошли валидацию, отправка на веб-хук через GET-запрос:", data);
     
     // Кодируем параметры для URL (обеспечиваем корректную передачу кириллицы)
-    const encodedName = encodeURIComponent(data.name);
-    const encodedPhone = encodeURIComponent(data.phone);
+    const encodedName = encodeURIComponent(data.name.trim());
+    const encodedPhone = encodeURIComponent(data.phone.trim());
     
-    // Формируем URL с параметрами для GET-запроса (без callback, как в вашем примере)
+    // Формируем URL с параметрами для GET-запроса
     const url = `${WEBHOOK_URL}?name=${encodedName}&phone=${encodedPhone}`;
     console.log("URL для отправки:", url);
     
@@ -48,7 +68,7 @@ export const sendLeadToWebhook = async (data: LeadData): Promise<WebhookResponse
     console.log("Ответ получен, статус:", response.status, response.statusText);
     
     // При mode: 'no-cors' мы не можем читать ответ, но если запрос выполнился без ошибки,
-    // считаем его успешным (как в вашем примере PowerShell)
+    // считаем его успешным
     return {
       success: true,
       status: response.status || 200,

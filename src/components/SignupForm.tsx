@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
 import { sendLeadToWebhook } from '@/utils/webhookService';
+import { validatePhoneNumber } from '@/utils/phoneValidation';
 
 interface SignupFormProps {
   formType: 'hero' | 'popup' | 'footer' | 'course' | 'about';
@@ -15,9 +16,44 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [nameError, setNameError] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+
+  const validateForm = (): boolean => {
+    let isValid = true;
+    
+    // Сброс ошибок
+    setNameError('');
+    setPhoneError('');
+    
+    // Проверка имени
+    if (!name || name.trim().length === 0) {
+      setNameError('Пожалуйста, введите ваше имя');
+      isValid = false;
+    }
+    
+    // Проверка телефона
+    if (!phone || phone.trim().length === 0) {
+      setPhoneError('Пожалуйста, введите номер телефона');
+      isValid = false;
+    } else {
+      const phoneValidation = validatePhoneNumber(phone);
+      if (!phoneValidation.isValid) {
+        setPhoneError(phoneValidation.errorMessage || 'Некорректный номер телефона');
+        isValid = false;
+      }
+    }
+    
+    return isValid;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsLoading(true);
     
     try {
@@ -37,27 +73,33 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
       
       console.log("Результат отправки:", response);
       
-      // Показываем успешное уведомление
-      toast({
-        title: "Успешно!",
-        description: courseTitle 
-          ? `Мы отправили вам доступ к курсу "${courseTitle}"`
-          : "Мы отправили вам доступ к бесплатному курсу",
-      });
-      
-      // Сбрасываем форму
-      setName('');
-      setPhone('');
-      
-      if (onSubmitSuccess) {
-        onSubmitSuccess();
+      if (response.success) {
+        // Показываем успешное уведомление
+        toast({
+          title: "Успешно!",
+          description: courseTitle 
+            ? `Мы отправили вам доступ к курсу "${courseTitle}"`
+            : "Мы отправили вам доступ к бесплатному курсу",
+        });
+        
+        // Сбрасываем форму
+        setName('');
+        setPhone('');
+        setNameError('');
+        setPhoneError('');
+        
+        if (onSubmitSuccess) {
+          onSubmitSuccess();
+        }
+      } else {
+        throw new Error(response.error || 'Неизвестная ошибка при отправке данных');
       }
       
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
       toast({
         title: "Ошибка",
-        description: "Произошла ошибка при отправке данных. Пожалуйста, попробуйте позже.",
+        description: error instanceof Error ? error.message : "Произошла ошибка при отправке данных. Пожалуйста, попробуйте позже.",
         variant: "destructive",
       });
     } finally {
@@ -110,10 +152,16 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
           <Input
             placeholder="Ваше имя"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              if (nameError) setNameError('');
+            }}
             required
-            className="w-full p-3 bg-gray-50"
+            className={`w-full p-3 bg-gray-50 ${nameError ? 'border-red-500' : ''}`}
           />
+          {nameError && (
+            <p className="text-red-500 text-sm mt-1">{nameError}</p>
+          )}
         </div>
         
         <div>
@@ -121,10 +169,16 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
             type="tel"
             placeholder="Номер телефона"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => {
+              setPhone(e.target.value);
+              if (phoneError) setPhoneError('');
+            }}
             required
-            className="w-full p-3 bg-gray-50"
+            className={`w-full p-3 bg-gray-50 ${phoneError ? 'border-red-500' : ''}`}
           />
+          {phoneError && (
+            <p className="text-red-500 text-sm mt-1">{phoneError}</p>
+          )}
         </div>
         
         <Button 

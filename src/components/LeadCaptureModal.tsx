@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
 import { sendLeadToWebhook, WebhookResponse } from '@/utils/webhookService';
+import { validatePhoneNumber } from '@/utils/phoneValidation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface LeadCaptureModalProps {
@@ -22,10 +23,45 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
   const [name, setName] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+  const [nameError, setNameError] = React.useState('');
+  const [phoneError, setPhoneError] = React.useState('');
   const [debugResponse, setDebugResponse] = React.useState<WebhookResponse | null>(null);
+
+  const validateForm = (): boolean => {
+    let isValid = true;
+    
+    // Сброс ошибок
+    setNameError('');
+    setPhoneError('');
+    
+    // Проверка имени
+    if (!name || name.trim().length === 0) {
+      setNameError('Пожалуйста, введите ваше имя');
+      isValid = false;
+    }
+    
+    // Проверка телефона
+    if (!phone || phone.trim().length === 0) {
+      setPhoneError('Пожалуйста, введите номер телефона');
+      isValid = false;
+    } else {
+      const phoneValidation = validatePhoneNumber(phone);
+      if (!phoneValidation.isValid) {
+        setPhoneError(phoneValidation.errorMessage || 'Некорректный номер телефона');
+        isValid = false;
+      }
+    }
+    
+    return isValid;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsLoading(true);
     
     try {
@@ -39,22 +75,28 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
       // Сохраняем полный ответ для отладки
       setDebugResponse(response);
       
-      // Показываем уведомление об успешной отправке
-      toast({
-        title: response.success ? "Успешно!" : "Внимание!",
-        description: response.success 
-          ? "Мы отправили вам доступ к бесплатному курсу" 
-          : `Ваш запрос получен, но возможны задержки в обработке. Статус: ${response.status}`,
-      });
+      if (response.success) {
+        // Показываем уведомление об успешной отправке
+        toast({
+          title: "Успешно!",
+          description: "Мы отправили вам доступ к бесплатному курсу",
+        });
+        
+        // Сбрасываем форму
+        setName('');
+        setPhone('');
+        setNameError('');
+        setPhoneError('');
+      } else {
+        toast({
+          title: "Внимание!",
+          description: `Ваш запрос получен, но возможны задержки в обработке. Статус: ${response.status}`,
+        });
+      }
       
       // Логируем результат для отладки
       console.log("Результат отправки формы:", response);
       
-      if (response.success) {
-        // Сбрасываем форму, но НЕ закрываем окно в режиме отладки
-        setName('');
-        setPhone('');
-      }
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
       setDebugResponse({
@@ -65,7 +107,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
       });
       toast({
         title: "Ошибка",
-        description: "Произошла ошибка при отправке данных. Пожалуйста, попробуйте позже.",
+        description: error instanceof Error ? error.message : "Произошла ошибка при отправке данных. Пожалуйста, попробуйте позже.",
         variant: "destructive",
       });
     } finally {
@@ -77,6 +119,8 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
     setDebugResponse(null);
     setName('');
     setPhone('');
+    setNameError('');
+    setPhoneError('');
     onOpenChange(false);
   };
 
@@ -139,10 +183,16 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
                 <Input
                   placeholder="Ваше имя"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    if (nameError) setNameError('');
+                  }}
                   required
-                  className="w-full p-3 bg-gray-50"
+                  className={`w-full p-3 bg-gray-50 ${nameError ? 'border-red-500' : ''}`}
                 />
+                {nameError && (
+                  <p className="text-red-500 text-sm mt-1">{nameError}</p>
+                )}
               </div>
               
               <div>
@@ -150,10 +200,16 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
                   type="tel"
                   placeholder="Номер телефона"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                    if (phoneError) setPhoneError('');
+                  }}
                   required
-                  className="w-full p-3 bg-gray-50"
+                  className={`w-full p-3 bg-gray-50 ${phoneError ? 'border-red-500' : ''}`}
                 />
+                {phoneError && (
+                  <p className="text-red-500 text-sm mt-1">{phoneError}</p>
+                )}
               </div>
               
               <Button 

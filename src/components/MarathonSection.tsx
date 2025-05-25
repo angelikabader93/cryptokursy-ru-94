@@ -4,14 +4,50 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
 import { sendLeadToWebhook } from '@/utils/webhookService';
+import { validatePhoneNumber } from '@/utils/phoneValidation';
 
 const MarathonSection = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [nameError, setNameError] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+
+  const validateForm = (): boolean => {
+    let isValid = true;
+    
+    // Сброс ошибок
+    setNameError('');
+    setPhoneError('');
+    
+    // Проверка имени
+    if (!name || name.trim().length === 0) {
+      setNameError('Пожалуйста, введите ваше имя');
+      isValid = false;
+    }
+    
+    // Проверка телефона
+    if (!phone || phone.trim().length === 0) {
+      setPhoneError('Пожалуйста, введите номер телефона');
+      isValid = false;
+    } else {
+      const phoneValidation = validatePhoneNumber(phone);
+      if (!phoneValidation.isValid) {
+        setPhoneError(phoneValidation.errorMessage || 'Некорректный номер телефона');
+        isValid = false;
+      }
+    }
+    
+    return isValid;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsLoading(true);
     
     try {
@@ -26,20 +62,26 @@ const MarathonSection = () => {
       
       console.log("Результат отправки:", response);
       
-      // Показываем успешное уведомление
-      toast({
-        title: "Успешно!",
-        description: "Вы зарегистрированы на марафон. Мы свяжемся с вами в ближайшее время.",
-      });
-      
-      // Сбрасываем форму
-      setName('');
-      setPhone('');
+      if (response.success) {
+        // Показываем успешное уведомление
+        toast({
+          title: "Успешно!",
+          description: "Вы зарегистрированы на марафон. Мы свяжемся с вами в ближайшее время.",
+        });
+        
+        // Сбрасываем форму
+        setName('');
+        setPhone('');
+        setNameError('');
+        setPhoneError('');
+      } else {
+        throw new Error(response.error || 'Неизвестная ошибка при отправке данных');
+      }
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
       toast({
         title: "Ошибка",
-        description: "Произошла ошибка при регистрации. Пожалуйста, попробуйте позже.",
+        description: error instanceof Error ? error.message : "Произошла ошибка при регистрации. Пожалуйста, попробуйте позже.",
         variant: "destructive",
       });
     } finally {
@@ -174,10 +216,16 @@ const MarathonSection = () => {
                 <Input
                   placeholder="Ваше имя"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    if (nameError) setNameError('');
+                  }}
                   required
-                  className="w-full p-3 bg-white"
+                  className={`w-full p-3 bg-white ${nameError ? 'border-red-500' : ''}`}
                 />
+                {nameError && (
+                  <p className="text-red-500 text-sm mt-1">{nameError}</p>
+                )}
               </div>
               
               <div>
@@ -185,10 +233,16 @@ const MarathonSection = () => {
                   type="tel"
                   placeholder="Номер телефона"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                    if (phoneError) setPhoneError('');
+                  }}
                   required
-                  className="w-full p-3 bg-white"
+                  className={`w-full p-3 bg-white ${phoneError ? 'border-red-500' : ''}`}
                 />
+                {phoneError && (
+                  <p className="text-red-500 text-sm mt-1">{phoneError}</p>
+                )}
               </div>
               
               <Button 
