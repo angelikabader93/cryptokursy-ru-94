@@ -111,7 +111,7 @@ const BlockchainCoursePage = () => {
         {/* Breadcrumb */}
         <div className="container mx-auto px-4 relative z-10 mb-8">
           <nav className="text-cyan-200 text-sm">
-            <span>Главная</span> › <span>Курсы</span> › <span className="text-white">Биткоин и альткоины</span>
+            <span>Главная</span> › <span>Курсы</span> › <span className="text-white">Блокчейн технологии</span>
           </nav>
         </div>
 
@@ -124,9 +124,9 @@ const BlockchainCoursePage = () => {
               </div>
               
               <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                БИТКОИН И<br />
+                БЛОКЧЕЙН<br />
                 <span className="bg-gradient-to-r from-cyan-200 to-white bg-clip-text text-transparent">
-                  АЛЬТКОИНЫ
+                  ТЕХНОЛОГИИ
                 </span>
               </h1>
               
@@ -172,7 +172,7 @@ const BlockchainCoursePage = () => {
                 <CardContent className="p-8">
                   <div className="text-center mb-6">
                     <div className="inline-block bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm font-semibold mb-4">
-                      СРЕДНИЙ
+                      ТЕХНИЧЕСКИЙ
                     </div>
                     <div className="text-4xl font-bold text-cyan-600 mb-2">
                       18 000 ₽ <span className="text-lg text-gray-500 line-through">24 000 ₽</span>
