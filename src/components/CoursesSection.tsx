@@ -11,6 +11,7 @@ const courses = [
     description: "Базовый курс для тех, кто только начинает свой путь в мире криптовалют. Изучите основы блокчейна, как работают криптокошельки, и научитесь безопасно хранить криптовалюту.",
     image: "https://images.unsplash.com/photo-1516245834210-c4c142787335?q=80&w=2069",
     price: "Бесплатно",
+    actualPrice: "0 ₽",
     popular: true,
     url: "/courses/crypto-for-beginners"
   },
@@ -20,6 +21,8 @@ const courses = [
     description: "Глубокое погружение в технологии блокчейн и их применение. Вы узнаете о разных типах криптовалют, принципах работы смарт-контрактов и основах DeFi.",
     image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2032",
     price: "Платно",
+    actualPrice: "15 000 ₽",
+    originalPrice: "20 000 ₽",
     popular: false,
     url: "/courses/blockchain-and-crypto"
   },
@@ -29,6 +32,8 @@ const courses = [
     description: "Курс для тех, кто хочет научиться инвестировать в криптовалюты. Вы изучите основы анализа рынка, стратегии инвестирования и управление портфелем.",
     image: "https://images.unsplash.com/photo-1605792657660-596af9009e82?q=80&w=2002",
     price: "Платно",
+    actualPrice: "29 000 ₽",
+    originalPrice: "35 000 ₽",
     popular: false,
     url: "/courses/bitcoin-and-altcoins"
   },
@@ -38,6 +43,8 @@ const courses = [
     description: "Индивидуальное обучение с экспертами. Персональный наставник поможет вам освоить продвинутые стратегии трейдинга, анализ графиков и управление рисками.",
     image: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=2070",
     price: "Премиум",
+    actualPrice: "75 000 ₽",
+    originalPrice: "100 000 ₽",
     popular: false,
     url: "/courses/premium-crypto-school"
   }
@@ -95,16 +102,28 @@ const CoursesSection = () => {
                 <h3 className="text-xl font-bold mb-3 text-crypto-blue">{course.title}</h3>
                 <p className="text-gray-600 mb-6 flex-1">{course.description}</p>
                 
-                <div className="mt-auto flex items-end justify-between">
-                  <span className={`font-bold text-lg ${
-                    course.price === 'Бесплатно' ? 'text-green-600' : 
-                    course.price === 'Премиум' ? 'text-crypto-purple' : 'text-crypto-blue'
-                  }`}>
-                    {course.price}
-                  </span>
+                <div className="mt-auto">
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className={`font-bold text-xl ${
+                        course.price === 'Бесплатно' ? 'text-green-600' : 
+                        course.price === 'Премиум' ? 'text-crypto-purple' : 'text-crypto-blue'
+                      }`}>
+                        {course.actualPrice}
+                      </span>
+                      {course.originalPrice && (
+                        <span className="text-sm text-gray-400 line-through">{course.originalPrice}</span>
+                      )}
+                    </div>
+                    {course.originalPrice && (
+                      <span className="text-xs text-crypto-orange font-semibold">
+                        Скидка {Math.round((1 - parseInt(course.actualPrice.replace(/\D/g, '')) / parseInt(course.originalPrice.replace(/\D/g, ''))) * 100)}%
+                      </span>
+                    )}
+                  </div>
                   
                   <Link to={course.url}>
-                    <Button className={`${
+                    <Button className={`w-full ${
                       course.price === 'Бесплатно' 
                         ? 'bg-crypto-orange hover:bg-orange-600' 
                         : 'bg-crypto-purple hover:bg-crypto-lightPurple'

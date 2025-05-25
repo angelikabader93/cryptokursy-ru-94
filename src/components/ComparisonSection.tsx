@@ -65,7 +65,12 @@ const ComparisonSection = () => {
                 <TableCell className="p-4 text-center">
                   <X size={18} className="inline-block text-red-500" />
                 </TableCell>
-                <TableCell className="p-4 font-bold">15 000 ₽</TableCell>
+                <TableCell className="p-4">
+                  <div className="flex flex-col items-center">
+                    <span className="font-bold text-crypto-blue">15 000 ₽</span>
+                    <span className="text-xs text-gray-400 line-through">20 000 ₽</span>
+                  </div>
+                </TableCell>
               </TableRow>
               <TableRow className="bg-white border-b">
                 <TableCell className="p-4 font-medium text-left">
@@ -79,7 +84,12 @@ const ComparisonSection = () => {
                 <TableCell className="p-4 text-center">
                   <Check size={18} className="inline-block text-green-500" />
                 </TableCell>
-                <TableCell className="p-4 font-bold">29 000 ₽</TableCell>
+                <TableCell className="p-4">
+                  <div className="flex flex-col items-center">
+                    <span className="font-bold text-crypto-blue">29 000 ₽</span>
+                    <span className="text-xs text-gray-400 line-through">35 000 ₽</span>
+                  </div>
+                </TableCell>
               </TableRow>
               <TableRow className="bg-gray-50 border-b">
                 <TableCell className="p-4 font-medium text-left">
@@ -93,7 +103,12 @@ const ComparisonSection = () => {
                 <TableCell className="p-4 text-center">
                   <Check size={18} className="inline-block text-green-500" />
                 </TableCell>
-                <TableCell className="p-4 font-bold text-crypto-purple">Премиум</TableCell>
+                <TableCell className="p-4">
+                  <div className="flex flex-col items-center">
+                    <span className="font-bold text-crypto-purple">75 000 ₽</span>
+                    <span className="text-xs text-gray-400 line-through">100 000 ₽</span>
+                  </div>
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>
