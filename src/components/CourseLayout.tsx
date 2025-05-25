@@ -157,7 +157,7 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 mb-8 border border-white/20 max-w-3xl animate-pulse">
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div>
-                      <h3 className="font-bold text-lg">Предложение закончится через:</h3>
+                      <div className="font-bold text-lg">Предложение закончится через:</div>
                       <p className="text-sm text-white/80">Успейте записаться по выгодной цене</p>
                     </div>
                     <div className="flex gap-2 sm:gap-3 text-center">
