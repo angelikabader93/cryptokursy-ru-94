@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Gift, Play, Star, Crown, Rocket, Target, Trophy, Shield, Headphones } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -9,6 +8,7 @@ import CourseModules from '@/components/CourseModules';
 import CourseTestimonials from '@/components/CourseTestimonials';
 import CourseFAQ from '@/components/CourseFAQ';
 import CourseInstructor from '@/components/CourseInstructor';
+import CourseBreadcrumbs from '@/components/CourseBreadcrumbs';
 
 const PremiumCoursePage = () => {
   // Course modules data
@@ -99,6 +99,12 @@ const PremiumCoursePage = () => {
     }
   ];
 
+  const breadcrumbItems = [
+    { name: 'Главная', url: '/' },
+    { name: 'Курсы', url: '/' },
+    { name: 'Премиальная криптошкола' }
+  ];
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -109,9 +115,7 @@ const PremiumCoursePage = () => {
         
         {/* Breadcrumb */}
         <div className="container mx-auto px-4 relative z-10 mb-8">
-          <nav className="text-purple-200 text-sm">
-            <span>Главная</span> › <span>Курсы</span> › <span className="text-white">Премиальная криптошкола</span>
-          </nav>
+          <CourseBreadcrumbs items={breadcrumbItems} />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
