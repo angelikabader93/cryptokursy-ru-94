@@ -103,20 +103,15 @@ const CoursesSection = () => {
                     {course.price}
                   </span>
                   
-                  {course.price === 'Бесплатно' ? (
-                    <Link to={course.url}>
-                      <Button className="bg-crypto-orange hover:bg-orange-600 text-white">
-                        Подробнее
-                      </Button>
-                    </Link>
-                  ) : (
-                    <Button 
-                      className="bg-crypto-purple hover:bg-crypto-lightPurple text-white"
-                      onClick={() => handlePaidCourseClick(course.title)}
-                    >
+                  <Link to={course.url}>
+                    <Button className={`${
+                      course.price === 'Бесплатно' 
+                        ? 'bg-crypto-orange hover:bg-orange-600' 
+                        : 'bg-crypto-purple hover:bg-crypto-lightPurple'
+                    } text-white`}>
                       Подробнее
                     </Button>
-                  )}
+                  </Link>
                 </div>
               </div>
             </div>
