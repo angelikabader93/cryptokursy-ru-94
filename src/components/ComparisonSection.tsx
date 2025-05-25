@@ -105,8 +105,8 @@ const ComparisonSection = () => {
                 </TableCell>
                 <TableCell className="p-4">
                   <div className="flex flex-col items-center">
-                    <span className="font-bold text-crypto-purple">75 000 ₽</span>
-                    <span className="text-xs text-gray-400 line-through">100 000 ₽</span>
+                    <span className="font-bold text-crypto-purple">50 000 ₽</span>
+                    <span className="text-xs text-gray-400 line-through">75 000 ₽</span>
                   </div>
                 </TableCell>
               </TableRow>
