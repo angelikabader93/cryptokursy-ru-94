@@ -121,7 +121,7 @@ const BlockchainCoursePage = () => {
           </div>
           
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-crypto-blue">
-            ИЗУЧИТЕ БЛОКЧЕЙН
+            ОСВОЙТЕ БЛОКЧЕЙН
             <span className="block text-4xl md:text-6xl bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               НА ТЕХНИЧЕСКОМ УРОВНЕ
             </span>
@@ -224,7 +224,7 @@ const BlockchainCoursePage = () => {
         <section className="py-16">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-crypto-blue mb-4">
-              Программа технического курса
+              Программа курса по модулям
             </h2>
             <p className="text-xl text-gray-600">
               Последовательное изучение от основ до продвинутых технических концепций

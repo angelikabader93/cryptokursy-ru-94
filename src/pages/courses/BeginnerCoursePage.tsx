@@ -117,16 +117,16 @@ const BeginnerCoursePage = () => {
           </div>
           
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-crypto-blue">
-            ИЗУЧИТЕ БЛОКЧЕЙН
+            ОСВОЙТЕ БЛОКЧЕЙН
             <span className="block text-4xl md:text-6xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              И КРИПТОВАЛЮТЫ
+              ЗА 10 НЕДЕЛЬ
             </span>
           </h2>
           
           <p className="text-xl md:text-2xl mb-8 font-medium text-gray-700">
-            Полное погружение в мир блокчейн-технологий и криптовалют
+            От основ блокчейн-технологий до практического применения
             <br />
-            <span className="text-blue-600">От основ до продвинутых концепций</span>
+            <span className="text-blue-600">Полное погружение в мир децентрализованных технологий</span>
           </p>
           
           <Button 
@@ -163,10 +163,10 @@ const BeginnerCoursePage = () => {
         <section className="bg-gradient-to-r from-blue-50 to-white py-16 -mx-6 px-6 rounded-xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-crypto-blue mb-4">
-              Что вы изучите на курсе?
+              Что вы изучите за 10 недель?
             </h2>
             <p className="text-xl text-gray-600">
-              Комплексное изучение блокчейн-технологий и криптовалют
+              Полная программа изучения блокчейн-технологий и криптовалют
             </p>
           </div>
           
@@ -175,32 +175,32 @@ const BeginnerCoursePage = () => {
               {
                 icon: <BookOpen className="w-8 h-8" />,
                 title: "Основы блокчейна",
-                description: "Глубокое понимание технологии блокчейн и принципов децентрализации"
+                description: "Поймете историю создания и принципы работы блокчейн-технологий"
               },
               {
                 icon: <Zap className="w-8 h-8" />,
                 title: "Криптовалюты",
-                description: "Изучение различных типов криптовалют и их особенностей"
+                description: "Разберетесь в различных типах криптовалют и их особенностях"
               },
               {
                 icon: <Shield className="w-8 h-8" />,
                 title: "Безопасность",
-                description: "Обеспечение безопасности криптоактивов и защита от мошенников"
+                description: "Научитесь безопасно использовать и хранить криптоактивы"
               },
               {
                 icon: <Award className="w-8 h-8" />,
                 title: "Смарт-контракты",
-                description: "Понимание работы смарт-контрактов и их применения"
+                description: "Изучите работу смарт-контрактов и их применение"
               },
               {
                 icon: <Users className="w-8 h-8" />,
                 title: "DeFi протоколы",
-                description: "Изучение децентрализованных финансовых протоколов"
+                description: "Освоите децентрализованные финансовые протоколы"
               },
               {
                 icon: <Download className="w-8 h-8" />,
                 title: "Практические навыки",
-                description: "Получение реальных навыков работы с блокчейн-приложениями"
+                description: "Получите реальные навыки работы с блокчейн-приложениями"
               }
             ].map((item, index) => (
               <Card key={index} className="hover:shadow-lg transition-all transform hover:scale-105 border-2 border-blue-100">
@@ -220,10 +220,10 @@ const BeginnerCoursePage = () => {
         <section className="py-16">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-crypto-blue mb-4">
-              Программа курса
+              Программа курса по неделям
             </h2>
             <p className="text-xl text-gray-600">
-              Структурированное обучение от основ до продвинутых тем
+              Структурированное обучение с практическими заданиями
             </p>
           </div>
           
