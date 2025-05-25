@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Gift, Play, Star, Bitcoin, TrendingUp, Shield, Coins } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -9,6 +10,8 @@ import CourseTestimonials from '@/components/CourseTestimonials';
 import CourseFAQ from '@/components/CourseFAQ';
 import CourseInstructor from '@/components/CourseInstructor';
 import CourseBreadcrumbs from '@/components/CourseBreadcrumbs';
+import SEOHead from '@/components/SEOHead';
+import CoursePageSchema from '@/components/CoursePageSchema';
 
 const BitcoinCoursePage = () => {
   // Course modules data
@@ -106,6 +109,22 @@ const BitcoinCoursePage = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOHead 
+        title="Bitcoin и альткоины - Продвинутый курс"
+        description="Изучите Bitcoin и популярные альткоины: от технических основ до практического применения. Станьте экспертом в мире криптовалют."
+        canonical="https://cryptokursy.ru/courses/bitcoin-and-altcoins"
+      />
+      <CoursePageSchema 
+        courseName="Bitcoin и альткоины"
+        courseDescription="Изучите Bitcoin и популярные альткоины: от технических основ до практического применения"
+        price="4990"
+        currency="RUB"
+        instructor="Максим Зубков"
+        duration="10 часов"
+        level="Продвинутый"
+        rating="4.8"
+        reviewCount="3000"
+      />
       <Header />
       
       {/* Full-width Hero Section */}

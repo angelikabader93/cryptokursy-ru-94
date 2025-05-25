@@ -2,13 +2,11 @@
 import React from 'react';
 import StructuredData from './StructuredData';
 
-interface BreadcrumbItem {
-  name: string;
-  url: string;
-}
-
 interface BreadcrumbSchemaProps {
-  items: BreadcrumbItem[];
+  items: Array<{
+    name: string;
+    url?: string;
+  }>;
 }
 
 const BreadcrumbSchema: React.FC<BreadcrumbSchemaProps> = ({ items }) => {
@@ -19,7 +17,7 @@ const BreadcrumbSchema: React.FC<BreadcrumbSchemaProps> = ({ items }) => {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": item.url
+      ...(item.url && { "item": `https://cryptokursy.ru${item.url}` })
     }))
   };
 

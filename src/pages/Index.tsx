@@ -17,6 +17,8 @@ import MarathonSection from '@/components/MarathonSection';
 import BonusesSection from '@/components/BonusesSection';
 import CourseModulesSection from '@/components/CourseModulesSection';
 import SEOHead from '@/components/SEOHead';
+import WebsiteSchema from '@/components/WebsiteSchema';
+import OrganizationSchema from '@/components/OrganizationSchema';
 
 const Index = () => {
   // Прокрутка к якорю при загрузке страницы, если есть хэш в URL
@@ -39,6 +41,8 @@ const Index = () => {
         description="Изучите криптовалюты с нуля! Профессиональные курсы по Bitcoin, блокчейну и инвестициям в криптовалюты. Практические знания от экспертов индустрии."
         canonical="https://cryptokursy.ru/"
       />
+      <WebsiteSchema />
+      <OrganizationSchema />
       <Header />
       <main>
         <HeroSection />

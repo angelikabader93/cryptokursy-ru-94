@@ -4,38 +4,34 @@ import StructuredData from './StructuredData';
 
 interface CoursePageSchemaProps {
   courseName: string;
-  description: string;
+  courseDescription: string;
   price: string;
-  originalPrice?: string;
+  currency: string;
+  instructor: string;
   duration: string;
   level: string;
-  instructor: string;
-  rating: number;
-  reviewCount: number;
-  modules: Array<{
-    title: string;
-    description: string;
-    duration: string;
-  }>;
+  rating: string;
+  reviewCount: string;
+  isAccessibleForFree?: boolean;
 }
 
 const CoursePageSchema: React.FC<CoursePageSchemaProps> = ({
   courseName,
-  description,
+  courseDescription,
   price,
-  originalPrice,
+  currency,
+  instructor,
   duration,
   level,
-  instructor,
   rating,
   reviewCount,
-  modules
+  isAccessibleForFree = false
 }) => {
   const courseData = {
     "@context": "https://schema.org",
     "@type": "Course",
     "name": courseName,
-    "description": description,
+    "description": courseDescription,
     "provider": {
       "@type": "Organization",
       "name": "КриптоКурсы",
@@ -45,30 +41,24 @@ const CoursePageSchema: React.FC<CoursePageSchemaProps> = ({
       "@type": "Person",
       "name": instructor
     },
-    "courseMode": "Online",
     "educationalLevel": level,
+    "courseMode": "Online",
+    "isAccessibleForFree": isAccessibleForFree,
     "timeRequired": duration,
+    "inLanguage": "ru-RU",
     "offers": {
       "@type": "Offer",
       "price": price,
-      "priceCurrency": "RUB",
-      "availability": "https://schema.org/InStock",
-      ...(originalPrice && { "priceValidUntil": "2024-12-31" })
+      "priceCurrency": currency,
+      "availability": "https://schema.org/InStock"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": rating,
       "reviewCount": reviewCount,
-      "bestRating": 5,
-      "worstRating": 1
-    },
-    "hasCourseInstance": modules.map((module, index) => ({
-      "@type": "CourseInstance",
-      "name": module.title,
-      "description": module.description,
-      "courseMode": "Online",
-      "timeRequired": module.duration
-    }))
+      "bestRating": "5",
+      "worstRating": "1"
+    }
   };
 
   return <StructuredData data={courseData} />;

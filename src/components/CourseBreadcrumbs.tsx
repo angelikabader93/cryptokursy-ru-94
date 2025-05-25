@@ -1,14 +1,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
 import BreadcrumbSchema from './BreadcrumbSchema';
 
 interface BreadcrumbItem {
@@ -21,32 +13,26 @@ interface CourseBreadcrumbsProps {
 }
 
 const CourseBreadcrumbs: React.FC<CourseBreadcrumbsProps> = ({ items }) => {
-  const schemaItems = items.map(item => ({
-    name: item.name,
-    url: item.url ? `https://cryptokursy.ru${item.url}` : `https://cryptokursy.ru${window.location.pathname}`
-  }));
-
   return (
     <>
-      <BreadcrumbSchema items={schemaItems} />
-      <Breadcrumb>
-        <BreadcrumbList>
-          {items.map((item, index) => (
-            <React.Fragment key={index}>
-              <BreadcrumbItem>
-                {item.url ? (
-                  <BreadcrumbLink asChild>
-                    <Link to={item.url}>{item.name}</Link>
-                  </BreadcrumbLink>
-                ) : (
-                  <BreadcrumbPage>{item.name}</BreadcrumbPage>
-                )}
-              </BreadcrumbItem>
-              {index < items.length - 1 && <BreadcrumbSeparator />}
-            </React.Fragment>
-          ))}
-        </BreadcrumbList>
-      </Breadcrumb>
+      <BreadcrumbSchema items={items} />
+      <nav className="text-white/70 text-sm">
+        {items.map((item, index) => (
+          <React.Fragment key={index}>
+            {item.url ? (
+              <Link 
+                to={item.url} 
+                className="hover:text-white transition-colors"
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <span className="text-white">{item.name}</span>
+            )}
+            {index < items.length - 1 && <span className="mx-2">›</span>}
+          </React.Fragment>
+        ))}
+      </nav>
     </>
   );
 };

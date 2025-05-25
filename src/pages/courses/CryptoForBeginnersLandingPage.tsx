@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,12 +6,31 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SignupForm from '@/components/SignupForm';
 import LeadCaptureModal from '@/components/LeadCaptureModal';
+import SEOHead from '@/components/SEOHead';
+import CourseSchema from '@/components/CourseSchema';
 
 const CryptoForBeginnersLandingPage = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead 
+        title="Криптовалюта для чайников - Бесплатный курс"
+        description="Освойте мир криптовалют за 7 дней с нуля до уверенного пользователя! Абсолютно бесплатно и без скрытых платежей."
+        canonical="https://cryptokursy.ru/courses/crypto-for-beginners"
+      />
+      <CourseSchema 
+        courseName="Криптовалюта для чайников"
+        courseDescription="Базовый курс для тех, кто только начинает свой путь в мире криптовалю"
+        price="0"
+        currency="RUB"
+        instructor="Команда КриптоКурсы"
+        duration="7 дней"
+        level="Начинающий"
+        rating="4.9"
+        reviewCount="5000"
+        isAccessibleForFree={true}
+      />
       <Header />
       
       {/* Hero Section */}

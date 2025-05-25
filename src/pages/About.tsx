@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SignupForm from '@/components/SignupForm';
 import SEOHead from '@/components/SEOHead';
+import OrganizationSchema from '@/components/OrganizationSchema';
 import { instructors } from '@/components/InstructorsSection';
 
 const About = () => {
@@ -15,6 +16,7 @@ const About = () => {
         description="Команда экспертов КриптоКурсы - ваши проводники в мир криптовалют и блокчейна. Узнайте больше о нашей миссии, ценностях и преподавателях."
         canonical="https://cryptokursy.ru/about"
       />
+      <OrganizationSchema />
       <Header />
       <main>
         {/* Hero Section */}
