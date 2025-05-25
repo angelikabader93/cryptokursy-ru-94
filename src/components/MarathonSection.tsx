@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,7 +15,9 @@ const MarathonSection = () => {
     setIsLoading(true);
     
     try {
-      // Отправляем данные на веб-хук через JSONP
+      console.log("Отправка данных:", { name, phone });
+      
+      // Отправляем данные на веб-хук
       const response = await sendLeadToWebhook({
         name,
         phone,
@@ -23,7 +26,7 @@ const MarathonSection = () => {
       
       console.log("Результат отправки:", response);
       
-      // Показываем успешное уведомление (JSONP обычно работает надежно)
+      // Показываем успешное уведомление
       toast({
         title: "Успешно!",
         description: "Вы зарегистрированы на марафон. Мы свяжемся с вами в ближайшее время.",
