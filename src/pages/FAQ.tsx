@@ -57,10 +57,14 @@ const FAQ = () => {
               </Collapsible>
             ))}
           </div>
-          <div className="mt-12 text-center">
-            <h2 className="text-2xl font-bold mb-4">Не нашли ответ на свой вопрос?</h2>
-            <p className="text-gray-600 mb-6">Свяжитесь с нами, и мы поможем вам!</p>
-            <SignupForm formType="about" />
+          <div className="mt-12 flex justify-center">
+            <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+              <div className="text-center mb-6">
+                <h2 className="text-2xl font-bold mb-2">Не нашли ответ на свой вопрос?</h2>
+                <p className="text-gray-600">Свяжитесь с нами, и мы поможем вам!</p>
+              </div>
+              <SignupForm formType="about" />
+            </div>
           </div>
         </div>
       </main>
