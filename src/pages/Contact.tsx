@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Header from '@/components/Header';
@@ -107,16 +106,6 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold text-lg">Адрес</h3>
                       <p className="text-gray-600">Москва, Пресненская набережная, 12, Башня «Федерация», Восток, офис 3507.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="bg-crypto-purple/10 p-3 rounded-full mr-4">
-                      <Phone className="h-6 w-6 text-crypto-purple" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg">Телефон</h3>
-                      <p className="text-gray-600">+7 (495) 123-45-67</p>
                     </div>
                   </div>
                   
