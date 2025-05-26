@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Gift, Play, Star, Bitcoin, TrendingUp, Shield, Coins } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,10 +12,21 @@ import CourseInstructor from '@/components/CourseInstructor';
 import CourseBreadcrumbs from '@/components/CourseBreadcrumbs';
 import SEOHead from '@/components/SEOHead';
 import CoursePageSchema from '@/components/CoursePageSchema';
-import LeadCaptureModal from '@/components/LeadCaptureModal';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { toast } from '@/hooks/use-toast';
+import { sendLeadToWebhook } from '@/utils/webhookService';
+import { validatePhoneNumber } from '@/utils/phoneValidation';
 
 const BitcoinCoursePage = () => {
-  const [showLeadModal, setShowLeadModal] = useState(false);
+  const [showStartLearningModal, setShowStartLearningModal] = useState(false);
+  const [showBuyCourseModal, setShowBuyCourseModal] = useState(false);
 
   // Course modules data
   const modules = [
@@ -109,6 +121,165 @@ const BitcoinCoursePage = () => {
     { name: 'Bitcoin и альткоины' }
   ];
 
+  // Lead Capture Modal Component
+  const LeadCaptureModal = ({ 
+    open, 
+    onOpenChange, 
+    title, 
+    description, 
+    buttonText 
+  }: {
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    title: string;
+    description: string;
+    buttonText: string;
+  }) => {
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [nameError, setNameError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
+
+    const validateForm = (): boolean => {
+      let isValid = true;
+      
+      setNameError('');
+      setPhoneError('');
+      
+      if (!name || name.trim().length === 0) {
+        setNameError('Пожалуйста, введите ваше имя');
+        isValid = false;
+      }
+      
+      if (!phone || phone.trim().length === 0) {
+        setPhoneError('Пожалуйста, введите номер телефона');
+        isValid = false;
+      } else {
+        const phoneValidation = validatePhoneNumber(phone);
+        if (!phoneValidation.isValid) {
+          setPhoneError(phoneValidation.errorMessage || 'Некорректный номер телефона');
+          isValid = false;
+        }
+      }
+      
+      return isValid;
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      
+      if (!validateForm()) {
+        return;
+      }
+      
+      setIsLoading(true);
+      
+      try {
+        const response = await sendLeadToWebhook({
+          name,
+          phone,
+          source: title,
+          coursePrice: '4990'
+        });
+        
+        if (response.success) {
+          toast({
+            title: "Успешно!",
+            description: "Мы отправили вам доступ к курсу",
+          });
+          
+          setName('');
+          setPhone('');
+          setNameError('');
+          setPhoneError('');
+          onOpenChange(false);
+        } else {
+          throw new Error(response.error || 'Неизвестная ошибка при отправке данных');
+        }
+        
+      } catch (error) {
+        console.error("Ошибка при отправке формы:", error);
+        toast({
+          title: "Ошибка",
+          description: error instanceof Error ? error.message : "Произошла ошибка при отправке данных. Пожалуйста, попробуйте позже.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    const handleClose = () => {
+      setName('');
+      setPhone('');
+      setNameError('');
+      setPhoneError('');
+      onOpenChange(false);
+    };
+
+    return (
+      <Dialog open={open} onOpenChange={handleClose}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-center text-2xl font-bold">{title}</DialogTitle>
+            <DialogDescription className="text-center">
+              {description}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <Input
+                  placeholder="Ваше имя"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    if (nameError) setNameError('');
+                  }}
+                  required
+                  className={`w-full p-3 bg-gray-50 ${nameError ? 'border-red-500' : ''}`}
+                />
+                {nameError && (
+                  <p className="text-red-500 text-sm mt-1">{nameError}</p>
+                )}
+              </div>
+              
+              <div>
+                <Input
+                  type="tel"
+                  placeholder="Номер телефона"
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                    if (phoneError) setPhoneError('');
+                  }}
+                  required
+                  className={`w-full p-3 bg-gray-50 ${phoneError ? 'border-red-500' : ''}`}
+                />
+                {phoneError && (
+                  <p className="text-red-500 text-sm mt-1">{phoneError}</p>
+                )}
+              </div>
+              
+              <Button 
+                type="submit" 
+                className="w-full py-6 font-bold bg-crypto-lightPurple hover:bg-crypto-purple text-white"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Загрузка...' : buttonText}
+              </Button>
+              
+              <p className="text-xs text-center text-gray-500">
+                Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности
+              </p>
+            </form>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  };
+
   return (
     <div className="min-h-screen">
       <SEOHead 
@@ -161,7 +332,7 @@ const BitcoinCoursePage = () => {
               
               <Button 
                 size="lg"
-                onClick={() => setShowLeadModal(true)}
+                onClick={() => setShowStartLearningModal(true)}
                 className="bg-white text-orange-600 hover:bg-orange-50 font-bold text-xl py-8 px-12 rounded-full shadow-2xl transform hover:scale-105 transition-all mb-12"
               >
                 <Play className="w-6 h-6 mr-3" />
@@ -235,7 +406,7 @@ const BitcoinCoursePage = () => {
                   </div>
                   
                   <Button 
-                    onClick={() => setShowLeadModal(true)}
+                    onClick={() => setShowBuyCourseModal(true)}
                     className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 text-lg"
                   >
                     Купить курс
@@ -406,10 +577,21 @@ const BitcoinCoursePage = () => {
         </div>
       </div>
       
-      {/* Lead Capture Modal */}
+      {/* Lead Capture Modals */}
       <LeadCaptureModal 
-        open={showLeadModal} 
-        onOpenChange={setShowLeadModal} 
+        open={showStartLearningModal} 
+        onOpenChange={setShowStartLearningModal}
+        title="Начните изучение Bitcoin и альткоинов!"
+        description="Вы нажали кнопку 'НАЧАТЬ ИЗУЧЕНИЕ'. Оставьте свои контакты и мы предоставим вам доступ к курсу Bitcoin и альткоины"
+        buttonText="Начать изучение"
+      />
+      
+      <LeadCaptureModal 
+        open={showBuyCourseModal} 
+        onOpenChange={setShowBuyCourseModal}
+        title="Покупка курса Bitcoin и альткоины!"
+        description="Вы нажали кнопку 'Купить курс'. Оставьте свои контакты и мы отправим вам информацию о покупке курса за 4 990 ₽"
+        buttonText="Купить курс"
       />
       
       <Footer />
