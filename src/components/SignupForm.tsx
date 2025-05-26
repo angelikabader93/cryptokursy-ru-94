@@ -166,6 +166,13 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
     }
   };
 
+  const getInputClassName = () => {
+    if (formType === 'footer') {
+      return 'w-full p-3 bg-white text-gray-900 placeholder:text-gray-500 border border-gray-300';
+    }
+    return 'w-full p-3 bg-gray-50';
+  };
+
   return (
     <div id="signup-form" className="w-full">
       <h3 className={`text-xl md:text-2xl font-bold mb-4 ${formType === 'footer' ? 'text-white' : 'text-crypto-blue'}`}>
@@ -182,7 +189,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
               if (nameError) setNameError('');
             }}
             required
-            className={`w-full p-3 bg-gray-50 ${nameError ? 'border-red-500' : ''}`}
+            className={`${getInputClassName()} ${nameError ? 'border-red-500' : ''}`}
           />
           {nameError && (
             <p className="text-red-500 text-sm mt-1">{nameError}</p>
@@ -199,7 +206,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
               if (phoneError) setPhoneError('');
             }}
             required
-            className={`w-full p-3 bg-gray-50 ${phoneError ? 'border-red-500' : ''}`}
+            className={`${getInputClassName()} ${phoneError ? 'border-red-500' : ''}`}
           />
           {phoneError && (
             <p className="text-red-500 text-sm mt-1">{phoneError}</p>
