@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Gift, Play, Star, Bitcoin, TrendingUp, Shield, Coins } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,8 +11,11 @@ import CourseInstructor from '@/components/CourseInstructor';
 import CourseBreadcrumbs from '@/components/CourseBreadcrumbs';
 import SEOHead from '@/components/SEOHead';
 import CoursePageSchema from '@/components/CoursePageSchema';
+import LeadCaptureModal from '@/components/LeadCaptureModal';
 
 const BitcoinCoursePage = () => {
+  const [showLeadModal, setShowLeadModal] = useState(false);
+
   // Course modules data
   const modules = [
     {
@@ -158,6 +161,7 @@ const BitcoinCoursePage = () => {
               
               <Button 
                 size="lg"
+                onClick={() => setShowLeadModal(true)}
                 className="bg-white text-orange-600 hover:bg-orange-50 font-bold text-xl py-8 px-12 rounded-full shadow-2xl transform hover:scale-105 transition-all mb-12"
               >
                 <Play className="w-6 h-6 mr-3" />
@@ -230,7 +234,10 @@ const BitcoinCoursePage = () => {
                     </div>
                   </div>
                   
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 text-lg">
+                  <Button 
+                    onClick={() => setShowLeadModal(true)}
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 text-lg"
+                  >
                     Купить курс
                   </Button>
                 </CardContent>
@@ -242,7 +249,6 @@ const BitcoinCoursePage = () => {
 
       {/* Content sections */}
       <div className="container mx-auto px-4 py-16 space-y-16">
-        {/* What You'll Learn */}
         <section className="bg-gradient-to-r from-orange-50 to-white py-16 -mx-4 px-4 rounded-xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
@@ -399,6 +405,12 @@ const BitcoinCoursePage = () => {
           </div>
         </div>
       </div>
+      
+      {/* Lead Capture Modal */}
+      <LeadCaptureModal 
+        open={showLeadModal} 
+        onOpenChange={setShowLeadModal} 
+      />
       
       <Footer />
     </div>

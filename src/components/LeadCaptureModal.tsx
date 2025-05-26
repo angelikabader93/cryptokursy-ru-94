@@ -25,6 +25,21 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
   const [nameError, setNameError] = React.useState('');
   const [phoneError, setPhoneError] = React.useState('');
 
+  // Функция для определения цены курса на основе URL страницы
+  const getCoursePrice = (): string | undefined => {
+    const currentPath = window.location.pathname;
+    
+    if (currentPath.includes('/courses/blockchain-and-crypto')) {
+      return '15000'; // Цена для курса "Блокчейн и криптовалюты"
+    } else if (currentPath.includes('/courses/bitcoin-and-altcoins')) {
+      return '4990'; // Цена для курса "Биткоин и альткоины"
+    } else if (currentPath.includes('/courses/premium-crypto-school')) {
+      return '50000'; // Цена для курса "Премиальная криптошкола"
+    }
+    
+    return undefined;
+  };
+
   const validateForm = (): boolean => {
     let isValid = true;
     
@@ -63,18 +78,26 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
     setIsLoading(true);
     
     try {
+      // Получаем цену курса
+      const coursePrice = getCoursePrice();
+      
+      console.log("Отправка данных из модального окна:", { name, phone, coursePrice });
+      
       // Отправляем данные на веб-хук
       const response = await sendLeadToWebhook({
         name,
         phone,
-        source: "Модальное окно лида"
+        source: "Модальное окно курса",
+        coursePrice
       });
+      
+      console.log("Результат отправки:", response);
       
       if (response.success) {
         // Показываем уведомление об успешной отправке
         toast({
           title: "Успешно!",
-          description: "Мы отправили вам доступ к бесплатному курсу",
+          description: "Мы отправили вам доступ к курсу",
         });
         
         // Сбрасываем форму и закрываем модальное окно
@@ -111,9 +134,9 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange 
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-center text-2xl font-bold">Получите бесплатный доступ!</DialogTitle>
+          <DialogTitle className="text-center text-2xl font-bold">Получите доступ к курсу!</DialogTitle>
           <DialogDescription className="text-center">
-            Оставьте свои контакты и мы предоставим вам доступ к бесплатному курсу
+            Оставьте свои контакты и мы предоставим вам доступ к курсу
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
