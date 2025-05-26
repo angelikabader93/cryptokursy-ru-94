@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Layers, Play, Star, Code, Globe, Database } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -13,8 +12,22 @@ import SignupForm from '@/components/SignupForm';
 import SEOHead from '@/components/SEOHead';
 import CoursePageSchema from '@/components/CoursePageSchema';
 import CourseBreadcrumbs from '@/components/CourseBreadcrumbs';
+import LeadCaptureModal from '@/components/LeadCaptureModal';
 
 const BlockchainCoursePage = () => {
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalType, setModalType] = React.useState<'hero' | 'price'>('hero');
+
+  const handleHeroButtonClick = () => {
+    setModalType('hero');
+    setModalOpen(true);
+  };
+
+  const handlePriceButtonClick = () => {
+    setModalType('price');
+    setModalOpen(true);
+  };
+
   // Course modules data
   const modules = [
     {
@@ -171,7 +184,7 @@ const BlockchainCoursePage = () => {
               <Button 
                 size="lg"
                 className="bg-white text-cyan-600 hover:bg-cyan-50 font-bold text-xl py-8 px-12 rounded-full shadow-2xl transform hover:scale-105 transition-all mb-12"
-                onClick={() => document.getElementById('signup-form-course')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={handleHeroButtonClick}
               >
                 <Play className="w-6 h-6 mr-3" />
                 ЗАПИСАТЬСЯ НА КУРС
@@ -264,7 +277,7 @@ const BlockchainCoursePage = () => {
                   
                   <Button 
                     className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 text-lg"
-                    onClick={() => document.getElementById('signup-form-course')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={handlePriceButtonClick}
                   >
                     Записаться на курс
                   </Button>
@@ -428,6 +441,12 @@ const BlockchainCoursePage = () => {
       </div>
       
       <Footer />
+
+      {/* Lead Capture Modal */}
+      <LeadCaptureModal 
+        open={modalOpen} 
+        onOpenChange={setModalOpen}
+      />
     </div>
   );
 };

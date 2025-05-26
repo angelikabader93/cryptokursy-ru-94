@@ -9,8 +9,22 @@ import CourseTestimonials from '@/components/CourseTestimonials';
 import CourseFAQ from '@/components/CourseFAQ';
 import CourseInstructor from '@/components/CourseInstructor';
 import CourseBreadcrumbs from '@/components/CourseBreadcrumbs';
+import LeadCaptureModal from '@/components/LeadCaptureModal';
 
 const PremiumCoursePage = () => {
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalType, setModalType] = React.useState<'hero' | 'price'>('hero');
+
+  const handleHeroButtonClick = () => {
+    setModalType('hero');
+    setModalOpen(true);
+  };
+
+  const handlePriceButtonClick = () => {
+    setModalType('price');
+    setModalOpen(true);
+  };
+
   // Course modules data
   const modules = [
     {
@@ -101,7 +115,7 @@ const PremiumCoursePage = () => {
 
   const breadcrumbItems = [
     { name: 'Главная', url: '/' },
-    { name: 'Курсы', url: '/' },
+    { name: 'Курсы', url: '/#courses' },
     { name: 'Премиальная криптошкола' }
   ];
 
@@ -142,6 +156,7 @@ const PremiumCoursePage = () => {
               <Button 
                 size="lg"
                 className="bg-white text-purple-600 hover:bg-purple-50 font-bold text-xl py-8 px-12 rounded-full shadow-2xl transform hover:scale-105 transition-all mb-12"
+                onClick={handleHeroButtonClick}
               >
                 <Play className="w-6 h-6 mr-3" />
                 ПРИСОЕДИНИТЬСЯ К VIP
@@ -213,7 +228,10 @@ const PremiumCoursePage = () => {
                     </div>
                   </div>
                   
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 text-lg">
+                  <Button 
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 text-lg"
+                    onClick={handlePriceButtonClick}
+                  >
                     Присоединиться к VIP
                   </Button>
                 </CardContent>
@@ -384,6 +402,12 @@ const PremiumCoursePage = () => {
       </div>
       
       <Footer />
+
+      {/* Lead Capture Modal */}
+      <LeadCaptureModal 
+        open={modalOpen} 
+        onOpenChange={setModalOpen}
+      />
     </div>
   );
 };
