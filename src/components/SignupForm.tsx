@@ -18,6 +18,24 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
   const [nameError, setNameError] = useState('');
   const [phoneError, setPhoneError] = useState('');
 
+  // Функция для определения цены курса на основе URL страницы
+  const getCoursePrice = (): string | undefined => {
+    const currentPath = window.location.pathname;
+    
+    // Определяем цену для верхних форм на страницах курсов
+    if (formType === 'hero' || formType === 'course') {
+      if (currentPath.includes('/courses/blockchain-and-crypto')) {
+        return '15000'; // Цена для курса "Блокчейн и криптовалюты"
+      } else if (currentPath.includes('/courses/bitcoin-and-altcoins')) {
+        return '29000'; // Цена для курса "Биткоин и альткоины"
+      } else if (currentPath.includes('/courses/premium-crypto-school')) {
+        return '50000'; // Цена для курса "Премиальная криптошкола"
+      }
+    }
+    
+    return undefined;
+  };
+
   const validateForm = (): boolean => {
     let isValid = true;
     
@@ -61,13 +79,17 @@ const SignupForm: React.FC<SignupFormProps> = ({ formType, onSubmitSuccess, cour
         ? `Форма ${formType} - Курс "${courseTitle}"` 
         : `Форма ${formType}`;
       
-      console.log("Отправка данных:", { name, phone, source });
+      // Получаем цену курса, если это верхняя форма на странице курса
+      const coursePrice = getCoursePrice();
+      
+      console.log("Отправка данных:", { name, phone, source, coursePrice });
       
       // Отправляем данные на веб-хук
       const response = await sendLeadToWebhook({
         name,
         phone,
-        source
+        source,
+        coursePrice
       });
       
       console.log("Результат отправки:", response);

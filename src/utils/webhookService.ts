@@ -1,4 +1,3 @@
-
 /**
  * Сервис для отправки данных на веб-хук Google Apps Script через простой GET-запрос
  */
@@ -6,13 +5,14 @@
 import { validatePhoneNumber } from './phoneValidation';
 
 // URL веб-хука Google Apps Script
-const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxEk6BKQfkTm7oJR6NdC08pFgQMxVflNb_8goWHWlrFwgCiGAnWLmpbY41EDxp7zv5L/exec";
+const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx93NsRl0QUeqQbPVjoh_hlaFXKo3cx4zCiytmrS8Esi5856peQbn2alms9VyGjae3J/exec";
 
 // Интерфейс для данных лида
 export interface LeadData {
   name: string;
   phone: string;
   source?: string;  // Источник лида (для аналитики)
+  coursePrice?: string;  // Цена курса (для записи в столбец D Google Таблицы)
 }
 
 // Интерфейс для ответа от веб-хука
@@ -40,7 +40,7 @@ const formatPhoneForGoogleSheets = (phone: string): string => {
 
 /**
  * Отправляет данные лида на веб-хук Google Apps Script через простой GET-запрос
- * @param data Данные лида (имя и телефон)
+ * @param data Данные лида (имя, телефон и опционально цена курса)
  * @returns Promise с результатом отправки
  */
 export const sendLeadToWebhook = async (data: LeadData): Promise<WebhookResponse> => {
@@ -72,7 +72,14 @@ export const sendLeadToWebhook = async (data: LeadData): Promise<WebhookResponse
     const encodedPhone = encodeURIComponent(formattedPhone);
     
     // Формируем URL с параметрами для GET-запроса
-    const url = `${WEBHOOK_URL}?name=${encodedName}&phone=${encodedPhone}`;
+    let url = `${WEBHOOK_URL}?name=${encodedName}&phone=${encodedPhone}`;
+    
+    // Добавляем coursePrice, если он передан
+    if (data.coursePrice) {
+      const encodedCoursePrice = encodeURIComponent(data.coursePrice);
+      url += `&coursePrice=${encodedCoursePrice}`;
+    }
+    
     console.log("URL для отправки:", url);
     
     // Отправляем простой GET-запрос
