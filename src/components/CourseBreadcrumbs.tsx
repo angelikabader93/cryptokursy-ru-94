@@ -1,58 +1,49 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import BreadcrumbSchema from './BreadcrumbSchema';
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
-interface CourseBreadcrumbsProps {
-  courseName: string;
-  courseUrl?: string;
+interface Breadcrumb {
+  name: string;
+  href?: string;
 }
 
-const CourseBreadcrumbs: React.FC<CourseBreadcrumbsProps> = ({ 
-  courseName, 
-  courseUrl = window.location.pathname 
-}) => {
-  const breadcrumbItems = [
-    {
-      name: "Главная",
-      item: "https://cryptokursy.ru/"
-    },
-    {
-      name: "Курсы", 
-      item: "https://cryptokursy.ru/#courses"
-    },
-    {
-      name: courseName
-    }
-  ];
+interface CourseBreadcrumbsProps {
+  breadcrumbs: Breadcrumb[];
+}
+
+const CourseBreadcrumbs: React.FC<CourseBreadcrumbsProps> = ({ breadcrumbs }) => {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": crumb.name,
+      ...(crumb.href && { "item": `https://cryptokursy.ru${crumb.href}` })
+    }))
+  };
 
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
-      <nav aria-label="Хлебные крошки" className="mb-6">
-        <div className="container mx-auto px-4">
-          <ol className="flex items-center space-x-2 text-sm text-gray-600">
-            <li>
-              <Link 
-                to="/" 
-                className="hover:text-crypto-orange transition-colors"
-              >
-                Главная
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
+      
+      <nav className="text-left mb-8 text-white/80 text-sm" aria-label="Хлебные крошки">
+        {breadcrumbs.map((crumb, index) => (
+          <span key={index}>
+            {crumb.href ? (
+              <Link to={crumb.href} className="hover:text-white transition-colors">
+                {crumb.name}
               </Link>
-            </li>
-            <li className="before:content-['/'] before:mx-2 before:text-gray-400">
-              <Link 
-                to="/#courses" 
-                className="hover:text-crypto-orange transition-colors"
-              >
-                Курсы
-              </Link>
-            </li>
-            <li className="before:content-['/'] before:mx-2 before:text-gray-400 text-gray-900 font-medium">
-              {courseName}
-            </li>
-          </ol>
-        </div>
+            ) : (
+              <span>{crumb.name}</span>
+            )}
+            {index < breadcrumbs.length - 1 && <span className="mx-2">›</span>}
+          </span>
+        ))}
       </nav>
     </>
   );

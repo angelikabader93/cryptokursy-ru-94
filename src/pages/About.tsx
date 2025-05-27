@@ -1,162 +1,173 @@
-import React from 'react';
-import { Users, Award, BookOpen, LineChart } from 'lucide-react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import SignupForm from '@/components/SignupForm';
-import SEOHead from '@/components/SEOHead';
-import OrganizationSchema from '@/components/OrganizationSchema';
-import { instructors } from '@/components/InstructorsSection';
+
+import SEOHead from "@/components/SEOHead";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import CourseBreadcrumbs from "@/components/CourseBreadcrumbs";
 
 const About = () => {
+  const breadcrumbs = [
+    { name: "Главная", href: "/" },
+    { name: "О нас" }
+  ];
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "КриптоКурсы",
+    "url": "https://cryptokursy.ru/",
+    "logo": "https://cryptokursy.ru/lovable-uploads/54c1129e-1672-4f65-8aff-6054cfa2a538.png",
+    "description": "Образовательная платформа по криптовалютам и блокчейну",
+    "foundingDate": "2017",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+7-999-123-45-67",
+      "contactType": "customer service",
+      "email": "info@cryptokursy.ru"
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       <SEOHead 
-        title="О нас"
-        description="Команда экспертов КриптоКурсы - ваши проводники в мир криптовалют и блокчейна. Узнайте больше о нашей миссии, ценностях и преподавателях."
+        title="О нас - КриптоКурсы | Эксперты в области криптовалют"
+        description="Узнайте больше о команде КриптоКурсы. Опытные эксперты, которые помогают изучать криптовалюты с 2017 года. Более 10,000 довольных студентов."
         canonical="https://cryptokursy.ru/about"
+        ogImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071"
+        structuredData={organizationSchema}
       />
-      <OrganizationSchema />
-      <Header />
-      <main>
-        {/* Hero Section */}
-        <section className="bg-crypto-blue text-white py-16">
+      
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        
+        <section className="bg-gradient-to-br from-blue-800 via-blue-600 to-blue-400 text-white py-16 text-center">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">О нас</h1>
-              <p className="text-xl opacity-90">
-                Мы команда экспертов в области криптовалют и блокчейна, 
-                объединенных общей миссией сделать крипто-образование 
-                доступным и понятным для всех.
+            <CourseBreadcrumbs breadcrumbs={breadcrumbs} />
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">О нас</h1>
+            <p className="text-xl mb-8 text-blue-100">Команда экспертов, которая помогает изучать криптовалюты с 2017 года</p>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+              <div className="text-center">
+                <div className="text-3xl font-bold">10,000+</div>
+                <div className="text-blue-200 text-sm">Довольных студентов</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">7</div>
+                <div className="text-blue-200 text-sm">Лет опыта</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">25+</div>
+                <div className="text-blue-200 text-sm">Курсов и программ</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">4.9★</div>
+                <div className="text-blue-200 text-sm">Средний рейтинг</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <main className="container mx-auto px-4 py-12">
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold text-blue-800 text-center mb-8">Наша миссия</h2>
+            <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+              <p className="text-lg mb-6 text-gray-700">
+                Мы верим, что каждый человек заслуживает доступа к качественному образованию в области криптовалют и блокчейн-технологий. 
+                Наша миссия — сделать сложные концепции понятными и доступными для всех, независимо от уровня технической подготовки.
+              </p>
+              <p className="text-lg text-gray-700">
+                За 7 лет работы мы помогли более чем 10,000 студентам освоить мир криптовалют, создать свои первые инвестиционные портфели 
+                и обрести финансовую независимость через понимание новых технологий.
               </p>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* История компании */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold mb-6 text-crypto-blue">Наша история</h2>
-                <p className="mb-4">
-                  Компания КриптоКурсы была основана в 2018 году группой энтузиастов криптовалют 
-                  и блокчейн-технологий, которые видели огромный потенциал в этой области и 
-                  понимали необходимость в качественном образовании.
-                </p>
-                <p className="mb-4">
-                  Начав с небольших вебинаров для друзей и коллег, мы быстро выросли в полноценный 
-                  образовательный центр с тысячами выпускников по всему миру.
-                </p>
-                <p>
-                  Сегодня КриптоКурсы — это признанный лидер в области крипто-образования, 
-                  предлагающий широкий спектр курсов от базовых до продвинутых, а также 
-                  консультационные услуги для бизнеса.
-                </p>
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold text-blue-800 text-center mb-8">Наша команда</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center text-4xl">👨‍💼</div>
+                <h3 className="text-xl font-semibold text-blue-800 mb-2">Алексей Петров</h3>
+                <p className="font-medium mb-3">Основатель и CEO</p>
+                <p className="text-gray-600 text-sm">Инвестор в криптовалюты с 2013 года. Создал первые курсы в России по Bitcoin. Бывший аналитик Goldman Sachs.</p>
               </div>
-              <div className="rounded-lg overflow-hidden shadow-xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                  alt="Команда КриптоКурсы" 
-                  className="w-full h-auto"
-                />
+              
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center text-4xl">👩‍💻</div>
+                <h3 className="text-xl font-semibold text-blue-800 mb-2">Мария Сидорова</h3>
+                <p className="font-medium mb-3">Главный технический эксперт</p>
+                <p className="text-gray-600 text-sm">Блокчейн-разработчик с 6-летним опытом. Участвовала в создании более 20 DeFi проектов. Ex-Ethereum Foundation.</p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold mb-6 text-crypto-blue">Миссия и ценности</h2>
-              <p className="text-lg">
-                Наша миссия — сделать инвестиции в криптовалюты безопасными и доступными для всех 
-                через образование, практические навыки и экспертную поддержку.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="bg-crypto-orange/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
-                  <Award className="text-crypto-orange w-8 h-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Экспертность</h3>
-                <p>
-                  Мы гордимся нашей командой признанных экспертов с многолетним опытом работы 
-                  в индустрии криптовалют и блокчейна.
-                </p>
+              
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center text-4xl">👨‍🎓</div>
+                <h3 className="text-xl font-semibold text-blue-800 mb-2">Дмитрий Козлов</h3>
+                <p className="font-medium mb-3">Ведущий преподаватель</p>
+                <p className="text-gray-600 text-sm">Трейдер с 10-летним опытом на традиционных и криптовалютных рынках. Автор популярного Telegram-канала о криптовалютах.</p>
               </div>
-
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="bg-crypto-purple/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
-                  <BookOpen className="text-crypto-purple w-8 h-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Обучение через практику</h3>
-                <p>
-                  Мы верим, что лучший способ обучения — это практика. Все наши курсы 
-                  включают реальные примеры и практические задания.
-                </p>
-              </div>
-
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="bg-crypto-blue/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
-                  <LineChart className="text-crypto-blue w-8 h-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Постоянное развитие</h3>
-                <p>
-                  Мир криптовалют никогда не стоит на месте. Мы постоянно обновляем 
-                  наши материалы, чтобы отражать последние тенденции и технологии.
-                </p>
+              
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center text-4xl">👩‍🏫</div>
+                <h3 className="text-xl font-semibold text-blue-800 mb-2">Анна Волкова</h3>
+                <p className="font-medium mb-3">Методист и куратор</p>
+                <p className="text-gray-600 text-sm">Специалист по образовательным технологиям. Помогает структурировать знания и делать обучение максимально эффективным.</p>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold mb-6 text-crypto-blue">Наша команда</h2>
-              <p className="text-lg">
-                Познакомьтесь с экспертами, которые делают КриптоКурсы лучшей 
-                образовательной платформой по криптовалютам и блокчейну.
-              </p>
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold text-blue-800 text-center mb-8">Наши достижения</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">🏆 Лучшая образовательная платформа</h3>
+                <p className="text-gray-600">Награда "Выбор пользователей" на CryptoAwards 2023</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">📈 98% успешных выпускников</h3>
+                <p className="text-gray-600">98% наших студентов успешно создают свои первые инвестиционные портфели</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">🌍 Международное признание</h3>
+                <p className="text-gray-600">Наши курсы переведены на 5 языков и доступны в 25 странах</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">💼 Партнерства</h3>
+                <p className="text-gray-600">Сотрудничаем с ведущими криптобиржами и блокчейн-проектами</p>
+              </div>
             </div>
+          </section>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {instructors.map(instructor => (
-                <div key={instructor.id} className="text-center">
-                  <div className="mb-4 overflow-hidden rounded-full mx-auto w-40 h-40">
-                    <img 
-                      src={instructor.avatar} 
-                      alt={instructor.name} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold">{instructor.name}</h3>
-                  <p className="text-crypto-blue font-medium">{instructor.position}</p>
-                  <p className="mt-2">{instructor.bio}</p>
-                </div>
-              ))}
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold text-blue-800 text-center mb-8">Почему выбирают нас</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">🎯 Практический подход</h3>
+                <p className="text-gray-600">Все наши курсы основаны на реальном опыте и содержат практические задания с настоящими криптовалютами.</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">🔄 Постоянное обновление</h3>
+                <p className="text-gray-600">Криптомир меняется быстро, поэтому мы обновляем материалы курсов каждые 2-3 месяца.</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">👥 Поддержка сообщества</h3>
+                <p className="text-gray-600">Каждый студент получает доступ к закрытому сообществу единомышленников и экспертов.</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">🛡️ Гарантия качества</h3>
+                <p className="text-gray-600">Мы настолько уверены в качестве наших курсов, что предлагаем 14-дневную гарантию возврата средств.</p>
+              </div>
             </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-gradient-to-r from-crypto-blue to-crypto-purple text-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-8">
-              <h2 className="text-3xl font-bold mb-6">Начните свой путь в мир криптовалют прямо сейчас</h2>
-              <p className="text-lg opacity-90 mb-8">
-                Присоединяйтесь к нашим курсам и получите все необходимые знания и навыки для 
-                успешных инвестиций в криптовалюты.
-              </p>
-            </div>
-            <div className="max-w-lg mx-auto">
-              <SignupForm formType="about" />
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+          </section>
+        </main>
+        
+        <Footer />
+      </div>
+    </>
   );
 };
 
