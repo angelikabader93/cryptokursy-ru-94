@@ -15,11 +15,32 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' && componentTagger()
+    mode === 'development' && componentTagger(),
+    {
+      name: 'robots-txt-mime',
+      configureServer(server) {
+        server.middlewares.use('/robots.txt', (req, res, next) => {
+          res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+          next();
+        });
+      }
+    }
   ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'robots.txt') {
+            return 'robots.txt';
+          }
+          return assetInfo.name || '';
+        }
+      }
+    }
   }
 }));
