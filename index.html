@@ -139,6 +139,14 @@
         background: #ea580c;
       }
       
+      .static-button-purple {
+        background: #8b5cf6;
+      }
+      
+      .static-button-purple:hover {
+        background: #7c3aed;
+      }
+      
       .static-form {
         max-width: 500px;
         margin: 0 auto;
@@ -148,7 +156,7 @@
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       }
       
-      .static-form input {
+      .static-form input, .static-form select {
         width: 100%;
         padding: 0.75rem;
         margin-bottom: 1rem;
@@ -199,6 +207,110 @@
         margin-top: 3rem;
       }
       
+      .static-testimonial {
+        background: #f8fafc;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid #8b5cf6;
+        margin-bottom: 1rem;
+      }
+      
+      .static-testimonial blockquote {
+        font-style: italic;
+        margin: 0 0 1rem 0;
+        color: #4b5563;
+      }
+      
+      .static-testimonial cite {
+        font-weight: bold;
+        color: #1e40af;
+      }
+      
+      .static-instructor {
+        text-align: center;
+        padding: 1.5rem;
+        background: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      
+      .static-instructor img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        object-fit: cover;
+      }
+      
+      .static-comparison {
+        background: #f1f5f9;
+        padding: 2rem 0;
+      }
+      
+      .static-comparison table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      
+      .static-comparison th,
+      .static-comparison td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      
+      .static-comparison th {
+        background: #8b5cf6;
+        color: white;
+        font-weight: bold;
+      }
+      
+      .static-comparison .highlight {
+        background: #fef3c7;
+        font-weight: bold;
+      }
+      
+      .static-cta {
+        background: #1e40af;
+        color: white;
+        padding: 3rem 0;
+        text-align: center;
+      }
+      
+      .static-cta h2 {
+        color: white;
+        margin-bottom: 1rem;
+      }
+      
+      .static-features-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        margin-top: 2rem;
+      }
+      
+      .static-feature-item {
+        text-align: center;
+        padding: 1rem;
+      }
+      
+      .static-feature-icon {
+        background: #f97316;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+      }
+      
       /* Hide React app initially, show only when JS loads */
       #root {
         display: none;
@@ -226,6 +338,14 @@
         .static-nav-links {
           gap: 1rem;
         }
+        
+        .static-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .static-features-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -239,7 +359,11 @@
           <div class="static-nav-content">
             <div class="static-logo">КриптоКурсы</div>
             <nav class="static-nav-links">
+              <a href="#features">Преимущества</a>
               <a href="#courses">Курсы</a>
+              <a href="#instructors">Преподаватели</a>
+              <a href="#testimonials">Отзывы</a>
+              <a href="#faq">FAQ</a>
               <a href="#about">О нас</a>
               <a href="#contact">Контакты</a>
             </nav>
@@ -262,30 +386,57 @@
       <section class="static-section" id="features">
         <div class="static-container">
           <h2>Почему стоит выбрать наши курсы по криптовалюте?</h2>
-          <div class="static-grid">
-            <div class="static-card">
+          <div class="static-features-grid">
+            <div class="static-feature-item">
+              <div class="static-feature-icon">📚</div>
               <h3>Обучение с нуля</h3>
               <p>Начните путь в мире криптовалют даже без базовых знаний. Наша программа построена специально для новичков.</p>
             </div>
-            <div class="static-card">
+            <div class="static-feature-item">
+              <div class="static-feature-icon">▶️</div>
               <h3>Гибкий формат</h3>
               <p>Онлайн-занятия в удобное время, записи уроков и возможность пересматривать материал.</p>
             </div>
-            <div class="static-card">
+            <div class="static-feature-item">
+              <div class="static-feature-icon">🏆</div>
               <h3>Практические уроки</h3>
               <p>Не только теория, но и практические задания с реальными примерами работы с криптовалютами.</p>
             </div>
-            <div class="static-card">
+            <div class="static-feature-item">
+              <div class="static-feature-icon">⭐</div>
               <h3>Премиальная криптошкола</h3>
               <p>Углубленные курсы для тех, кто хочет стать профессионалом в области криптовалют и блокчейна.</p>
             </div>
-            <div class="static-card">
+            <div class="static-feature-item">
+              <div class="static-feature-icon">🎁</div>
               <h3>Бесплатные вводные уроки</h3>
               <p>Попробуйте наш подход к обучению абсолютно бесплатно и убедитесь в качестве материала.</p>
             </div>
-            <div class="static-card">
+            <div class="static-feature-item">
+              <div class="static-feature-icon">👥</div>
               <h3>Поддержка сообщества</h3>
               <p>Присоединяйтесь к активному комьюнити учеников и получайте помощь в изучении крипты.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Student Results Section -->
+      <section class="static-section">
+        <div class="static-container">
+          <h2>Результаты наших учеников</h2>
+          <div class="static-grid">
+            <div class="static-card">
+              <h3>85% студентов</h3>
+              <p>успешно создают свой первый криптокошелек уже в первую неделю обучения</p>
+            </div>
+            <div class="static-card">
+              <h3>70% выпускников</h3>
+              <p>начинают инвестировать в криптовалюты в течение месяца после окончания курса</p>
+            </div>
+            <div class="static-card">
+              <h3>92% учеников</h3>
+              <p>рекомендуют наши курсы друзьям и коллегам</p>
             </div>
           </div>
         </div>
@@ -294,32 +445,223 @@
       <!-- Courses Section -->
       <section class="static-section" id="courses">
         <div class="static-container">
-          <h2>Какие курсы мы предлагаем?</h2>
+          <h2>Наши курсы</h2>
           <div class="static-grid">
             <div class="static-card">
-              <h3>Криптовалюта для чайников</h3>
+              <h3>Криптовалюта для начинающих</h3>
               <p>Идеальный курс для новичков. Изучите основы криптовалют, создайте первый кошелек и совершите первую покупку Bitcoin.</p>
-              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0;">Бесплатно</div>
-              <a href="#signup" class="static-button">Начать бесплатно</a>
+              <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                <li>Что такое блокчейн и криптовалюты</li>
+                <li>Создание криптокошелька</li>
+                <li>Покупка первых криптовалют</li>
+                <li>Основы безопасности</li>
+                <li>Хранение криптовалют</li>
+              </ul>
+              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0; font-size: 1.5rem;">Бесплатно</div>
+              <a href="/courses/crypto-for-beginners" class="static-button">Подробнее о курсе</a>
+              <a href="#signup" class="static-button static-button-purple" style="margin-left: 1rem;">Записаться</a>
             </div>
             <div class="static-card">
               <h3>Блокчейн и криптовалюты</h3>
               <p>Углубленное изучение технологии блокчейн и различных криптовалют. Для тех, кто хочет понимать технические аспекты.</p>
-              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0;">15,000 ₽</div>
-              <a href="#signup" class="static-button">Подробнее</a>
+              <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                <li>Глубокое изучение блокчейна</li>
+                <li>Анализ различных криптовалют</li>
+                <li>DeFi и смарт-контракты</li>
+                <li>NFT и их применение</li>
+                <li>Майнинг и стейкинг</li>
+              </ul>
+              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0; font-size: 1.5rem;">15,000 ₽</div>
+              <a href="/courses/blockchain-and-crypto" class="static-button">Подробнее о курсе</a>
+              <a href="#signup" class="static-button static-button-purple" style="margin-left: 1rem;">Записаться</a>
             </div>
             <div class="static-card">
               <h3>Биткоин и альткоины</h3>
               <p>Изучите стратегии инвестирования в Bitcoin и альтернативные криптовалюты. Практические навыки трейдинга.</p>
-              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0;">29,000 ₽</div>
-              <a href="#signup" class="static-button">Подробнее</a>
+              <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                <li>История и философия Bitcoin</li>
+                <li>Анализ альтернативных монет</li>
+                <li>Стратегии инвестирования</li>
+                <li>Технический анализ</li>
+                <li>Управление рисками</li>
+              </ul>
+              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0; font-size: 1.5rem;">29,000 ₽</div>
+              <a href="/courses/bitcoin-and-altcoins" class="static-button">Подробнее о курсе</a>
+              <a href="#signup" class="static-button static-button-purple" style="margin-left: 1rem;">Записаться</a>
             </div>
             <div class="static-card">
               <h3>Премиальная криптошкола</h3>
               <p>Полный курс для серьезных инвесторов. Индивидуальное сопровождение, закрытые вебинары и эксклюзивные материалы.</p>
-              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0;">50,000 ₽</div>
-              <a href="#signup" class="static-button">Подробнее</a>
+              <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                <li>Индивидуальное наставничество</li>
+                <li>Закрытые вебинары с экспертами</li>
+                <li>Продвинутые стратегии торговли</li>
+                <li>Портфельное управление</li>
+                <li>Доступ к приватному чату</li>
+                <li>Пожизненные обновления</li>
+              </ul>
+              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0; font-size: 1.5rem;">50,000 ₽</div>
+              <a href="/courses/premium-crypto-school" class="static-button">Подробнее о курсе</a>
+              <a href="#signup" class="static-button static-button-purple" style="margin-left: 1rem;">Записаться</a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Instructors Section -->
+      <section class="static-section" id="instructors">
+        <div class="static-container">
+          <h2>Наши преподаватели</h2>
+          <div class="static-grid">
+            <div class="static-instructor">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&h=300&auto=format&fit=crop" alt="Алексей Петров" />
+              <h3>Алексей Петров</h3>
+              <p><strong>Основатель криптошколы</strong></p>
+              <p>8 лет в криптоиндустрии, экс-разработчик блокчейн-проектов. Автор более 100 статей о криптовалютах.</p>
+            </div>
+            <div class="static-instructor">
+              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b1c6?q=80&w=300&h=300&auto=format&fit=crop" alt="Мария Смирнова" />
+              <h3>Мария Смирнова</h3>
+              <p><strong>Эксперт по DeFi</strong></p>
+              <p>Специалист по децентрализованным финансам с опытом работы в крупнейших DeFi-протоколах.</p>
+            </div>
+            <div class="static-instructor">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&h=300&auto=format&fit=crop" alt="Дмитрий Козлов" />
+              <h3>Дмитрий Козлов</h3>
+              <p><strong>Трейдер и аналитик</strong></p>
+              <p>10 лет на финансовых рынках, специализируется на техническом анализе криптовалют.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparison Section -->
+      <section class="static-comparison" id="comparison">
+        <div class="static-container">
+          <h2>Сравнение с другими курсами</h2>
+          <table class="static-comparison">
+            <thead>
+              <tr>
+                <th>Критерий</th>
+                <th class="highlight">Наши курсы</th>
+                <th>Другие школы</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Практические задания</td>
+                <td class="highlight">✅ Каждый урок</td>
+                <td>❌ Только теория</td>
+              </tr>
+              <tr>
+                <td>Поддержка студентов</td>
+                <td class="highlight">✅ 24/7 в Telegram</td>
+                <td>❌ Ограниченная</td>
+              </tr>
+              <tr>
+                <td>Обновления курса</td>
+                <td class="highlight">✅ Бесплатно навсегда</td>
+                <td>❌ Платные</td>
+              </tr>
+              <tr>
+                <td>Цена</td>
+                <td class="highlight">✅ От 0 ₽</td>
+                <td>❌ От 30,000 ₽</td>
+              </tr>
+              <tr>
+                <td>Гарантия возврата</td>
+                <td class="highlight">✅ 30 дней</td>
+                <td>❌ Нет</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="static-section" id="testimonials">
+        <div class="static-container">
+          <h2>Отзывы студентов</h2>
+          <div class="static-grid">
+            <div class="static-testimonial">
+              <blockquote>
+                "Благодаря курсу я наконец-то разобрался в криптовалютах! Все объясняется простым языком, много практики. Рекомендую всем новичкам!"
+              </blockquote>
+              <cite>— Александр И., студент курса "Криптовалюта для начинающих"</cite>
+            </div>
+            <div class="static-testimonial">
+              <blockquote>
+                "Отличная подача материала и поддержка преподавателей. За месяц обучения получил больше знаний, чем за год самостоятельного изучения."
+              </blockquote>
+              <cite>— Елена К., студентка курса "Блокчейн и криптовалюты"</cite>
+            </div>
+            <div class="static-testimonial">
+              <blockquote>
+                "Премиальный курс превзошел все ожидания! Индивидуальный подход, качественные материалы и постоянная поддержка. Очень доволен результатом."
+              </blockquote>
+              <cite>— Михаил Д., студент "Премиальной криптошколы"</cite>
+            </div>
+            <div class="static-testimonial">
+              <blockquote>
+                "Курс по Bitcoin помог мне создать диверсифицированный портфель. Теперь я уверенно инвестирую в криптовалюты!"
+              </blockquote>
+              <cite>— Ольга С., студентка курса "Биткоин и альткоины"</cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="static-section" id="faq">
+        <div class="static-container">
+          <h2>Часто задаваемые вопросы</h2>
+          <div style="max-width: 800px; margin: 0 auto;">
+            <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 0.5rem;">
+              <h3 style="color: #1e40af; margin-bottom: 0.5rem;">Подходит ли курс для полных новичков?</h3>
+              <p>Да, абсолютно! Наш базовый курс "Криптовалюта для начинающих" создан специально для тех, кто никогда не сталкивался с криптовалютами.</p>
+            </div>
+            <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 0.5rem;">
+              <h3 style="color: #1e40af; margin-bottom: 0.5rem;">Сколько времени нужно на изучение?</h3>
+              <p>Базовый курс можно пройти за 2-3 недели, изучая материал по 1-2 часа в день. Премиальные курсы рассчитаны на 1-2 месяца.</p>
+            </div>
+            <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 0.5rem;">
+              <h3 style="color: #1e40af; margin-bottom: 0.5rem;">Есть ли гарантия возврата денег?</h3>
+              <p>Да, мы предоставляем 30-дневную гарантию возврата денег для всех платных курсов.</p>
+            </div>
+            <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 0.5rem;">
+              <h3 style="color: #1e40af; margin-bottom: 0.5rem;">Получу ли я сертификат?</h3>
+              <p>Да, после успешного прохождения курса вы получите именной сертификат о прохождении обучения.</p>
+            </div>
+            <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 0.5rem;">
+              <h3 style="color: #1e40af; margin-bottom: 0.5rem;">Можно ли изучать курс в своем темпе?</h3>
+              <p>Конечно! Все материалы доступны в любое время, вы можете изучать их в удобном для вас темпе.</p>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 2rem;">
+            <a href="/faq" class="static-button">Больше вопросов и ответов</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Section -->
+      <section class="static-cta">
+        <div class="static-container">
+          <h2>Начните обучение прямо сейчас!</h2>
+          <p style="font-size: 1.25rem; margin-bottom: 2rem;">
+            Присоединяйтесь к нашей <strong>крипто школе</strong> и начните свой путь в мире криптовалют!
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="#signup" class="static-button">Начать бесплатный курс</a>
+            <a href="#courses" class="static-button static-button-purple">Узнать о премиум-курсах</a>
+          </div>
+          
+          <div style="margin-top: 2rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://t.me/ru_holder" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none;">
+              📱 Наш Телеграм канал
+            </a>
+            <a href="https://wa.me/79001234567" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none;">
+              💬 Написать в WhatsApp
+            </a>
           </div>
         </div>
       </section>
@@ -332,9 +674,9 @@
             <input type="text" name="name" placeholder="Ваше имя" required />
             <input type="email" name="email" placeholder="Ваш email" required />
             <input type="tel" name="phone" placeholder="Ваш телефон" required />
-            <select name="course" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; font-size: 1rem; box-sizing: border-box;">
+            <select name="course" required>
               <option value="">Выберите курс</option>
-              <option value="crypto-for-beginners">Криптовалюта для чайников</option>
+              <option value="crypto-for-beginners">Криптовалюта для начинающих</option>
               <option value="blockchain-and-crypto">Блокчейн и криптовалюты</option>
               <option value="bitcoin-and-altcoins">Биткоин и альткоины</option>
               <option value="premium-crypto-school">Премиальная криптошкола</option>
@@ -349,8 +691,29 @@
         <div class="static-container">
           <h2>О нас</h2>
           <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <p>Мы - команда экспертов в области криптовалют и блокчейн-технологий с многолетним опытом. Наша миссия - сделать знания о криптовалютах доступными для всех.</p>
-            <p>За время работы мы обучили более 10,000 студентов, помогли им освоить мир цифровых активов и добиться финансовой независимости.</p>
+            <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+              Мы - команда экспертов в области криптовалют и блокчейн-технологий с многолетним опытом. Наша миссия - сделать знания о криптовалютах доступными для всех.
+            </p>
+            <div class="static-grid" style="margin: 2rem 0;">
+              <div class="static-card">
+                <h3>10,000+</h3>
+                <p>Обученных студентов</p>
+              </div>
+              <div class="static-card">
+                <h3>95%</h3>
+                <p>Положительных отзывов</p>
+              </div>
+              <div class="static-card">
+                <h3>5 лет</h3>
+                <p>Опыта преподавания</p>
+              </div>
+            </div>
+            <p style="font-size: 1.125rem;">
+              За время работы мы помогли тысячам людей освоить мир цифровых активов и добиться финансовой независимости.
+            </p>
+            <div style="margin-top: 2rem;">
+              <a href="/about" class="static-button">Узнать больше о команде</a>
+            </div>
           </div>
         </div>
       </section>
@@ -360,11 +723,17 @@
         <div class="static-container">
           <h2>Свяжитесь с нами</h2>
           <div style="max-width: 600px; margin: 0 auto; text-align: center;">
-            <p>Есть вопросы? Мы всегда готовы помочь!</p>
+            <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+              Есть вопросы? Мы всегда готовы помочь!
+            </p>
             <div style="margin: 2rem 0;">
-              <p><strong>Email:</strong> info@cryptokursy.ru</p>
-              <p><strong>Телефон:</strong> +7 (800) 123-45-67</p>
-              <p><strong>Telegram:</strong> @cryptokursy</p>
+              <p style="margin-bottom: 1rem;"><strong>Email:</strong> <a href="mailto:info@cryptokursy.ru" style="color: #8b5cf6;">info@cryptokursy.ru</a></p>
+              <p style="margin-bottom: 1rem;"><strong>Телефон:</strong> <a href="tel:+78001234567" style="color: #8b5cf6;">+7 (800) 123-45-67</a></p>
+              <p style="margin-bottom: 1rem;"><strong>Telegram:</strong> <a href="https://t.me/cryptokursy" target="_blank" rel="noopener noreferrer" style="color: #8b5cf6;">@cryptokursy</a></p>
+              <p><strong>WhatsApp:</strong> <a href="https://wa.me/79001234567" target="_blank" rel="noopener noreferrer" style="color: #8b5cf6;">+7 (900) 123-45-67</a></p>
+            </div>
+            <div style="margin-top: 2rem;">
+              <a href="/contact" class="static-button">Страница контактов</a>
             </div>
           </div>
         </div>
@@ -373,6 +742,41 @@
       <!-- Footer -->
       <footer class="static-footer">
         <div class="static-container">
+          <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-bottom: 2rem;">
+            <div>
+              <h3 style="color: #8b5cf6; margin-bottom: 1rem;">КриптоКурсы</h3>
+              <p>Лучшие онлайн-курсы по криптовалютам и блокчейну. Обучение с нуля для начинающих и продвинутые программы.</p>
+            </div>
+            <div>
+              <h4 style="margin-bottom: 1rem;">Курсы</h4>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <a href="/courses/crypto-for-beginners" style="color: #d1d5db; text-decoration: none;">Криптовалюта для начинающих</a>
+                <a href="/courses/blockchain-and-crypto" style="color: #d1d5db; text-decoration: none;">Блокчейн и криптовалюты</a>
+                <a href="/courses/bitcoin-and-altcoins" style="color: #d1d5db; text-decoration: none;">Биткоин и альткоины</a>
+                <a href="/courses/premium-crypto-school" style="color: #d1d5db; text-decoration: none;">Премиальная криптошкола</a>
+              </div>
+            </div>
+            <div>
+              <h4 style="margin-bottom: 1rem;">Информация</h4>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <a href="/about" style="color: #d1d5db; text-decoration: none;">О нас</a>
+                <a href="/faq" style="color: #d1d5db; text-decoration: none;">FAQ</a>
+                <a href="/contact" style="color: #d1d5db; text-decoration: none;">Контакты</a>
+                <a href="/privacy" style="color: #d1d5db; text-decoration: none;">Политика конфиденциальности</a>
+                <a href="/terms" style="color: #d1d5db; text-decoration: none;">Условия использования</a>
+              </div>
+            </div>
+            <div>
+              <h4 style="margin-bottom: 1rem;">Контакты</h4>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <a href="mailto:info@cryptokursy.ru" style="color: #d1d5db; text-decoration: none;">info@cryptokursy.ru</a>
+                <a href="tel:+78001234567" style="color: #d1d5db; text-decoration: none;">+7 (800) 123-45-67</a>
+                <a href="https://t.me/cryptokursy" target="_blank" rel="noopener noreferrer" style="color: #d1d5db; text-decoration: none;">Telegram</a>
+                <a href="https://wa.me/79001234567" target="_blank" rel="noopener noreferrer" style="color: #d1d5db; text-decoration: none;">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+          <hr style="border: none; border-top: 1px solid #374151; margin: 2rem 0;" />
           <p>&copy; 2024 КриптоКурсы. Все права защищены.</p>
           <p>Обучение криптовалютам и блокчейну с нуля</p>
         </div>
