@@ -11,15 +11,41 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
     headers: {
       'Cache-Control': 'no-cache'
+    },
+    middlewareMode: false,
+    fs: {
+      strict: false
     }
   },
   plugins: [
     react(),
-    mode === 'development' && componentTagger()
+    mode === 'development' && componentTagger(),
+    {
+      name: 'configure-response-headers',
+      configureServer(server) {
+        server.middlewares.use('/robots.txt', (req, res, next) => {
+          res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+          next();
+        });
+      }
+    }
   ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  assetsInclude: ['**/*.txt'],
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'robots.txt') {
+            return 'robots.txt';
+          }
+          return assetInfo.name || 'assets/[name].[ext]';
+        }
+      }
+    }
   }
 }));
