@@ -56,7 +56,7 @@ const instructors: Instructor[] = [
       "Технический аналитик",
       "Эксперт по блокчейн-технологиям"
     ],
-    avatar: "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
+    avatar: `/lovable-uploads/855b84c6-1a09-4f43-bba5-e8241fd1331b.png?v=${Date.now()}`,
     courses: [
       {
         id: "bitcoin",
