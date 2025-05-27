@@ -3,10 +3,17 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import SEOHead from '@/components/SEOHead';
 
 const Privacy = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead 
+        title="Политика конфиденциальности"
+        description="Политика конфиденциальности КриптоКурсы. Узнайте, как мы собираем, используем и защищаем ваши персональные данные при использовании наших образовательных услуг."
+        canonical="https://cryptokursy.ru/privacy"
+        ogImage="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop"
+      />
       <Header />
       <main className="flex-grow container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">

@@ -1,3 +1,4 @@
+
 import React, { ReactNode, useState, useEffect, useRef } from 'react';
 import Header from './Header';
 import Footer from './Footer';
@@ -8,6 +9,7 @@ import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
 import { CalendarCheck, GraduationCap, BookOpen, Users, Clock, Shield, Medal, Star, Check, Info } from 'lucide-react';
 import FloatingCoursePriceBar from './FloatingCoursePriceBar';
+import SEOHead from './SEOHead';
 
 interface CourseLayoutProps {
   courseTitle: string;
@@ -16,6 +18,8 @@ interface CourseLayoutProps {
   level: string;
   price: string;
   popular?: boolean;
+  description?: string;
+  ogImage?: string;
   children: ReactNode;
 }
 
@@ -26,6 +30,8 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
   level,
   price,
   popular = false,
+  description,
+  ogImage,
   children
 }) => {
   const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 23, minutes: 59, seconds: 59 });
@@ -112,6 +118,12 @@ const CourseLayout: React.FC<CourseLayoutProps> = ({
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      <SEOHead 
+        title={courseTitle}
+        description={description || `Полный курс по ${courseTitle}. Изучите криптовалюты и блокчейн с нуля от профессиональных экспертов.`}
+        canonical={`https://cryptokursy.ru/courses/${courseSlug}`}
+        ogImage={ogImage}
+      />
       <Header />
       
       <main className="flex-grow">

@@ -13,12 +13,12 @@ interface SEOHeadProps {
 const SEOHead: React.FC<SEOHeadProps> = ({
   title,
   description,
-  ogImage = "https://cryptokursy.ru/og-image.jpg",
+  ogImage = "https://images.unsplash.com/photo-1639322537231-2f206e06af84?q=80&w=2032&auto=format&fit=crop", // Дефолтное изображение с криптовалютой
   canonical,
   structuredData
 }) => {
   const fullTitle = `${title} | КриптоКурсы`;
-  const currentUrl = canonical || window.location.href;
+  const currentUrl = canonical || (typeof window !== 'undefined' ? window.location.href : '');
 
   return (
     <>
@@ -33,15 +33,19 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         <meta property="og:url" content={currentUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="КриптоКурсы" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={`${title} - КриптоКурсы`} />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={fullTitle} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image:alt" content={`${title} - КриптоКурсы`} />
         
         {/* Canonical URL */}
-        <link rel="canonical" href={currentUrl} />
+        {currentUrl && <link rel="canonical" href={currentUrl} />}
       </Helmet>
       
       {structuredData && (

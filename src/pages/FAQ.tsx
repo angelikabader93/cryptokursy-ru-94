@@ -38,6 +38,7 @@ const FAQ = () => {
         title="Часто задаваемые вопросы"
         description="Ответы на популярные вопросы о курсах криптовалют, обучении блокчейну и инвестициях в цифровые активы. Получите всю необходимую информацию."
         canonical="https://cryptokursy.ru/faq"
+        ogImage="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop"
       />
       <FAQSchema />
       <Header />

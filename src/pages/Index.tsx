@@ -40,6 +40,7 @@ const Index = () => {
         title="Курсы по криптовалютам и блокчейну"
         description="Изучите криптовалюты с нуля! Профессиональные курсы по Bitcoin, блокчейну и инвестициям в криптовалюты. Практические знания от экспертов индустрии."
         canonical="https://cryptokursy.ru/"
+        ogImage="https://images.unsplash.com/photo-1642790551116-18e150f248e3?q=80&w=2070&auto=format&fit=crop"
       />
       <WebsiteSchema />
       <OrganizationSchema />
