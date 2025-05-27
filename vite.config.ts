@@ -3,7 +3,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import type { ViteDevServer, Connect } from "vite";
+import type { ViteDevServer, Plugin } from "vite";
+import type { IncomingMessage, ServerResponse } from "http";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -17,7 +18,7 @@ export default defineConfig(({ mode }) => ({
     {
       name: 'robots-txt-middleware',
       configureServer(server: ViteDevServer) {
-        server.middlewares.use('/robots.txt', (req: Connect.IncomingMessage, res: Connect.ServerResponse, next: Connect.NextFunction) => {
+        server.middlewares.use('/robots.txt', (req: IncomingMessage, res: ServerResponse, next: () => void) => {
           if (req.method === 'GET') {
             const robotsContent = `User-agent: *
 Allow: /
@@ -50,8 +51,8 @@ Crawl-delay: 1`;
           }
         });
       },
-      configurePreviewServer(server: ViteDevServer) {
-        server.middlewares.use('/robots.txt', (req: Connect.IncomingMessage, res: Connect.ServerResponse, next: Connect.NextFunction) => {
+      configurePreviewServer(server) {
+        server.middlewares.use('/robots.txt', (req: IncomingMessage, res: ServerResponse, next: () => void) => {
           if (req.method === 'GET') {
             const robotsContent = `User-agent: *
 Allow: /
@@ -84,7 +85,7 @@ Crawl-delay: 1`;
           }
         });
       }
-    }
+    } as Plugin
   ].filter(Boolean),
   resolve: {
     alias: {
