@@ -22,12 +22,375 @@
     <meta name="twitter:title" content="Бесплатное Обучение криптовалюте с нуля — лучшие курсы по крипте и блокчейну" />
     <meta name="twitter:description" content="Изучите криптовалюту с нуля ✅ Лучшие курсы по крипте, блокчейну и биткоину для начинающих ⭐️ Онлайн-обучение, бесплатные уроки и премиальные программы в криптошколе." />
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1642790551116-18e150f248e3?q=80&w=2070&auto=format&fit=crop" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Криптокурсы - Обучение криптовалютам и блокчейну",
+      "alternateName": "КРИПТО КУРСЫ",
+      "url": "https://cryptokursy.ru",
+      "description": "Лучшие онлайн-курсы по криптовалютам и блокчейну. Обучение с нуля для начинающих и продвинутые программы.",
+      "inLanguage": "ru-RU",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Криптокурсы"
+      }
+    }
+    </script>
+
+    <!-- Static CSS for no-JS fallback -->
+    <style>
+      /* Static styles for non-JS rendering */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        color: #374151;
+        background-color: #f9fafb;
+      }
+      
+      .static-header {
+        background: linear-gradient(to right, #8b5cf6, #a855f7);
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+      }
+      
+      .static-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      
+      .static-hero {
+        background: linear-gradient(to right, #8b5cf6, #a855f7);
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+      }
+      
+      .static-hero h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+      
+      .static-hero p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .static-section {
+        padding: 3rem 0;
+        background: white;
+        margin: 2rem 0;
+      }
+      
+      .static-section h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #1e40af;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      
+      .static-grid {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      
+      .static-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        border: 1px solid #e5e7eb;
+      }
+      
+      .static-card h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #1e40af;
+        margin-bottom: 1rem;
+      }
+      
+      .static-button {
+        display: inline-block;
+        background: #f97316;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .static-button:hover {
+        background: #ea580c;
+      }
+      
+      .static-form {
+        max-width: 500px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      
+      .static-form input {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem;
+        font-size: 1rem;
+        box-sizing: border-box;
+      }
+      
+      .static-nav {
+        background: white;
+        padding: 1rem 0;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      
+      .static-nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .static-logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #8b5cf6;
+      }
+      
+      .static-nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+      
+      .static-nav-links a {
+        color: #374151;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .static-nav-links a:hover {
+        color: #8b5cf6;
+      }
+      
+      .static-footer {
+        background: #1f2937;
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+        margin-top: 3rem;
+      }
+      
+      /* Hide React app initially, show only when JS loads */
+      #root {
+        display: none;
+      }
+      
+      /* Show React app when JS loads */
+      .js-loaded #root {
+        display: block;
+      }
+      
+      .js-loaded .static-content {
+        display: none;
+      }
+      
+      @media (max-width: 768px) {
+        .static-hero h1 {
+          font-size: 2rem;
+        }
+        
+        .static-nav-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .static-nav-links {
+          gap: 1rem;
+        }
+      }
+    </style>
   </head>
 
   <body>
+    <!-- Static content for no-JS fallback -->
+    <div class="static-content">
+      <!-- Header -->
+      <header class="static-nav">
+        <div class="static-container">
+          <div class="static-nav-content">
+            <div class="static-logo">КриптоКурсы</div>
+            <nav class="static-nav-links">
+              <a href="#courses">Курсы</a>
+              <a href="#about">О нас</a>
+              <a href="#contact">Контакты</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="static-hero">
+        <div class="static-container">
+          <h1>БЕСПЛАТНОЕ обучение криптовалюте с нуля – станьте экспертом в крипте!</h1>
+          <p>
+            Хотите освоить <strong>криптовалюту</strong> и <em>блокчейн</em> с нуля? Наши курсы и школа крипты помогут вам разобраться в мире цифровых активов, даже если вы новичок!
+          </p>
+          <a href="#signup" class="static-button">Начать бесплатно</a>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="static-section" id="features">
+        <div class="static-container">
+          <h2>Почему стоит выбрать наши курсы по криптовалюте?</h2>
+          <div class="static-grid">
+            <div class="static-card">
+              <h3>Обучение с нуля</h3>
+              <p>Начните путь в мире криптовалют даже без базовых знаний. Наша программа построена специально для новичков.</p>
+            </div>
+            <div class="static-card">
+              <h3>Гибкий формат</h3>
+              <p>Онлайн-занятия в удобное время, записи уроков и возможность пересматривать материал.</p>
+            </div>
+            <div class="static-card">
+              <h3>Практические уроки</h3>
+              <p>Не только теория, но и практические задания с реальными примерами работы с криптовалютами.</p>
+            </div>
+            <div class="static-card">
+              <h3>Премиальная криптошкола</h3>
+              <p>Углубленные курсы для тех, кто хочет стать профессионалом в области криптовалют и блокчейна.</p>
+            </div>
+            <div class="static-card">
+              <h3>Бесплатные вводные уроки</h3>
+              <p>Попробуйте наш подход к обучению абсолютно бесплатно и убедитесь в качестве материала.</p>
+            </div>
+            <div class="static-card">
+              <h3>Поддержка сообщества</h3>
+              <p>Присоединяйтесь к активному комьюнити учеников и получайте помощь в изучении крипты.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Courses Section -->
+      <section class="static-section" id="courses">
+        <div class="static-container">
+          <h2>Какие курсы мы предлагаем?</h2>
+          <div class="static-grid">
+            <div class="static-card">
+              <h3>Криптовалюта для чайников</h3>
+              <p>Идеальный курс для новичков. Изучите основы криптовалют, создайте первый кошелек и совершите первую покупку Bitcoin.</p>
+              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0;">Бесплатно</div>
+              <a href="#signup" class="static-button">Начать бесплатно</a>
+            </div>
+            <div class="static-card">
+              <h3>Блокчейн и криптовалюты</h3>
+              <p>Углубленное изучение технологии блокчейн и различных криптовалют. Для тех, кто хочет понимать технические аспекты.</p>
+              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0;">15,000 ₽</div>
+              <a href="#signup" class="static-button">Подробнее</a>
+            </div>
+            <div class="static-card">
+              <h3>Биткоин и альткоины</h3>
+              <p>Изучите стратегии инвестирования в Bitcoin и альтернативные криптовалюты. Практические навыки трейдинга.</p>
+              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0;">29,000 ₽</div>
+              <a href="#signup" class="static-button">Подробнее</a>
+            </div>
+            <div class="static-card">
+              <h3>Премиальная криптошкола</h3>
+              <p>Полный курс для серьезных инвесторов. Индивидуальное сопровождение, закрытые вебинары и эксклюзивные материалы.</p>
+              <div style="font-weight: bold; color: #1e40af; margin: 1rem 0;">50,000 ₽</div>
+              <a href="#signup" class="static-button">Подробнее</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Registration Form -->
+      <section class="static-section" id="signup">
+        <div class="static-container">
+          <h2>Записаться на курс</h2>
+          <form class="static-form" action="/submit-form" method="POST">
+            <input type="text" name="name" placeholder="Ваше имя" required />
+            <input type="email" name="email" placeholder="Ваш email" required />
+            <input type="tel" name="phone" placeholder="Ваш телефон" required />
+            <select name="course" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; font-size: 1rem; box-sizing: border-box;">
+              <option value="">Выберите курс</option>
+              <option value="crypto-for-beginners">Криптовалюта для чайников</option>
+              <option value="blockchain-and-crypto">Блокчейн и криптовалюты</option>
+              <option value="bitcoin-and-altcoins">Биткоин и альткоины</option>
+              <option value="premium-crypto-school">Премиальная криптошкола</option>
+            </select>
+            <button type="submit" class="static-button" style="width: 100%;">Записаться на курс</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="static-section" id="about">
+        <div class="static-container">
+          <h2>О нас</h2>
+          <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p>Мы - команда экспертов в области криптовалют и блокчейн-технологий с многолетним опытом. Наша миссия - сделать знания о криптовалютах доступными для всех.</p>
+            <p>За время работы мы обучили более 10,000 студентов, помогли им освоить мир цифровых активов и добиться финансовой независимости.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="static-section" id="contact">
+        <div class="static-container">
+          <h2>Свяжитесь с нами</h2>
+          <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <p>Есть вопросы? Мы всегда готовы помочь!</p>
+            <div style="margin: 2rem 0;">
+              <p><strong>Email:</strong> info@cryptokursy.ru</p>
+              <p><strong>Телефон:</strong> +7 (800) 123-45-67</p>
+              <p><strong>Telegram:</strong> @cryptokursy</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="static-footer">
+        <div class="static-container">
+          <p>&copy; 2024 КриптоКурсы. Все права защищены.</p>
+          <p>Обучение криптовалютам и блокчейну с нуля</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- React App Container -->
     <div id="root"></div>
+    
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Script to show React app when JS loads -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('js-loaded');
+      });
+    </script>
   </body>
 </html>

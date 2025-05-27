@@ -20,6 +20,7 @@ import Terms from "./pages/Terms";
 import LowercaseRedirect from "./components/LowercaseRedirect";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import ScrollToTop from "./components/ScrollToTop";
+import StaticFormHandler from "./components/StaticFormHandler";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <StaticFormHandler />
         <BrowserRouter>
           <ScrollToTop />
           <LowercaseRedirect>

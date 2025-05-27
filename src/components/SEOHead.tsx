@@ -14,7 +14,7 @@ interface SEOHeadProps {
 const SEOHead: React.FC<SEOHeadProps> = ({
   title,
   description,
-  ogImage = "https://images.unsplash.com/photo-1639322537231-2f206e06af84?q=80&w=2032&auto=format&fit=crop", // Дефолтное изображение с криптовалютой
+  ogImage = "https://images.unsplash.com/photo-1639322537231-2f206e06af84?q=80&w=2032&auto=format&fit=crop",
   canonical,
   structuredData
 }) => {
@@ -51,6 +51,19 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         {/* Preconnect для улучшения производительности */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        
+        {/* Enhanced meta tags for SEO */}
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="author" content="КриптоКурсы" />
+        <meta name="language" content="ru" />
+        <meta httpEquiv="content-language" content="ru-RU" />
+        
+        {/* Progressive Enhancement hint */}
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </Helmet>
       
       <NoScriptStyles />
