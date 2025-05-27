@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
@@ -37,11 +36,6 @@ const instructors: Instructor[] = [
         id: "beginners",
         title: "Криптовалюта для чайников",
         url: "/courses/crypto-for-beginners"
-      },
-      {
-        id: "premium",
-        title: "Премиальная криптошкола",
-        url: "/courses/premium-crypto-school"
       }
     ]
   },
@@ -69,6 +63,26 @@ const instructors: Instructor[] = [
         url: "/courses/blockchain-and-crypto"
       }
     ]
+  },
+  {
+    id: "gromov",
+    name: "Алексей Громов",
+    position: "Блокчейн-архитектор",
+    bio: "Алексей — ведущий специалист по блокчейн-технологиям с 6-летним опытом. Разработчик DeFi-протоколов и эксперт по смарт-контрактам.",
+    experience: [
+      "6+ лет опыта в блокчейн-разработке",
+      "Архитектор DeFi-проектов",
+      "Разработчик смарт-контрактов",
+      "Консультант по токеномике"
+    ],
+    avatar: `/lovable-uploads/1dbf4abc-bae2-4700-990c-ccd769aa7dee.png?v=${Date.now()}`,
+    courses: [
+      {
+        id: "premium",
+        title: "Премиальная криптошкола",
+        url: "/courses/premium-crypto-school"
+      }
+    ]
   }
 ];
 
@@ -82,7 +96,7 @@ const InstructorsSection: React.FC = () => {
         </div>
         <h2 className="section-title mb-12 text-center text-3xl font-bold text-crypto-blue">Наши преподаватели</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {instructors.map((instructor) => (
             <Card key={instructor.id} className="border border-gray-200 transition-all duration-200 hover:shadow-md">
               <CardHeader className="text-center pb-2">
