@@ -14,6 +14,12 @@ import CourseBreadcrumbs from '@/components/CourseBreadcrumbs';
 const CryptoForBeginnersLandingPage = () => {
   const [showModal, setShowModal] = useState(false);
 
+  const breadcrumbs = [
+    { name: "Главная", href: "/" },
+    { name: "Курсы", href: "/#courses" },
+    { name: "Криптовалюта для чайников" }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead 
@@ -33,7 +39,7 @@ const CryptoForBeginnersLandingPage = () => {
         url="https://cryptokursy.ru/courses/crypto-for-beginners"
       />
       <Header />
-      <CourseBreadcrumbs courseName="Криптовалюта для чайников" />
+      <CourseBreadcrumbs breadcrumbs={breadcrumbs} />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-crypto-orange via-amber-500 to-yellow-500 text-white py-20">

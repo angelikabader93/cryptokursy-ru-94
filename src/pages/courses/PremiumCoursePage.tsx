@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Gift, Play, Star, Crown, Rocket, Target, Trophy, Shield, Headphones } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -14,6 +15,12 @@ import LeadCaptureModal from '@/components/LeadCaptureModal';
 const PremiumCoursePage = () => {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalType, setModalType] = React.useState<'hero' | 'price'>('hero');
+
+  const breadcrumbs = [
+    { name: "Главная", href: "/" },
+    { name: "Курсы", href: "/#courses" },
+    { name: "Премиальная криптошкола" }
+  ];
 
   const handleHeroButtonClick = () => {
     setModalType('hero');
@@ -123,7 +130,7 @@ const PremiumCoursePage = () => {
         
         {/* Breadcrumb */}
         <div className="container mx-auto px-4 relative z-10 mb-8">
-          <CourseBreadcrumbs courseName="Премиальная криптошкола" courseUrl="/courses/premium-crypto-school" />
+          <CourseBreadcrumbs breadcrumbs={breadcrumbs} />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
