@@ -37,6 +37,11 @@ const instructors: Instructor[] = [
         id: "beginners",
         title: "Криптовалюта для чайников",
         url: "/courses/crypto-for-beginners"
+      },
+      {
+        id: "bitcoin",
+        title: "Биткоин и альткоины",
+        url: "/courses/bitcoin-and-altcoins"
       }
     ]
   },
@@ -54,9 +59,14 @@ const instructors: Instructor[] = [
     avatar: `/lovable-uploads/855b84c6-1a09-4f43-bba5-e8241fd1331b.png?v=${Date.now()}`,
     courses: [
       {
-        id: "bitcoin",
-        title: "Биткоин и альткоины",
-        url: "/courses/bitcoin-and-altcoins"
+        id: "beginners",
+        title: "Криптовалюта для чайников",
+        url: "/courses/crypto-for-beginners"
+      },
+      {
+        id: "blockchain",
+        title: "Блокчейн и криптовалюты",
+        url: "/courses/blockchain-and-crypto"
       }
     ]
   },
@@ -73,6 +83,11 @@ const instructors: Instructor[] = [
     ],
     avatar: `/lovable-uploads/1dbf4abc-bae2-4700-990c-ccd769aa7dee.png?v=${Date.now()}`,
     courses: [
+      {
+        id: "bitcoin",
+        title: "Биткоин и альткоины",
+        url: "/courses/bitcoin-and-altcoins"
+      },
       {
         id: "blockchain",
         title: "Блокчейн и криптовалюты",
