@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
@@ -56,11 +57,6 @@ const instructors: Instructor[] = [
         id: "bitcoin",
         title: "Биткоин и альткоины",
         url: "/courses/bitcoin-and-altcoins"
-      },
-      {
-        id: "blockchain",
-        title: "Блокчейн и криптовалюты",
-        url: "/courses/blockchain-and-crypto"
       }
     ]
   },
@@ -76,6 +72,26 @@ const instructors: Instructor[] = [
       "Консультант по токеномике"
     ],
     avatar: `/lovable-uploads/1dbf4abc-bae2-4700-990c-ccd769aa7dee.png?v=${Date.now()}`,
+    courses: [
+      {
+        id: "blockchain",
+        title: "Блокчейн и криптовалюты",
+        url: "/courses/blockchain-and-crypto"
+      }
+    ]
+  },
+  {
+    id: "seleznev",
+    name: "Владимир Селезнёв",
+    position: "Стратег криптоинвестиций",
+    bio: "Владимир — профессиональный инвестиционный стратег с 5-летним опытом в сфере криптовалют. Специалист по портфельному менеджменту и рисковому анализу.",
+    experience: [
+      "5+ лет опыта в криптоинвестициях",
+      "Портфельный менеджер",
+      "Эксперт по управлению рисками",
+      "Консультант по диверсификации"
+    ],
+    avatar: `/lovable-uploads/be9c2565-06f6-45e4-be7b-6195f5863033.png?v=${Date.now()}`,
     courses: [
       {
         id: "premium",
@@ -96,7 +112,7 @@ const InstructorsSection: React.FC = () => {
         </div>
         <h2 className="section-title mb-12 text-center text-3xl font-bold text-crypto-blue">Наши преподаватели</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {instructors.map((instructor) => (
             <Card key={instructor.id} className="border border-gray-200 transition-all duration-200 hover:shadow-md">
               <CardHeader className="text-center pb-2">
