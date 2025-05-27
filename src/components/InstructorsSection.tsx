@@ -31,7 +31,7 @@ const instructors: Instructor[] = [
       "Участник международных конференций",
       "Разработчик инвестиционных стратегий"
     ],
-    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
+    avatar: "/lovable-uploads/cb73a276-4226-4a62-a991-a0ae9209516d.png",
     courses: [
       {
         id: "beginners",
