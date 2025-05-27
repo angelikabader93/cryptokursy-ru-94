@@ -37,28 +37,48 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section 
+      className="py-16 bg-gray-50" 
+      id="features"
+      itemScope 
+      itemType="https://schema.org/ItemList"
+    >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-crypto-blue mb-4">
+        <header className="text-center mb-12">
+          <h2 
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-crypto-blue mb-4"
+            itemProp="name"
+          >
             Почему стоит выбрать наши курсы по криптовалюте?
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Мы предлагаем комплексный подход к изучению криптовалют: от базовых понятий до продвинутых стратегий инвестирования
           </p>
-        </div>
+        </header>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="crypto-card text-center">
+            <article 
+              key={index} 
+              className="crypto-card text-center"
+              itemScope 
+              itemType="https://schema.org/Service"
+              itemProp="itemListElement"
+            >
+              <meta itemProp="position" content={String(index + 1)} />
               <div className="bg-crypto-orange/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center text-crypto-orange">
                 {feature.icon}
               </div>
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 text-crypto-blue">
+              <h3 
+                className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 text-crypto-blue"
+                itemProp="name"
+              >
                 {feature.title}
               </h3>
-              <p className="text-gray-600">{feature.description}</p>
-            </div>
+              <p className="text-gray-600" itemProp="description">
+                {feature.description}
+              </p>
+            </article>
           ))}
         </div>
       </div>

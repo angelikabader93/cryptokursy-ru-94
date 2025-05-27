@@ -35,7 +35,11 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div 
+      className="min-h-screen flex flex-col"
+      itemScope 
+      itemType="https://schema.org/WebPage"
+    >
       <SEOHead 
         title="Курсы по криптовалютам и блокчейну"
         description="Изучите криптовалюты с нуля! Профессиональные курсы по Bitcoin, блокчейну и инвестициям в криптовалюты. Практические знания от экспертов индустрии."
@@ -44,8 +48,36 @@ const Index = () => {
       />
       <WebsiteSchema />
       <OrganizationSchema />
+      
+      <noscript>
+        <style>
+          {`
+            .crypto-card {
+              background: white;
+              padding: 1.5rem;
+              border-radius: 0.5rem;
+              box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+              border: 1px solid #e5e7eb;
+            }
+            .section-title {
+              font-size: 2rem;
+              font-weight: bold;
+              color: #1e40af;
+              margin-bottom: 2rem;
+              text-align: center;
+            }
+            .text-gradient {
+              background: linear-gradient(to right, #8b5cf6, #a855f7);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            }
+          `}
+        </style>
+      </noscript>
+      
       <Header />
-      <main>
+      <main role="main" itemProp="mainContentOfPage">
         <HeroSection />
         <FeaturesSection />
         <StudentResultsSection />

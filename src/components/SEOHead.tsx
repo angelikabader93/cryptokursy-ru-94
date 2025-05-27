@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import NoScriptStyles from './NoScriptStyles';
 
 interface SEOHeadProps {
   title: string;
@@ -46,7 +47,13 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         
         {/* Canonical URL */}
         {currentUrl && <link rel="canonical" href={currentUrl} />}
+        
+        {/* Preconnect для улучшения производительности */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
       </Helmet>
+      
+      <NoScriptStyles />
       
       {structuredData && (
         <script

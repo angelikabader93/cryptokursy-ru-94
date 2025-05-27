@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import SignupForm from './SignupForm';
 import LeadCaptureModal from './LeadCaptureModal';
+import SEOOptimizedButton from './SEOOptimizedButton';
 
 const HeroSection = () => {
   const [showModal, setShowModal] = useState(false);
@@ -40,16 +41,15 @@ const HeroSection = () => {
               </p>
             </div>
             <nav className="flex flex-col sm:flex-row gap-4" aria-label="Основные действия">
-              <Button 
+              <SEOOptimizedButton 
+                href="#hero-signup-form"
+                variant="cryptoOrange"
                 className="bg-crypto-orange hover:bg-orange-600 text-white font-bold text-lg py-6 px-8"
-                onClick={() => setShowModal(true)}
-                aria-describedby="hero-button-description"
+                ariaLabel="Начать бесплатное обучение криптовалютам"
+                title="Записаться на бесплатный курс по криптовалютам"
               >
                 Начать бесплатно
-              </Button>
-              <span id="hero-button-description" className="sr-only">
-                Открыть форму регистрации на бесплатный курс
-              </span>
+              </SEOOptimizedButton>
               <Button 
                 variant="outline" 
                 className="bg-white hover:bg-gray-100 text-crypto-blue font-bold text-lg py-6 px-8"
