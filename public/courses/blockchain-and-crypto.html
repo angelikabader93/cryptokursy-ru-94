@@ -82,28 +82,45 @@
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; margin: 0; padding: 0; line-height: 1.6; color: #374151; background-color: #f9fafb; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
         .header { background: linear-gradient(to right, #8b5cf6, #a855f7); color: white; padding: 1rem 0; }
-        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         .logo { font-size: 1.5rem; font-weight: bold; }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { color: white; text-decoration: none; }
-        .hero { background: linear-gradient(to right, #1e40af, #3b82f6); color: white; padding: 4rem 0; text-align: center; }
-        .hero h1 { font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; }
+        .nav-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+        .nav-links a { color: white; text-decoration: none; padding: 0.5rem 0; }
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); color: white; padding: 4rem 0; text-align: center; }
+        .hero h1 { font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .content { padding: 3rem 0; }
         .section { margin-bottom: 3rem; }
-        .section h2 { font-size: 2rem; color: #1e40af; margin-bottom: 1.5rem; }
+        .section h2 { font-size: 2rem; color: #1e40af; margin-bottom: 1.5rem; text-align: center; }
         .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        .card { background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .button { display: inline-block; background: #f97316; color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 0.375rem; font-weight: 600; margin-top: 1rem; }
+        .card { background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-2px); }
+        .card h3 { color: #1e40af; margin-bottom: 1rem; font-size: 1.25rem; }
+        .button { display: inline-block; background: linear-gradient(to right, #f97316, #ea580c); color: white; padding: 0.875rem 2rem; text-decoration: none; border-radius: 0.5rem; font-weight: 600; margin-top: 1rem; transition: all 0.2s; border: none; cursor: pointer; }
+        .button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
         .form { max-width: 500px; margin: 2rem auto; background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .form input { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; box-sizing: border-box; }
+        .form input { width: 100%; padding: 0.875rem; margin-bottom: 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; box-sizing: border-box; font-size: 1rem; }
+        .form input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
         .footer { background: #1f2937; color: white; padding: 2rem 0; text-align: center; margin-top: 3rem; }
-        .price { font-size: 2rem; font-weight: bold; color: #1e40af; margin: 1rem 0; }
+        .price { font-size: 2.5rem; font-weight: bold; color: #fbbf24; margin: 1rem 0; }
+        .breadcrumb { text-align: left; margin-bottom: 2rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; }
+        .breadcrumb a { color: rgba(255,255,255,0.8); text-decoration: none; }
+        .breadcrumb a:hover { color: white; }
+        .hero-subtitle { font-size: 1.125rem; margin-bottom: 2rem; color: #cbd5e1; }
+        
+        @media (max-width: 768px) {
+            .nav { flex-direction: column; gap: 1rem; }
+            .nav-links { gap: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero { padding: 2rem 0; }
+            .price { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <nav class="nav">
+            <nav class="nav" role="navigation">
                 <div class="logo">КриптоКурсы</div>
                 <div class="nav-links">
                     <a href="/">Главная</a>
@@ -117,52 +134,104 @@
 
     <section class="hero">
         <div class="container">
-            <nav style="text-align: left; margin-bottom: 2rem; color: rgba(255,255,255,0.7);">
-                <a href="/" style="color: rgba(255,255,255,0.7);">Главная</a> › 
-                <a href="/#courses" style="color: rgba(255,255,255,0.7);">Курсы</a> › 
-                <span style="color: white;">Блокчейн и криптовалюты</span>
+            <nav class="breadcrumb" aria-label="Хлебные крошки">
+                <a href="/">Главная</a> › 
+                <a href="/#courses">Курсы</a> › 
+                <span>Блокчейн и криптовалюты</span>
             </nav>
             <h1>Блокчейн и криптовалюты</h1>
-            <p>Углубленное изучение технологии блокчейн и различных криптовалют</p>
+            <p class="hero-subtitle">Углубленное изучение технологии блокчейн и различных криптовалют</p>
             <div class="price">15,000 ₽</div>
             <a href="#signup" class="button">Записаться на курс</a>
         </div>
     </section>
 
-    <div class="container content">
+    <main class="container content">
+        <section class="section">
+            <h2>Что вы изучите</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>⛓️ Архитектура блокчейна</h3>
+                    <p>Глубокое понимание структуры блокчейна, принципов работы распределенных реестров и механизмов консенсуса</p>
+                </div>
+                <div class="card">
+                    <h3>🔐 Криптографические основы</h3>
+                    <p>Изучение хеш-функций, цифровых подписей, деревьев Меркла и других криптографических инструментов блокчейна</p>
+                </div>
+                <div class="card">
+                    <h3>📊 Анализ криптопроектов</h3>
+                    <p>Методики оценки криптовалютных проектов, анализ токеномики, команды, технологий и рыночных перспектив</p>
+                </div>
+                <div class="card">
+                    <h3>🏦 DeFi экосистема</h3>
+                    <p>Децентрализованные финансы, протоколы кредитования, DEX, yield farming и управление ликвидностью</p>
+                </div>
+                <div class="card">
+                    <h3>🎨 NFT и метавселенная</h3>
+                    <p>Невзаимозаменяемые токены, их создание, торговля, использование в играх и виртуальных мирах</p>
+                </div>
+                <div class="card">
+                    <h3>🔧 Смарт-контракты</h3>
+                    <p>Принципы работы смарт-контрактов, их применение, безопасность и перспективы развития</p>
+                </div>
+            </div>
+        </section>
+
         <section class="section">
             <h2>Программа курса</h2>
             <div class="grid">
                 <div class="card">
                     <h3>Модуль 1: Глубокое изучение блокчейна</h3>
                     <ul>
-                        <li>Архитектура блокчейна</li>
-                        <li>Консенсус алгоритмы</li>
-                        <li>Типы блокчейнов</li>
+                        <li>Архитектура блокчейна и структура блоков</li>
+                        <li>Консенсус алгоритмы (PoW, PoS, DPoS)</li>
+                        <li>Типы блокчейнов (публичные, приватные, гибридные)</li>
+                        <li>Масштабируемость и трилемма блокчейна</li>
                     </ul>
                 </div>
                 <div class="card">
                     <h3>Модуль 2: Анализ криптовалют</h3>
                     <ul>
-                        <li>Фундаментальный анализ</li>
-                        <li>Технический анализ</li>
-                        <li>Оценка проектов</li>
+                        <li>Фундаментальный анализ проектов</li>
+                        <li>Технический анализ криптовалют</li>
+                        <li>Оценка токеномики и экономической модели</li>
+                        <li>Исследование команды и партнерств</li>
                     </ul>
                 </div>
                 <div class="card">
                     <h3>Модуль 3: DeFi и смарт-контракты</h3>
                     <ul>
-                        <li>Децентрализованные финансы</li>
-                        <li>Смарт-контракты</li>
-                        <li>DEX и протоколы</li>
+                        <li>Основы децентрализованных финансов</li>
+                        <li>Протоколы кредитования и заимствования</li>
+                        <li>Децентрализованные биржи (DEX)</li>
+                        <li>Yield farming и ликвидность mining</li>
                     </ul>
                 </div>
                 <div class="card">
                     <h3>Модуль 4: NFT и их применение</h3>
                     <ul>
-                        <li>Невзаимозаменяемые токены</li>
-                        <li>Создание NFT</li>
-                        <li>Маркетплейсы</li>
+                        <li>Технология невзаимозаменяемых токенов</li>
+                        <li>Создание и минтинг NFT</li>
+                        <li>Маркетплейсы и торговля NFT</li>
+                        <li>Игровые NFT и метавселенная</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Модуль 5: Безопасность и риски</h3>
+                    <ul>
+                        <li>Уязвимости смарт-контрактов</li>
+                        <li>Аудит протоколов DeFi</li>
+                        <li>Управление рисками в DeFi</li>
+                        <li>Страхование DeFi протоколов</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Модуль 6: Будущее блокчейна</h3>
+                    <ul>
+                        <li>Интероперабельность блокчейнов</li>
+                        <li>Веб 3.0 и децентрализованный интернет</li>
+                        <li>Регулирование и институциональное принятие</li>
+                        <li>Перспективы развития технологии</li>
                     </ul>
                 </div>
             </div>
@@ -170,20 +239,37 @@
 
         <section class="section" id="signup">
             <h2>Записаться на курс</h2>
-            <form class="form" action="/submit-form" method="POST">
-                <input type="text" name="name" placeholder="Ваше имя" required />
-                <input type="email" name="email" placeholder="Ваш email" required />
-                <input type="tel" name="phone" placeholder="Ваш телефон" required />
-                <input type="hidden" name="course" value="blockchain-and-crypto" />
-                <button type="submit" class="button" style="width: 100%; border: none; cursor: pointer;">Записаться за 15,000 ₽</button>
-            </form>
+            <div class="form">
+                <form action="/submit-form" method="POST">
+                    <input type="text" name="name" placeholder="Ваше имя" required aria-label="Ваше имя" />
+                    <input type="email" name="email" placeholder="Ваш email" required aria-label="Ваш email" />
+                    <input type="tel" name="phone" placeholder="Ваш телефон" required aria-label="Ваш телефон" />
+                    <input type="hidden" name="course" value="blockchain-and-crypto" />
+                    <button type="submit" class="button" style="width: 100%;">Записаться за 15,000 ₽</button>
+                </form>
+                <p style="text-align: center; margin-top: 1rem; color: #6b7280; font-size: 0.875rem;">
+                    Нажимая кнопку, вы соглашаетесь с <a href="/privacy" style="color: #3b82f6;">политикой конфиденциальности</a>
+                </p>
+            </div>
         </section>
-    </div>
+    </main>
 
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 КриптоКурсы. Все права защищены.</p>
+            <div style="margin-top: 1rem;">
+                <a href="/privacy" style="color: #9ca3af; text-decoration: none; margin: 0 1rem;">Политика конфиденциальности</a>
+                <a href="/terms" style="color: #9ca3af; text-decoration: none; margin: 0 1rem;">Пользовательское соглашение</a>
+            </div>
         </div>
     </footer>
+    
+    <noscript>
+        <style>
+            .hero h1 { color: #60a5fa !important; }
+            .button:hover { transform: none !important; }
+            .card:hover { transform: none !important; }
+        </style>
+    </noscript>
 </body>
 </html>
