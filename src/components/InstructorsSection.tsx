@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
@@ -31,7 +30,7 @@ const instructors: Instructor[] = [
       "Участник международных конференций",
       "Разработчик инвестиционных стратегий"
     ],
-    avatar: "/lovable-uploads/cb73a276-4226-4a62-a991-a0ae9209516d.png",
+    avatar: "/lovable-uploads/a97572f4-6fd5-47fa-84dc-bcd47ed056ba.png",
     courses: [
       {
         id: "beginners",
