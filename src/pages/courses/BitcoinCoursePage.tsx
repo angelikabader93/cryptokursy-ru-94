@@ -27,6 +27,12 @@ const BitcoinCoursePage = () => {
   const [showStartLearningModal, setShowStartLearningModal] = useState(false);
   const [showBuyCourseModal, setShowBuyCourseModal] = useState(false);
 
+  const breadcrumbs = [
+    { name: "Главная", href: "/" },
+    { name: "Курсы", href: "/#courses" },
+    { name: "Bitcoin и альткоины" }
+  ];
+
   // Course modules data
   const modules = [
     {
@@ -299,7 +305,7 @@ const BitcoinCoursePage = () => {
         
         {/* Breadcrumb */}
         <div className="container mx-auto px-4 relative z-10 mb-8">
-          <CourseBreadcrumbs courseName="Bitcoin и альткоины" courseUrl="/courses/bitcoin-and-altcoins" />
+          <CourseBreadcrumbs breadcrumbs={breadcrumbs} />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
