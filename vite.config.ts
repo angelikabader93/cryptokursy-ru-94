@@ -15,43 +15,11 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
-    {
-      name: 'robots-txt-handler',
-      configureServer(server: any) {
-        server.middlewares.use('/robots.txt', (req: any, res: any, next: any) => {
-          res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-          next();
-        });
-      },
-      generateBundle(options: any, bundle: any) {
-        // Ensure robots.txt is treated as text/plain in production
-        if (bundle['robots.txt']) {
-          bundle['robots.txt'].fileName = 'robots.txt';
-        }
-      }
-    }
+    mode === 'development' && componentTagger()
   ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  build: {
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html'),
-        robots: path.resolve(__dirname, 'public/robots.txt')
-      },
-      output: {
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'robots.txt') {
-            return 'robots.txt';
-          }
-          return assetInfo.name || '';
-        }
-      }
-    }
-  },
-  assetsInclude: ['**/*.txt']
+  }
 }));
