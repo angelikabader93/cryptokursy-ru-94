@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -310,6 +311,79 @@
         font-size: 1.5rem;
       }
       
+      .static-results-section {
+        background: #f8fafc;
+        padding: 3rem 0;
+      }
+      
+      .static-result-stat {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #1e40af;
+        margin-bottom: 1rem;
+      }
+      
+      .static-practical-section {
+        background: linear-gradient(to right, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.1));
+        padding: 3rem 0;
+      }
+      
+      .static-fears-section {
+        background: linear-gradient(to bottom, rgba(30, 64, 175, 0.05), white);
+        padding: 3rem 0;
+      }
+      
+      .static-modules-section {
+        background: white;
+        padding: 3rem 0;
+      }
+      
+      .static-module-card {
+        background: linear-gradient(to bottom right, #f8fafc, white);
+        border-radius: 0.75rem;
+        padding: 2rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+      
+      .static-module-number {
+        color: #f97316;
+        font-size: 0.875rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      
+      .static-module-title {
+        color: #1e40af;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      
+      .static-module-lessons {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+      }
+      
+      .static-module-lessons li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+        color: #4b5563;
+      }
+      
+      .static-module-lessons li:before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background: #f97316;
+        border-radius: 50%;
+        margin-right: 0.75rem;
+        flex-shrink: 0;
+      }
+      
       /* Hide React app initially, show only when JS loads */
       #root {
         display: none;
@@ -345,6 +419,10 @@
         .static-features-grid {
           grid-template-columns: 1fr;
         }
+        
+        .static-result-stat {
+          font-size: 2rem;
+        }
       }
     </style>
   </head>
@@ -375,7 +453,7 @@
         <div class="static-container">
           <h1>БЕСПЛАТНОЕ обучение криптовалюте с нуля – станьте экспертом в крипте!</h1>
           <p>
-            Хотите освоить <strong>криптовалюту</strong> и <em>блокчейн</em> с нуля? Наши курсы и школа крипты помогут вам разобраться в мире цифровых активов, даже если вы новичок!
+            Хотите освоить <strong>криптовалюту</strong> и <em>блокчейн</em> с нуля? Наши курсы и школа крипты помогут вам разобраться в мире цифровых активов, даже если вы новичок! Мы предлагаем <strong>онлайн-курсы по криптовалюте</strong>, бесплатные уроки и премиальные программы для всех уровней подготовки.
           </p>
           <a href="#signup" class="static-button">Начать бесплатно</a>
         </div>
@@ -385,6 +463,9 @@
       <section class="static-section" id="features">
         <div class="static-container">
           <h2>Почему стоит выбрать наши курсы по криптовалюте?</h2>
+          <p style="text-align: center; font-size: 1.125rem; color: #4b5563; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Мы предлагаем комплексный подход к изучению криптовалют: от базовых понятий до продвинутых стратегий инвестирования
+          </p>
           <div class="static-features-grid">
             <div class="static-feature-item">
               <div class="static-feature-icon">📚</div>
@@ -421,21 +502,123 @@
       </section>
 
       <!-- Student Results Section -->
-      <section class="static-section">
+      <section class="static-results-section">
         <div class="static-container">
-          <h2>Результаты наших учеников</h2>
+          <h2>Результаты учеников</h2>
+          <p style="text-align: center; font-size: 1.125rem; color: #4b5563; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Реальные истории успеха наших студентов в мире криптовалют
+          </p>
           <div class="static-grid">
-            <div class="static-card">
-              <h3>85% студентов</h3>
-              <p>успешно создают свой первый криптокошелек уже в первую неделю обучения</p>
+            <div class="static-card" style="text-align: center;">
+              <div style="color: #10b981; font-size: 3rem; margin-bottom: 1rem;">📈</div>
+              <div class="static-result-stat">127%</div>
+              <p style="font-size: 1.125rem; margin-bottom: 1rem;">Средний рост портфеля учеников за первые 6 месяцев</p>
+              <p style="font-size: 0.875rem; color: #6b7280; font-style: italic;">Алексей К., 29 лет</p>
             </div>
-            <div class="static-card">
-              <h3>70% выпускников</h3>
-              <p>начинают инвестировать в криптовалюты в течение месяца после окончания курса</p>
+            <div class="static-card" style="text-align: center;">
+              <div style="color: #3b82f6; font-size: 3rem; margin-bottom: 1rem;">💰</div>
+              <div class="static-result-stat">₽180,000</div>
+              <p style="font-size: 1.125rem; margin-bottom: 1rem;">Заработал на инвестициях в альткоины за год обучения</p>
+              <p style="font-size: 0.875rem; color: #6b7280; font-style: italic;">Мария В., 34 года</p>
             </div>
-            <div class="static-card">
-              <h3>92% учеников</h3>
-              <p>рекомендуют наши курсы друзьям и коллегам</p>
+            <div class="static-card" style="text-align: center;">
+              <div style="color: #8b5cf6; font-size: 3rem; margin-bottom: 1rem;">🏆</div>
+              <div class="static-result-stat">95%</div>
+              <p style="font-size: 1.125rem; margin-bottom: 1rem;">Учеников успешно создали свой первый криптопортфель</p>
+              <p style="font-size: 0.875rem; color: #6b7280; font-style: italic;">Общая статистика</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Practical Value Section -->
+      <section class="static-practical-section">
+        <div class="static-container">
+          <h2>Фишки курса</h2>
+          <p style="text-align: center; font-size: 1.125rem; color: #4b5563; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Уникальные возможности, которые вы получите только у нас
+          </p>
+          <div class="static-grid">
+            <div class="static-card" style="text-align: center;">
+              <div style="background: rgba(249, 115, 22, 0.1); border-radius: 50%; padding: 1rem; width: 4rem; height: 4rem; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; color: #f97316;">
+                ⚡
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Мини-воркшопы</h3>
+              <p>Каждую неделю проводим практические мини-воркшопы по актуальным темам криптоиндустрии</p>
+            </div>
+            <div class="static-card" style="text-align: center;">
+              <div style="background: rgba(249, 115, 22, 0.1); border-radius: 50%; padding: 1rem; width: 4rem; height: 4rem; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; color: #f97316;">
+                📞
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Индивидуальные созвоны</h3>
+              <p>Персональные консультации с экспертами для разбора вашего портфеля и стратегии</p>
+            </div>
+            <div class="static-card" style="text-align: center;">
+              <div style="background: rgba(249, 115, 22, 0.1); border-radius: 50%; padding: 1rem; width: 4rem; height: 4rem; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; color: #f97316;">
+                📹
+              </div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Быстрые результаты</h3>
+              <p>Первые практические навыки уже через неделю обучения, полноценный портфель через месяц</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fears Section -->
+      <section class="static-fears-section">
+        <div class="static-container">
+          <h2 style="margin-bottom: 2rem;">Если вы совсем не разбираетесь в криптовалютах, блокчейне и т.д.</h2>
+          
+          <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); margin-bottom: 4rem;">
+            <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); position: relative;">
+              <div style="position: absolute; top: -1.5rem; left: -1.5rem; width: 3rem; height: 3rem; background: #a855f7; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                🛡️
+              </div>
+              <h3 style="font-size: 1.25rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">
+                Не понимаете, с чего начать, что делать и как снизить риски
+              </h3>
+              <p style="color: #4b5563;">
+                Наш курс предоставляет четкий пошаговый план действий для новичков, минимизирующий возможные риски и потери.
+              </p>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); position: relative;">
+              <div style="position: absolute; top: -1.5rem; left: -1.5rem; width: 3rem; height: 3rem; background: #a855f7; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                🛡️
+              </div>
+              <h3 style="font-size: 1.25rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">
+                Не уверены, что сможете разобраться в теме самостоятельно
+              </h3>
+              <p style="color: #4b5563;">
+                Мы разработали материалы с учетом нулевого уровня знаний, каждая тема объясняется простым языком с практическими примерами.
+              </p>
+            </div>
+          </div>
+          
+          <h2 style="margin-bottom: 2rem;">Если вы уже теряли деньги на трейдинге и инвестировании</h2>
+          
+          <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); align-items: center;">
+            <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);">
+              <h3 style="font-size: 1.25rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">Эксперт поделится своим мнением</h3>
+              <p style="color: #4b5563; margin-bottom: 1.5rem;">
+                Почему вы потеряли свои деньги, какие ошибки допускает большинство новичков и как этого избежать
+              </p>
+              <div style="border-left: 4px solid #8b5cf6; padding-left: 1rem; padding-top: 0.5rem; padding-bottom: 0.5rem; background: #f8fafc;">
+                <h4 style="font-size: 0.875rem; font-weight: bold; color: #8b5cf6; text-transform: uppercase;">Спойлер</h4>
+                <p style="color: #4b5563;">
+                  Основная проблема — в отсутствии полной фундаментальной базы знаний и в неумении анализировать криптоактивы. Это поправимо.
+                </p>
+              </div>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);">
+              <h3 style="font-size: 1.25rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">Хотите погрузиться в мир блокчейна?</h3>
+              <p style="color: #4b5563; margin-bottom: 1rem;">
+                Или уже приняли решение изучать криптовалютный рынок и хотите делать это с опытным практикующим экспертом
+              </p>
+              <p style="color: #374151; font-weight: bold;">
+                Наша команда экспертов проведет вас через все этапы, от базовых принципов до продвинутых стратегий, минимизирующих риски потери средств.
+              </p>
             </div>
           </div>
         </div>
@@ -507,34 +690,186 @@
         </div>
       </section>
 
+      <!-- Course Modules Section -->
+      <section class="static-modules-section">
+        <div class="static-container">
+          <h2>О курсе</h2>
+          <p style="text-align: center; font-size: 1.125rem; color: #4b5563; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Структурированная программа обучения, которая проведет вас от новичка до уверенного инвестора
+          </p>
+          
+          <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+            <div class="static-module-card">
+              <div style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                <div style="background: rgba(249, 115, 22, 0.1); border-radius: 50%; padding: 0.75rem; margin-right: 1rem; flex-shrink: 0;">
+                  <div style="color: #f97316;">📚</div>
+                </div>
+                <div style="flex: 1;">
+                  <div class="static-module-number">Модуль 1</div>
+                  <h3 class="static-module-title">Основы инвестирования и работа с рынком</h3>
+                </div>
+              </div>
+              
+              <p style="color: #4b5563; margin-bottom: 1.5rem;">Изучите фундаментальные принципы инвестирования в криптовалюты, анализ рынка и базовые стратегии.</p>
+              
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; color: #1e40af; margin-bottom: 0.75rem;">Что изучите:</div>
+                <ul class="static-module-lessons">
+                  <li>Что такое криптовалюты</li>
+                  <li>Как работает блокчейн</li>
+                  <li>Основы технического анализа</li>
+                  <li>Выбор биржи</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="static-module-card">
+              <div style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                <div style="background: rgba(249, 115, 22, 0.1); border-radius: 50%; padding: 0.75rem; margin-right: 1rem; flex-shrink: 0;">
+                  <div style="color: #f97316;">📈</div>
+                </div>
+                <div style="flex: 1;">
+                  <div class="static-module-number">Модуль 2</div>
+                  <h3 class="static-module-title">Практика первых сделок</h3>
+                </div>
+              </div>
+              
+              <p style="color: #4b5563; margin-bottom: 1.5rem;">Пошаговое руководство по совершению первых сделок, создание портфеля и управление рисками.</p>
+              
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; color: #1e40af; margin-bottom: 0.75rem;">Что изучите:</div>
+                <ul class="static-module-lessons">
+                  <li>Создание кошелька</li>
+                  <li>Первая покупка Bitcoin</li>
+                  <li>Диверсификация портфеля</li>
+                  <li>Стоп-лоссы и тейк-профиты</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="static-module-card">
+              <div style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                <div style="background: rgba(249, 115, 22, 0.1); border-radius: 50%; padding: 0.75rem; margin-right: 1rem; flex-shrink: 0;">
+                  <div style="color: #f97316;">📊</div>
+                </div>
+                <div style="flex: 1;">
+                  <div class="static-module-number">Модуль 3</div>
+                  <h3 class="static-module-title">Глубокий анализ криптопроектов</h3>
+                </div>
+              </div>
+              
+              <p style="color: #4b5563; margin-bottom: 1.5rem;">Научитесь анализировать криптопроекты, читать WhitePaper и оценивать перспективы инвестиций.</p>
+              
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; color: #1e40af; margin-bottom: 0.75rem;">Что изучите:</div>
+                <ul class="static-module-lessons">
+                  <li>Фундаментальный анализ</li>
+                  <li>Чтение технической документации</li>
+                  <li>Оценка команды проекта</li>
+                  <li>Анализ токеномики</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="static-module-card">
+              <div style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                <div style="background: rgba(249, 115, 22, 0.1); border-radius: 50%; padding: 0.75rem; margin-right: 1rem; flex-shrink: 0;">
+                  <div style="color: #f97316;">🧠</div>
+                </div>
+                <div style="flex: 1;">
+                  <div class="static-module-number">Модуль 4</div>
+                  <h3 class="static-module-title">Контроль эмоций и психология инвестирования</h3>
+                </div>
+              </div>
+              
+              <p style="color: #4b5563; margin-bottom: 1.5rem;">Изучите психологические аспекты трейдинга и научитесь контролировать эмоции при инвестировании.</p>
+              
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; color: #1e40af; margin-bottom: 0.75rem;">Что изучите:</div>
+                <ul class="static-module-lessons">
+                  <li>Психология трейдинга</li>
+                  <li>Управление страхом и жадностью</li>
+                  <li>Дисциплина в инвестировании</li>
+                  <li>Долгосрочное планирование</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Testimonials Section -->
       <section class="static-section" id="testimonials">
         <div class="static-container">
-          <h2>Отзывы студентов</h2>
+          <h2>Что говорят наши студенты</h2>
           <div class="static-grid">
-            <div class="static-testimonial">
-              <blockquote>
-                "Благодаря курсу я наконец-то разобрался в криптовалютах! Все объясняется простым языком, много практики. Рекомендую всем новичкам!"
+            <div class="static-card">
+              <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                <div style="width: 3.5rem; height: 3.5rem; border-radius: 50%; overflow: hidden; margin-right: 1rem;">
+                  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Алексей Смирнов" style="width: 100%; height: 100%; object-fit: cover;" />
+                </div>
+                <div>
+                  <h4 style="font-weight: bold; font-size: 1.125rem;">Алексей Смирнов</h4>
+                  <p style="color: #4b5563;">Начинающий инвестор</p>
+                </div>
+              </div>
+              
+              <blockquote style="position: relative;">
+                <span style="font-size: 4rem; color: rgba(139, 92, 246, 0.2); position: absolute; top: 0; left: 0;">"</span>
+                <p style="color: #374151; font-style: italic; padding-left: 1.5rem; padding-top: 0.75rem;">
+                  Я ничего не знал о криптовалютах до того, как нашел эти курсы. Теперь я уверенно инвестирую в биткоин и другие альткоины.
+                </p>
               </blockquote>
-              <cite>— Александр И., студент курса "Криптовалюта для начинающих"</cite>
+              
+              <div style="margin-top: 1rem; display: flex;">
+                <span style="color: #fbbf24;">⭐⭐⭐⭐⭐</span>
+              </div>
             </div>
-            <div class="static-testimonial">
-              <blockquote>
-                "Отличная подача материала и поддержка преподавателей. За месяц обучения получил больше знаний, чем за год самостоятельного изучения."
+
+            <div class="static-card">
+              <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                <div style="width: 3.5rem; height: 3.5rem; border-radius: 50%; overflow: hidden; margin-right: 1rem;">
+                  <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Елена Петрова" style="width: 100%; height: 100%; object-fit: cover;" />
+                </div>
+                <div>
+                  <h4 style="font-weight: bold; font-size: 1.125rem;">Елена Петрова</h4>
+                  <p style="color: #4b5563;">Предприниматель</p>
+                </div>
+              </div>
+              
+              <blockquote style="position: relative;">
+                <span style="font-size: 4rem; color: rgba(139, 92, 246, 0.2); position: absolute; top: 0; left: 0;">"</span>
+                <p style="color: #374151; font-style: italic; padding-left: 1.5rem; padding-top: 0.75rem;">
+                  Благодаря премиальной криптошколе я смогла диверсифицировать свой бизнес и начать принимать криптовалюту как способ оплаты.
+                </p>
               </blockquote>
-              <cite>— Елена К., студентка курса "Блокчейн и криптовалюты"</cite>
+              
+              <div style="margin-top: 1rem; display: flex;">
+                <span style="color: #fbbf24;">⭐⭐⭐⭐⭐</span>
+              </div>
             </div>
-            <div class="static-testimonial">
-              <blockquote>
-                "Премиальный курс превзошел все ожидания! Индивидуальный подход, качественные материалы и постоянная поддержка. Очень доволен результатом."
+
+            <div class="static-card">
+              <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                <div style="width: 3.5rem; height: 3.5rem; border-radius: 50%; overflow: hidden; margin-right: 1rem;">
+                  <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Дмитрий Козлов" style="width: 100%; height: 100%; object-fit: cover;" />
+                </div>
+                <div>
+                  <h4 style="font-weight: bold; font-size: 1.125rem;">Дмитрий Козлов</h4>
+                  <p style="color: #4b5563;">IT-специалист</p>
+                </div>
+              </div>
+              
+              <blockquote style="position: relative;">
+                <span style="font-size: 4rem; color: rgba(139, 92, 246, 0.2); position: absolute; top: 0; left: 0;">"</span>
+                <p style="color: #374151; font-style: italic; padding-left: 1.5rem; padding-top: 0.75rem;">
+                  Раздел о блокчейне был особенно полезным. Я смог глубже понять технологию и даже начал разрабатывать свои смарт-контракты.
+                </p>
               </blockquote>
-              <cite>— Михаил Д., студент "Премиальной криптошколы"</cite>
-            </div>
-            <div class="static-testimonial">
-              <blockquote>
-                "Курс по Bitcoin помог мне создать диверсифицированный портфель. Теперь я уверенно инвестирую в криптовалюты!"
-              </blockquote>
-              <cite>— Ольга С., студентка курса "Биткоин и альткоины"</cite>
+              
+              <div style="margin-top: 1rem; display: flex;">
+                <span style="color: #fbbf24;">⭐⭐⭐⭐⭐</span>
+              </div>
             </div>
           </div>
         </div>
