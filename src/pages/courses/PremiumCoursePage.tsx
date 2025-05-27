@@ -113,12 +113,6 @@ const PremiumCoursePage = () => {
     }
   ];
 
-  const breadcrumbItems = [
-    { name: 'Главная', url: '/' },
-    { name: 'Курсы', url: '/#courses' },
-    { name: 'Премиальная криптошкола' }
-  ];
-
   return (
     <div className="min-h-screen">
       <Header />
@@ -129,7 +123,7 @@ const PremiumCoursePage = () => {
         
         {/* Breadcrumb */}
         <div className="container mx-auto px-4 relative z-10 mb-8">
-          <CourseBreadcrumbs items={breadcrumbItems} />
+          <CourseBreadcrumbs courseName="Премиальная криптошкола" courseUrl="/courses/premium-crypto-school" />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">

@@ -121,12 +121,6 @@ const BlockchainCoursePage = () => {
     }
   ];
 
-  const breadcrumbItems = [
-    { name: 'Главная', url: '/' },
-    { name: 'Курсы', url: '/#courses' },
-    { name: 'Блокчейн технологии' }
-  ];
-
   return (
     <div className="min-h-screen">
       <SEOHead
@@ -157,7 +151,7 @@ const BlockchainCoursePage = () => {
         
         {/* Breadcrumb */}
         <div className="container mx-auto px-4 relative z-10 mb-8">
-          <CourseBreadcrumbs items={breadcrumbItems} />
+          <CourseBreadcrumbs courseName="Блокчейн технологии" courseUrl="/courses/blockchain-and-crypto" />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">

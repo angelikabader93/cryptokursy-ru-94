@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Gift, Play, Star, Bitcoin, TrendingUp, Shield, Coins } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -113,12 +112,6 @@ const BitcoinCoursePage = () => {
       question: "Можно ли использовать знания курса для инвестиций?",
       answer: "Курс дает техническое понимание, но инвестиционные решения всегда принимайте на свой риск."
     }
-  ];
-
-  const breadcrumbItems = [
-    { name: 'Главная', url: '/' },
-    { name: 'Курсы', url: '/' },
-    { name: 'Bitcoin и альткоины' }
   ];
 
   // Lead Capture Modal Component
@@ -306,7 +299,7 @@ const BitcoinCoursePage = () => {
         
         {/* Breadcrumb */}
         <div className="container mx-auto px-4 relative z-10 mb-8">
-          <CourseBreadcrumbs items={breadcrumbItems} />
+          <CourseBreadcrumbs courseName="Bitcoin и альткоины" courseUrl="/courses/bitcoin-and-altcoins" />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
