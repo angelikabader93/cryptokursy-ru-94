@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Award, Users } from "lucide-react";
-import { Link } from 'react-router-dom';
+import SEOOptimizedLink from './SEOOptimizedLink';
 
 interface Instructor {
   id: string;
@@ -119,76 +118,90 @@ const instructors: Instructor[] = [
 
 const InstructorsSection: React.FC = () => {
   return (
-    <section className="py-16 bg-gray-50" id="instructors">
+    <section className="py-16 bg-gray-50" id="instructors" itemScope itemType="https://schema.org/ItemList">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center mb-2">
           <Users className="text-crypto-purple mr-2" />
           <span className="text-crypto-purple font-medium">Наша команда</span>
         </div>
-        <h2 className="section-title mb-12 text-center text-3xl font-bold text-crypto-blue">Наши преподаватели</h2>
+        <h2 className="section-title mb-12 text-center text-3xl font-bold text-crypto-blue" itemProp="name">Наши преподаватели</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {instructors.map((instructor) => (
-            <Card key={instructor.id} className="border border-gray-200 transition-all duration-200 hover:shadow-md">
-              <CardHeader className="text-center pb-2">
-                <Avatar 
-                  className="w-24 h-24 mx-auto mb-4 border-2 border-crypto-purple/20"
-                  key={`avatar-${instructor.id}-${Date.now()}`}
-                >
-                  {instructor.avatar ? (
-                    <AvatarImage 
-                      src={instructor.avatar} 
-                      alt={instructor.name}
-                      onError={(e) => console.error('Image loading error for', instructor.name, ':', e)}
-                    />
-                  ) : (
-                    <AvatarFallback className="text-2xl font-bold bg-gray-200 text-gray-400">
-                      {instructor.name.charAt(0)}
-                    </AvatarFallback>
-                  )}
-                </Avatar>
-                <CardTitle className="text-xl text-crypto-blue">{instructor.name}</CardTitle>
-                <CardDescription className="text-gray-600 font-medium">
-                  {instructor.position}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="px-6 pb-4 text-center">
-                <p className="text-gray-700 mb-4">{instructor.bio}</p>
-                <div className="mb-4">
-                  <div className="flex items-center justify-center mb-2">
-                    <Award className="text-crypto-purple mr-2" size={16} />
-                    <span className="font-medium text-sm text-gray-700">Ключевые навыки</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {instructor.experience.slice(0, 2).map((exp, i) => (
-                      <span 
-                        key={i} 
-                        className="text-xs py-1 px-2 bg-crypto-light rounded-full text-crypto-purple"
-                      >
-                        {exp.split(' ').slice(0, 3).join(' ')}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                {instructor.courses.length > 0 && (
-                  <div>
-                    <p className="text-sm font-medium text-gray-700 mb-2">Ведёт курсы:</p>
-                    <ul className="space-y-1">
-                      {instructor.courses.map(course => (
-                        <li key={course.id}>
-                          <Link 
-                            to={course.url} 
-                            className="text-sm text-crypto-purple hover:underline"
-                          >
-                            {course.title}
-                          </Link>
-                        </li>
+          {instructors.map((instructor, index) => (
+            <article 
+              key={instructor.id} 
+              itemScope 
+              itemType="https://schema.org/Person" 
+              itemProp="itemListElement"
+            >
+              <meta itemProp="position" content={String(index + 1)} />
+              <Card className="border border-gray-200 transition-all duration-200 hover:shadow-md">
+                <CardHeader className="text-center pb-2">
+                  <Avatar 
+                    className="w-24 h-24 mx-auto mb-4 border-2 border-crypto-purple/20"
+                    key={`avatar-${instructor.id}-${Date.now()}`}
+                  >
+                    {instructor.avatar ? (
+                      <AvatarImage 
+                        src={instructor.avatar} 
+                        alt={`Фото преподавателя ${instructor.name}`}
+                        itemProp="image"
+                        onError={(e) => console.error('Image loading error for', instructor.name, ':', e)}
+                      />
+                    ) : (
+                      <AvatarFallback className="text-2xl font-bold bg-gray-200 text-gray-400">
+                        {instructor.name.charAt(0)}
+                      </AvatarFallback>
+                    )}
+                  </Avatar>
+                  <CardTitle className="text-xl text-crypto-blue" itemProp="name">{instructor.name}</CardTitle>
+                  <CardDescription className="text-gray-600 font-medium" itemProp="jobTitle">
+                    {instructor.position}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="px-6 pb-4 text-center">
+                  <p className="text-gray-700 mb-4" itemProp="description">{instructor.bio}</p>
+                  <div className="mb-4">
+                    <div className="flex items-center justify-center mb-2">
+                      <Award className="text-crypto-purple mr-2" size={16} />
+                      <span className="font-medium text-sm text-gray-700">Ключевые навыки</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2 justify-center" itemProp="knowsAbout">
+                      {instructor.experience.slice(0, 2).map((exp, i) => (
+                        <span 
+                          key={i} 
+                          className="text-xs py-1 px-2 bg-crypto-light rounded-full text-crypto-purple"
+                          itemProp="hasCredential"
+                        >
+                          {exp.split(' ').slice(0, 3).join(' ')}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
                   </div>
-                )}
-              </CardContent>
-            </Card>
+                  {instructor.courses.length > 0 && (
+                    <div itemScope itemType="https://schema.org/ItemList">
+                      <p className="text-sm font-medium text-gray-700 mb-2">Ведёт курсы:</p>
+                      <nav aria-label={`Курсы преподавателя ${instructor.name}`}>
+                        <ul className="space-y-1" itemProp="itemListElement">
+                          {instructor.courses.map((course, courseIndex) => (
+                            <li key={course.id} itemScope itemType="https://schema.org/Course">
+                              <meta itemProp="position" content={String(courseIndex + 1)} />
+                              <SEOOptimizedLink 
+                                to={course.url}
+                                className="text-sm text-crypto-purple hover:underline"
+                                title={`Перейти к курсу "${course.title}"`}
+                              >
+                                <span itemProp="name">{course.title}</span>
+                              </SEOOptimizedLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </nav>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </article>
           ))}
         </div>
       </div>
