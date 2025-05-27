@@ -1,49 +1,58 @@
 
 import React from 'react';
-import SEOOptimizedLink from './SEOOptimizedLink';
+import { Link } from 'react-router-dom';
 import BreadcrumbSchema from './BreadcrumbSchema';
 
-interface BreadcrumbItem {
-  name: string;
-  url?: string;
-}
-
 interface CourseBreadcrumbsProps {
-  items: BreadcrumbItem[];
+  courseName: string;
+  courseUrl?: string;
 }
 
-const CourseBreadcrumbs: React.FC<CourseBreadcrumbsProps> = ({ items }) => {
+const CourseBreadcrumbs: React.FC<CourseBreadcrumbsProps> = ({ 
+  courseName, 
+  courseUrl = window.location.pathname 
+}) => {
+  const breadcrumbItems = [
+    {
+      name: "Главная",
+      item: "https://cryptokursy.ru/"
+    },
+    {
+      name: "Курсы", 
+      item: "https://cryptokursy.ru/#courses"
+    },
+    {
+      name: courseName
+    }
+  ];
+
   return (
     <>
-      <BreadcrumbSchema items={items} />
-      <nav 
-        className="text-white/70 text-sm" 
-        aria-label="Навигация по разделам"
-        itemScope 
-        itemType="https://schema.org/BreadcrumbList"
-      >
-        {items.map((item, index) => (
-          <span 
-            key={index}
-            itemScope 
-            itemType="https://schema.org/ListItem" 
-            itemProp="itemListElement"
-          >
-            <meta itemProp="position" content={String(index + 1)} />
-            {item.url ? (
-              <SEOOptimizedLink 
-                to={item.url}
-                className="hover:text-white transition-colors"
-                title={`Перейти к разделу ${item.name}`}
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <nav aria-label="Хлебные крошки" className="mb-6">
+        <div className="container mx-auto px-4">
+          <ol className="flex items-center space-x-2 text-sm text-gray-600">
+            <li>
+              <Link 
+                to="/" 
+                className="hover:text-crypto-orange transition-colors"
               >
-                <span itemProp="name">{item.name}</span>
-              </SEOOptimizedLink>
-            ) : (
-              <span className="text-white" itemProp="name">{item.name}</span>
-            )}
-            {index < items.length - 1 && <span className="mx-2" aria-hidden="true">›</span>}
-          </span>
-        ))}
+                Главная
+              </Link>
+            </li>
+            <li className="before:content-['/'] before:mx-2 before:text-gray-400">
+              <Link 
+                to="/#courses" 
+                className="hover:text-crypto-orange transition-colors"
+              >
+                Курсы
+              </Link>
+            </li>
+            <li className="before:content-['/'] before:mx-2 before:text-gray-400 text-gray-900 font-medium">
+              {courseName}
+            </li>
+          </ol>
+        </div>
       </nav>
     </>
   );

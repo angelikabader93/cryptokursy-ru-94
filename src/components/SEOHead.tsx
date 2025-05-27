@@ -28,6 +28,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         <meta name="description" content={description} />
         <meta name="keywords" content="" />
         
+        {/* Canonical URL */}
+        {currentUrl && <link rel="canonical" href={currentUrl} />}
+        
         {/* Open Graph */}
         <meta property="og:title" content={fullTitle} />
         <meta property="og:description" content={description} />
@@ -46,13 +49,6 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         <meta name="twitter:image" content={ogImage} />
         <meta name="twitter:image:alt" content={`${title} - КриптоКурсы`} />
         
-        {/* Canonical URL */}
-        {currentUrl && <link rel="canonical" href={currentUrl} />}
-        
-        {/* Preconnect для улучшения производительности */}
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        
         {/* Enhanced meta tags for SEO */}
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
@@ -65,6 +61,10 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        
+        {/* Preconnect для улучшения производительности */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
       </Helmet>
       
       <NoScriptStyles />

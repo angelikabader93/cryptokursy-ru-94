@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,6 +9,7 @@ import SignupForm from '@/components/SignupForm';
 import LeadCaptureModal from '@/components/LeadCaptureModal';
 import SEOHead from '@/components/SEOHead';
 import CourseSchema from '@/components/CourseSchema';
+import CourseBreadcrumbs from '@/components/CourseBreadcrumbs';
 
 const CryptoForBeginnersLandingPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -18,6 +20,7 @@ const CryptoForBeginnersLandingPage = () => {
         title="Криптовалюта для чайников - Бесплатный курс"
         description="Освойте мир криптовалют за 7 дней с нуля до уверенного пользователя! Абсолютно бесплатно и без скрытых платежей."
         canonical="https://cryptokursy.ru/courses/crypto-for-beginners"
+        ogImage="https://images.unsplash.com/photo-1516245834210-c4c142787335?q=80&w=2069"
       />
       <CourseSchema 
         name="Криптовалюта для чайников"
@@ -30,6 +33,7 @@ const CryptoForBeginnersLandingPage = () => {
         url="https://cryptokursy.ru/courses/crypto-for-beginners"
       />
       <Header />
+      <CourseBreadcrumbs courseName="Криптовалюта для чайников" />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-crypto-orange via-amber-500 to-yellow-500 text-white py-20">
