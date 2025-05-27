@@ -20,6 +20,7 @@ import Terms from "./pages/Terms";
 import LowercaseRedirect from "./components/LowercaseRedirect";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import ScrollToTop from "./components/ScrollToTop";
+import { robotsLoader } from "./utils/robotsLoader";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           <LowercaseRedirect>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/robots.txt" loader={robotsLoader} element={null} />
               <Route path="/courses/crypto-for-beginners" element={<CryptoForBeginnersLandingPage />} />
               <Route path="/courses/blockchain-and-crypto" element={<BlockchainCoursePage />} />
               <Route path="/courses/bitcoin-and-altcoins" element={<BitcoinCoursePage />} />
