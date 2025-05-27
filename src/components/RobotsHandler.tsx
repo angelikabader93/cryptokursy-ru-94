@@ -26,18 +26,10 @@ Sitemap: https://cryptokursy.ru/sitemap.xml
 # Время задержки для ботов (в секундах)
 Crawl-delay: 1`;
 
-    // Устанавливаем правильный Content-Type
-    const response = new Response(robotsContent, {
-      headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
-      },
-    });
-
-    // Заменяем содержимое страницы
+    // Заменяем содержимое страницы на robots.txt
     document.open();
     document.write(robotsContent);
     document.close();
-    document.contentType = 'text/plain';
   }, []);
 
   return null;
