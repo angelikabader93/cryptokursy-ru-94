@@ -17,6 +17,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import RobotsRoute from "./components/RobotsRoute";
 import LowercaseRedirect from "./components/LowercaseRedirect";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import ScrollToTop from "./components/ScrollToTop";
@@ -33,6 +34,7 @@ const App = () => (
           <ScrollToTop />
           <LowercaseRedirect>
             <Routes>
+              <Route path="/robots.txt" element={<RobotsRoute />} />
               <Route path="/" element={<Index />} />
               <Route path="/courses/crypto-for-beginners" element={<CryptoForBeginnersLandingPage />} />
               <Route path="/courses/blockchain-and-crypto" element={<BlockchainCoursePage />} />
