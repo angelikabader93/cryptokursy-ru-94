@@ -3,7 +3,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import type { Connect } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -20,7 +19,7 @@ export default defineConfig(({ mode }) => ({
     {
       name: 'robots-txt-mime',
       configureServer(server: any) {
-        server.middlewares.use('/robots.txt', (req: Connect.IncomingMessage, res: Connect.ServerResponse, next: Connect.NextFunction) => {
+        server.middlewares.use('/robots.txt', (req: any, res: any, next: any) => {
           res.setHeader('Content-Type', 'text/plain; charset=utf-8');
           next();
         });
