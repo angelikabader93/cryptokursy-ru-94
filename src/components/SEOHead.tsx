@@ -26,6 +26,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <Helmet>
         <title>{fullTitle}</title>
         <meta name="description" content={description} />
+        <meta name="keywords" content="" />
         
         {/* Open Graph */}
         <meta property="og:title" content={fullTitle} />

@@ -10,10 +10,9 @@ Allow: /faq
 Allow: /privacy
 Allow: /terms
 
-# Запрещаем индексацию технических файлов
-Disallow: /assets/
-Disallow: /*.js
-Disallow: /*.css
+# Запрещаем индексацию технических файлов, но разрешаем CSS/JS для рендеринга
+Disallow: /assets/fonts/
+Disallow: /lovable-uploads/
 Disallow: /*.json
 
 # Указываем местоположение карты сайта

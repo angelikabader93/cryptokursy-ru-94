@@ -1,9 +1,10 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Главная страница -->
   <url>
     <loc>https://cryptokursy.ru/</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,7 +12,7 @@
   <!-- Страница курсов -->
   <url>
     <loc>https://cryptokursy.ru/#courses</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -19,28 +20,28 @@
   <!-- Отдельные курсы -->
   <url>
     <loc>https://cryptokursy.ru/courses/crypto-for-beginners</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://cryptokursy.ru/courses/blockchain-and-crypto</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://cryptokursy.ru/courses/bitcoin-and-altcoins</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://cryptokursy.ru/courses/premium-crypto-school</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -48,23 +49,37 @@
   <!-- Информационные страницы -->
   <url>
     <loc>https://cryptokursy.ru/about</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://cryptokursy.ru/contact</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://cryptokursy.ru/faq</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://cryptokursy.ru/privacy</loc>
+    <lastmod>2025-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://cryptokursy.ru/terms</loc>
+    <lastmod>2025-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 
 </urlset>
