@@ -19,6 +19,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Обеспечиваем правильную обработку текстовых файлов
-  assetsInclude: ['**/*.txt'],
 }));
