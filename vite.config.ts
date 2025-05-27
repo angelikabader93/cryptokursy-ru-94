@@ -26,10 +26,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  assetsInclude: ['**/*.txt'],
-  publicDir: 'public',
-  build: {
-    copyPublicDir: true,
-    assetsDir: 'assets'
-  }
 }));
