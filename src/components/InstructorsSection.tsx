@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
@@ -30,7 +31,7 @@ const instructors: Instructor[] = [
       "Участник международных конференций",
       "Разработчик инвестиционных стратегий"
     ],
-    avatar: "/lovable-uploads/a97572f4-6fd5-47fa-84dc-bcd47ed056ba.png",
+    avatar: `/lovable-uploads/e1a3ec33-181e-4a61-8b04-dc41cdaadf84.png?v=${Date.now()}`,
     courses: [
       {
         id: "beginners",
@@ -85,9 +86,16 @@ const InstructorsSection: React.FC = () => {
           {instructors.map((instructor) => (
             <Card key={instructor.id} className="border border-gray-200 transition-all duration-200 hover:shadow-md">
               <CardHeader className="text-center pb-2">
-                <Avatar className="w-24 h-24 mx-auto mb-4 border-2 border-crypto-purple/20">
+                <Avatar 
+                  className="w-24 h-24 mx-auto mb-4 border-2 border-crypto-purple/20"
+                  key={`avatar-${instructor.id}-${Date.now()}`}
+                >
                   {instructor.avatar ? (
-                    <AvatarImage src={instructor.avatar} alt={instructor.name} />
+                    <AvatarImage 
+                      src={instructor.avatar} 
+                      alt={instructor.name}
+                      onError={(e) => console.error('Image loading error for', instructor.name, ':', e)}
+                    />
                   ) : (
                     <AvatarFallback className="text-2xl font-bold bg-gray-200 text-gray-400">
                       {instructor.name.charAt(0)}

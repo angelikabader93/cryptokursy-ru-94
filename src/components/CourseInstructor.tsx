@@ -20,9 +20,16 @@ const CourseInstructor: React.FC<InstructorProps> = ({ instructorId }) => {
         <h2 className="text-2xl font-bold mb-6 text-crypto-blue">Преподаватель курса</h2>
         
         <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
-          <Avatar className="w-32 h-32 border-2 border-crypto-purple/20">
+          <Avatar 
+            className="w-32 h-32 border-2 border-crypto-purple/20"
+            key={`course-avatar-${instructorId}-${Date.now()}`}
+          >
             {avatar ? (
-              <AvatarImage src={avatar} alt={name} />
+              <AvatarImage 
+                src={avatar} 
+                alt={name}
+                onError={(e) => console.error('Course instructor image loading error for', name, ':', e)}
+              />
             ) : (
               <AvatarFallback className="text-3xl font-bold bg-gray-200 text-gray-400">
                 {name.charAt(0)}
