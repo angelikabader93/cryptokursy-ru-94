@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Check, Users, Award, BookOpen, Clock, Zap, AlertCircle, Layers, Play, Star, Code, Globe, Database } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -13,6 +12,7 @@ import SignupForm from '@/components/SignupForm';
 import SEOHead from '@/components/SEOHead';
 import CoursePageSchema from '@/components/CoursePageSchema';
 import CourseBreadcrumbs from '@/components/CourseBreadcrumbs';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import LeadCaptureModal from '@/components/LeadCaptureModal';
 
 const BlockchainCoursePage = () => {
@@ -22,6 +22,12 @@ const BlockchainCoursePage = () => {
   const breadcrumbs = [
     { name: "Главная", href: "/" },
     { name: "Курсы", href: "/#courses" },
+    { name: "Блокчейн технологии" }
+  ];
+
+  const breadcrumbsForSchema = [
+    { name: "Главная", url: "/" },
+    { name: "Курсы", url: "/#courses" },
     { name: "Блокчейн технологии" }
   ];
 
@@ -134,7 +140,14 @@ const BlockchainCoursePage = () => {
         title="Блокчейн технологии - Технический курс"
         description="Глубокое погружение в техническую архитектуру блокчейна. Изучите смарт-контракты, Solidity, создание dApps и бизнес-применение блокчейна."
         canonical="https://cryptokursy.ru/courses/blockchain-and-crypto"
+        ogImage="https://cryptokursy.ru/lovable-uploads/1dbf4abc-bae2-4700-990c-ccd769aa7dee.png"
+        articleTags={["блокчейн", "криптовалюты", "смарт-контракты", "solidity", "dapps", "технический курс"]}
+        author="Алексей Петров"
+        publishedTime="2024-01-01T00:00:00Z"
+        modifiedTime={new Date().toISOString()}
       />
+      
+      <BreadcrumbSchema items={breadcrumbsForSchema} />
       
       <CoursePageSchema
         courseName="Блокчейн технологии"
@@ -142,12 +155,23 @@ const BlockchainCoursePage = () => {
         price="18000"
         originalPrice="24000"
         currency="RUB"
-        duration="12 недель"
+        duration="PT12W"
         level="Технический"
         instructor="Алексей Петров"
         rating="4.7"
         reviewCount="89"
         modules={modules}
+        courseCode="BLOCKCHAIN-TECH"
+        teaches={[
+          "Техническая архитектура блокчейна",
+          "Смарт-контракты и разработка",
+          "Программирование на Solidity",
+          "Создание децентрализованных приложений",
+          "Консенсусные алгоритмы",
+          "Масштабируемость блокчейн-сетей",
+          "Бизнес-применение блокчейна"
+        ]}
+        url="https://cryptokursy.ru/courses/blockchain-and-crypto"
       />
 
       <Header />
